@@ -249,8 +249,10 @@ function renderAbout() {
   screenEl.appendChild(page);
 }
 
-function renderAsk() {
+function renderAsk(scroll) {
   const chat = chats.find(item => item.id === activeId);
+  const previous = scroll === "keep" || scroll === true ? document.querySelector(".thread") : null;
+  const scrollTop = previous ? previous.scrollTop : 0;
   screenEl.replaceChildren();
   const wrap = el("div", "ask");
   const aside = el("aside", "history");
@@ -279,7 +281,8 @@ function renderAsk() {
   main.append(thread, composer());
   wrap.append(aside, main);
   screenEl.appendChild(wrap);
-  if (busy) thread.scrollTop = thread.scrollHeight;
+  if (scroll === "bottom" || busy) thread.scrollTop = thread.scrollHeight;
+  else if (previous) thread.scrollTop = scrollTop;
 }
 
 function emptyState() {
@@ -355,7 +358,7 @@ function lookup(turn, lines, live) {
   const box = el("div");
   const toggle = button("lookup");
   toggle.append(icon("ph-books"), el("span", "", lookedThrough(lines)), icon(turn.open ? "ph-caret-up" : "ph-caret-down"));
-  if (!live) toggle.addEventListener("click", () => { turn.open = !turn.open; saveChats(); renderAsk(); });
+  if (!live) toggle.addEventListener("click", () => { turn.open = !turn.open; saveChats(); renderAsk("keep"); });
   box.appendChild(toggle);
   if (turn.open) {
     const list = el("div", "lookup-lines");
@@ -407,7 +410,7 @@ function feedback(chat, turn, question, answer) {
   const row = el("div", "feedback");
   const helped = button("btn btn-secondary btn-feedback", "<i class=\"ph ph-thumbs-up\"></i>This helped");
   const missed = button("btn btn-secondary btn-feedback", "<i class=\"ph ph-thumbs-down\"></i>This didn't help");
-  helped.addEventListener("click", () => { turn.data.reaction = "helped"; saveChats(); renderAsk(); });
+  helped.addEventListener("click", () => { turn.data.reaction = "helped"; saveChats(); renderAsk("keep"); });
   missed.addEventListener("click", () => sendReview(chat, turn, question, answer));
   row.append(helped, missed);
   return row;
@@ -423,7 +426,7 @@ async function sendReview(chat, turn, question, answer) {
   turn.data.reaction = "not_helpful";
   saveChats();
   review = null;
-  renderAsk();
+  renderAsk("keep");
   refreshBadge();
 }
 
@@ -504,9 +507,9 @@ async function send() {
     saveChats();
   } finally {
     busy = false;
-    renderAsk();
+    renderAsk("bottom");
     const box = document.querySelector("#draft");
-    if (box) box.focus();
+    if (box) box.focus({ preventScroll: true });
   }
 }
 
