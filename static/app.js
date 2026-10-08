@@ -131,11 +131,12 @@ function loadChats() {
     const parsed = JSON.parse(sessionStorage.getItem(KEY) || "null");
     const saved = parsed && Array.isArray(parsed.chats) ? parsed.chats.filter(item => !isSample(item)) : [];
     const merged = saved.concat(SAMPLES);
-    if (parsed && merged.some(item => item.id === parsed.activeId)) activeId = parsed.activeId;
-    else if (!(parsed && parsed.fresh)) activeId = SAMPLES[0].id;
+    const savedActive = parsed && parsed.activeId;
+    if (savedActive && saved.some(item => item.id === savedActive)) activeId = savedActive;
+    else activeId = null;
     return merged;
   } catch (error) {
-    activeId = SAMPLES[0].id;
+    activeId = null;
     return SAMPLES.slice();
   }
 }
