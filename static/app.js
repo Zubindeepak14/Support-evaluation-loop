@@ -329,7 +329,8 @@ function message(chat, pair) {
   agent.appendChild(who);
 
   if (turn.pending) {
-    agent.appendChild(liveLookup(turn));
+    turn.open = true;
+    agent.appendChild(lookup(turn, lookupLines(turn), true));
   } else if (turn.error) {
     agent.appendChild(el("div", "answer", turn.error));
   } else {
@@ -349,45 +350,19 @@ function message(chat, pair) {
   return wrap;
 }
 
-function liveLookup(turn) {
-  const lines = liveLines(turn);
-  const box = el("div");
-  const head = el("div", "lookup");
-  head.append(icon("ph-books"), el("span", "", "Looking through the docs"), icon("ph-circle-notch spin"));
-  const list = el("div", "lookup-lines");
-  lines.forEach((text, index) => {
-    const row = el("div");
-    row.append(el("span", "", String(index + 1).padStart(2, "0")));
-    if (index === lines.length - 1) row.append(icon("ph-circle-notch spin"));
-    row.append(document.createTextNode(text));
-    list.appendChild(row);
-  });
-  box.append(head, list);
-  return box;
-}
-
-function liveLines(turn) {
-  const lines = [];
-  (turn.steps || []).forEach(step => {
-    const text = step.text || "";
-    if (text.startsWith("Looking through ") && text.split(/\s+/).length <= 8) lines.push(text);
-    else if (text === "The docs don't cover this" || text === "Nothing in the docs matched") lines.push(text);
-  });
-  if (!lines.length) lines.push(turn.liveLine || "Looking through the docs");
-  return lines;
-}
-
-function lookup(turn, lines) {
+function lookup(turn, lines, live) {
   const box = el("div");
   const toggle = button("lookup");
   toggle.append(icon("ph-books"), el("span", "", lookedThrough(lines)), icon(turn.open ? "ph-caret-up" : "ph-caret-down"));
-  toggle.addEventListener("click", () => { turn.open = !turn.open; saveChats(); renderAsk(); });
+  if (!live) toggle.addEventListener("click", () => { turn.open = !turn.open; saveChats(); renderAsk(); });
   box.appendChild(toggle);
   if (turn.open) {
     const list = el("div", "lookup-lines");
     lines.forEach((text, index) => {
       const row = el("div");
-      row.append(el("span", "", String(index + 1).padStart(2, "0")), document.createTextNode(text));
+      row.append(el("span", "", String(index + 1).padStart(2, "0")));
+      if (live && index === lines.length - 1) row.append(icon("ph-circle-notch spin"));
+      row.append(document.createTextNode(text));
       list.appendChild(row);
     });
     box.appendChild(list);
@@ -553,9 +528,8 @@ async function readEvents(response, pending) {
         const known = pending.steps.find(step => step.id === event.id);
         if (known) Object.assign(known, event);
         else pending.steps.push(event);
-        const names = lookupLines(pending).map(item => item.replace(/^Looking through /, ""));
-        pending.liveLine = names.length ? "Looking through " + names[names.length - 1] : "Looking through the docs";
         renderAsk();
+        await new Promise(resolve => requestAnimationFrame(resolve));
       } else if (event.type === "error") throw new Error(event.error || "Request failed");
       else if (event.type === "final") final = event;
     }
@@ -816,22 +790,37 @@ function splitScore(score) {
   return match ? { big: match[1], small: match[2] } : { big: score, small: "" };
 }
 
+function sectionName(name) {
+  const trimmed = String(name || "").replace(/[-–—]+/g, " ").replace(/\s+/g, " ").trim();
+  if (!trimmed || trimmed === "the docs") return false;
+  if (/[{}=<>]|->/.test(name)) return false;
+  if (/^[a-z0-9]/.test(trimmed)) return false;
+  return true;
+}
+
 function lookupLines(turn) {
   const lines = [];
   (turn.steps || []).forEach(step => {
-    const text = step.text || "";
-    if (text.startsWith("Looking through ") && text !== "Looking through the docs" && text.split(/\s+/).length <= 8) lines.push(text);
-    else if (text === "The docs don't cover this" || text === "Nothing in the docs matched") lines.push(text);
+    const text = (step.text || "").trim();
+    if (!text || text === "Looking through the docs") return;
+    if (text === "The docs don't cover this" || text === "Nothing in the docs matched") {
+      if (!lines.includes(text)) lines.push(text);
+      return;
+    }
+    if (text.startsWith("Looking through ") && sectionName(text.slice("Looking through ".length))) {
+      if (!lines.includes(text)) lines.push(text);
+    }
   });
   if (lines.length) return lines;
   const seen = new Set();
   ((turn.data && turn.data.citations) || []).forEach(cite => {
-    const name = cite.heading || "";
-    if (name && name.split(/\s+/).length <= 6 && !seen.has(name)) {
+    const name = cite.heading || cite.title || "";
+    if (name && !seen.has(name)) {
       seen.add(name);
       lines.push("Looking through " + name);
     }
   });
+  if (!lines.length && turn.pending) return ["Looking through the docs"];
   return lines;
 }
 
@@ -848,8 +837,12 @@ function lookedThrough(lines) {
 }
 
 function shown(data) {
-  if (data.clarifying_question && !data.answer) return data.clarifying_question;
-  return data.answer || data.reason || "";
+  const text = data.clarifying_question && !data.answer ? data.clarifying_question : (data.answer || data.reason || "");
+  return String(text)
+    .replace(/\s*\(\s*chunk_id\s*:\s*[A-Za-z0-9]+\s*\)/gi, "")
+    .replace(/[ \t]{2,}/g, " ")
+    .replace(/ +([.,;:])/g, "$1")
+    .trim();
 }
 
 function paragraphs(text) {

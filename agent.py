@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 
 from docs_live import ROOT, load_config, quote_in_text
 from trace import log_event
@@ -455,9 +456,34 @@ def _titles(payload: dict) -> list[str]:
         title = (chunk.get("title") or "").strip()
         # A short heading is a section. A long heading is a sentence inside the page.
         label = heading if heading and len(heading.split()) <= 6 else title
+        if not _section_name(label):
+            label = title if _section_name(title) else ""
         if label and label not in found:
             found.append(label)
     return found[:6]
+
+
+def _section_name(label: str) -> bool:
+    """A docs section, not a code comment or a line of a sample."""
+    if not label:
+        return False
+    if label[0] in "-–—" or "---" in label or "___" in label:
+        return False
+    if any(ch in label for ch in "{}=<>"):
+        return False
+    if label[0].islower() or label[0].isdigit():
+        return False
+    return True
+
+
+_CHUNK_LABEL = re.compile(r"\s*\(\s*chunk_id\s*:\s*[A-Za-z0-9]+\s*\)", re.IGNORECASE)
+
+
+def _hide_chunk_ids(text: str) -> str:
+    cleaned = _CHUNK_LABEL.sub("", text or "")
+    cleaned = re.sub(r"[ \t]{2,}", " ", cleaned)
+    cleaned = re.sub(r" +([.,;:])", r"\1", cleaned)
+    return cleaned.strip()
 
 
 def parse_reply(text: str) -> tuple[dict, str | None]:
@@ -492,8 +518,8 @@ def parse_reply(text: str) -> tuple[dict, str | None]:
         clean.append({"chunk_id": str(item.get("chunk_id") or ""), "quote": str(item.get("quote") or "")})
     return (
         {
-            "answer": str(payload.get("answer") or ""),
-            "clarifying_question": str(payload.get("clarifying_question") or ""),
+            "answer": _hide_chunk_ids(str(payload.get("answer") or "")),
+            "clarifying_question": _hide_chunk_ids(str(payload.get("clarifying_question") or "")),
             "citations": clean,
             "abstain": payload["abstain"],
             "reason": str(payload.get("reason") or ""),

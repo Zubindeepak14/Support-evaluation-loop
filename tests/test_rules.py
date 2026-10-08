@@ -142,6 +142,21 @@ class RulesTest(unittest.TestCase):
         self.assertIn("clarifying_question", format_retry_message())
         _, error = parse_reply('{"answer": "ok", "abstain": "false", "citations": []}')
         self.assertIn("boolean", error)
+        parsed, error = parse_reply(
+            '{"answer": "The parent is empty (chunk_id: ace32001b9d0).", "clarifying_question": "", "citations": [], "abstain": false, "reason": ""}'
+        )
+        self.assertIsNone(error)
+        self.assertEqual(parsed["answer"], "The parent is empty.")
+        from agent import _titles
+
+        titles = _titles({
+            "chunks": [
+                {"heading": "When a company has no parent", "title": "Parent relationships"},
+                {"heading": "--- run it -------------------------------------------------------------------", "title": "API"},
+                {"heading": "poll until status is \"completed\"", "title": "API"},
+            ]
+        })
+        self.assertEqual(titles, ["When a company has no parent", "API"])
 
     def test_spliced_bias_quote_is_not_one_passage(self):
         from agent import citation_problems, citation_retry_message
