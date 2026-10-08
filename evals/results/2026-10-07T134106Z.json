@@ -1,0 +1,133 @@
+{
+  "run_at": "2026-10-07T13:41:06+00:00",
+  "model": "claude-haiku-4-5",
+  "docs_index_url": "https://docs.kernel.ai/llms.txt",
+  "cache_ttl_seconds": 900,
+  "passed": 1,
+  "total": 1,
+  "cases": [
+    {
+      "case": {
+        "id": "vague-parent",
+        "kind": "ambiguous",
+        "question": "the parent on this account looks wrong",
+        "expect_clarify": true,
+        "clarify_must_not": [
+          "KERN ID"
+        ],
+        "scripted_reply": "It's the YouTube account. I need the immediate parent, the top parent, and the top operating parent.",
+        "required_facts": [
+          "Google LLC",
+          "Alphabet Inc."
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "Which company is this account for, and which parent do you mean—the immediate parent, the top parent, or the top operating parent?",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 2308,
+            "output_tokens": 176
+          },
+          "raw_text": "{\"answer\": \"\", \"clarifying_question\": \"Which company is this account for, and which parent do you mean—the immediate parent, the top parent, or the top operating parent?\", \"citations\": [], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": []
+        },
+        {
+          "parsed": {
+            "answer": "For YouTube, the parent relationships are: immediate parent is Google LLC, top parent is Alphabet Inc., and top operating parent is Google LLC. The immediate parent and top operating parent match because Google LLC is already the highest operating company beneath the holding company Alphabet.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Immediate parent; Entity: Google LLC."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Top parent; Entity: Alphabet Inc.."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Top operating parent; Entity: Google LLC."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Here the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "YouTube parent hierarchy immediate parent top parent operating parent"
+              },
+              "latency_ms": 396,
+              "result_chars": 4608,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "YouTube KERN ID account parent"
+              },
+              "latency_ms": 37,
+              "result_chars": 6230,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "b0ff7639b1d9": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\nRelationship: Account; Entity: YouTube.\nRelationship: Immediate parent; Entity: Google LLC.\nRelationship: Top parent; Entity: Alphabet Inc..\nRelationship: Top operating parent; Entity: Google LLC.\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\nRelationship: Account; Entity: Blizzard Entertainment.\nRelationship: Immediate parent; Entity: Activision Blizzard.\nRelationship: Top parent; Entity: Microsoft.\nRelationship: Top operating parent; Entity: Microsoft."
+          },
+          "chunk_meta": {
+            "b0ff7639b1d9": {
+              "chunk_id": "b0ff7639b1d9",
+              "url": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+              "title": "Parent relationships",
+              "heading": "Example",
+              "text": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\nRelationship: Account; Entity: YouTube.\nRelationship: Immediate parent; Entity: Google LLC.\nRelationship: Top parent; Entity: Alphabet Inc..\nRelationship: Top operating parent; Entity: Google LLC.\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\nRelationship: Account; Entity: Blizzard Entertainment.\nRelationship: Immediate parent; Entity: Activision Blizzard.\nRelationship: Top parent; Entity: Microsoft.\nRelationship: Top operating parent; Entity: Microsoft.",
+              "fetched_at": "2026-10-07T13:35:31+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 11050,
+            "output_tokens": 474
+          },
+          "raw_text": "{\"answer\": \"For YouTube, the parent relationships are: immediate parent is Google LLC, top parent is Alphabet Inc., and top operating parent is Google LLC. The immediate parent and top operating parent match because Google LLC is already the highest operating company beneath the holding company Alphabet.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Immediate parent; Entity: Google LLC.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Top parent; Entity: Alphabet Inc..\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Top operating parent; Entity: Google LLC.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Here the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "b0ff7639b1d9",
+              "quote": "For YouTube: Relationship: Immediate parent; Entity: Google LLC. Relationship: Top parent; Entity: Alphabet Inc. Relationship: Top operating parent; Entity: Google LLC.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "Relationship: Top operating parent; Entity: Google LLC."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

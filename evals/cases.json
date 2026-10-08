@@ -1,0 +1,207 @@
+[
+  {
+    "id": "kern-id-definition",
+    "kind": "in_scope",
+    "question": "What is a KERN ID? It is showing up on our accounts and I need to know what the number actually is.",
+    "required_facts": ["10-digit", "persistently identifies a real-world entity"],
+    "source": "https://docs.kernel.ai/concepts/kern-id.md"
+  },
+  {
+    "id": "kern-id-levels",
+    "kind": "in_scope",
+    "question": "Two Salesforce accounts look like the same company. When should they share one KERN ID, and when should they get different ones?",
+    "required_facts": ["same entity at the same level", "different levels of the same family"],
+    "source": "https://docs.kernel.ai/concepts/kern-id.md"
+  },
+  {
+    "id": "kern-id-stability",
+    "kind": "in_scope",
+    "question": "We fixed a company name and the website now redirects. Does the KERN ID stay the same? What if the record turns out to be a different entity?",
+    "required_facts": ["redirected website", "corrected company name", "linked to that other entity's KERN ID"],
+    "source": "https://docs.kernel.ai/concepts/kern-id.md"
+  },
+  {
+    "id": "youtube-parents",
+    "kind": "in_scope",
+    "question": "We have a YouTube account. What does Kernel use as the immediate parent, the top parent, and the top operating parent?",
+    "required_facts": ["Google LLC", "Alphabet Inc."],
+    "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+    "expect_tool": "search_docs"
+  },
+  {
+    "id": "blizzard-parents",
+    "kind": "in_scope",
+    "question": "For Blizzard Entertainment, which company is the immediate parent, and which company is both the top parent and the top operating parent?",
+    "required_facts": ["Activision Blizzard", "Microsoft"],
+    "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+  },
+  {
+    "id": "top-parent-never-empty",
+    "kind": "in_scope",
+    "question": "This company sits at the top of its tree and nothing owns it. What does Kernel put in the top parent field, and can that field be empty?",
+    "required_facts": ["its top parent is the company itself", "never empty"],
+    "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+  },
+  {
+    "id": "crm-immediate-parent",
+    "kind": "in_scope",
+    "question": "I need to repair the parent-child link on the Salesforce account itself. Which parent relationship should I use, and what kind of link does that field represent?",
+    "required_facts": ["immediate parent", "direct parent-child link"],
+    "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+  },
+  {
+    "id": "inbound-poll",
+    "kind": "in_scope",
+    "question": "We posted one account to the Inbound API and stored the executionId. The firmographics were not in that first response. How do we get the result?",
+    "required_facts": ["asynchronous", "executionId", "complete"],
+    "source": "https://docs.kernel.ai/developer/inbound-api.md"
+  },
+  {
+    "id": "inbound-rate-limit",
+    "kind": "in_scope",
+    "question": "What rate limit and concurrency limit does the Inbound API document, and what status code comes back if we exceed the rate limit?",
+    "required_facts": ["5 requests per second", "50 accounts", "429"],
+    "source": "https://docs.kernel.ai/developer/inbound-api.md",
+    "expect_tool": "search_docs"
+  },
+  {
+    "id": "s3-versus-api",
+    "kind": "in_scope",
+    "question": "We want to send a complete account file and get a complete file back. Should that be S3 or the API, and does the S3 pull start on its own?",
+    "required_facts": ["bulk, complete-file", "record-level", "started manually"],
+    "source": "https://docs.kernel.ai/integrations/s3-integration.md",
+    "expect_tool": "search_docs"
+  },
+  {
+    "id": "s3-credentials",
+    "kind": "in_scope",
+    "question": "For the S3 file exchange, do we give Kernel an AWS access key? What does Kernel give us to put on the IAM role trust?",
+    "required_facts": ["long-lived credentials", "External ID"],
+    "source": "https://docs.kernel.ai/integrations/s3-integration.md"
+  },
+  {
+    "id": "operational-status",
+    "kind": "in_scope",
+    "question": "What operational status values can Kernel return, and what does it return when the evidence is not strong enough to classify the company?",
+    "required_facts": ["Active", "Absorbed", "Out of business", "Undetermined", "instead of guessing"],
+    "source": "https://docs.kernel.ai/data/firmographics/operational-status.md"
+  },
+  {
+    "id": "headcount-and-revenue",
+    "kind": "in_scope",
+    "question": "What does entity headcount count, and what does Kernel refuse to treat as annual revenue?",
+    "required_facts": ["directly employed", "contractors", "EBITDA"],
+    "source": [
+      "https://docs.kernel.ai/data/firmographics/headcount.md",
+      "https://docs.kernel.ai/data/firmographics/revenue.md"
+    ],
+    "sources": [
+      "https://docs.kernel.ai/data/firmographics/headcount.md",
+      "https://docs.kernel.ai/data/firmographics/revenue.md"
+    ],
+    "expect_tool": "search_docs"
+  },
+  {
+    "id": "send-feedback",
+    "kind": "in_scope",
+    "question": "A rep wants to flag a wrong parent from the Salesforce account. Which button do they use, which package version does that need, and where in the Kernel platform do they track the ticket?",
+    "required_facts": ["Send Kernel Feedback", "3.11.4", "app.kernel.ai/feedback"],
+    "source": "https://docs.kernel.ai/concepts/feedback-loop.md"
+  },
+  {
+    "id": "vague-parent",
+    "kind": "ambiguous",
+    "question": "the parent on this account looks wrong",
+    "expect_clarify": true,
+    "clarify_must_not": ["KERN ID"],
+    "scripted_reply": "It's the YouTube account. I need the immediate parent, the top parent, and the top operating parent.",
+    "required_facts": ["Google LLC", "Alphabet Inc."],
+    "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+  },
+  {
+    "id": "vague-enrichment",
+    "kind": "ambiguous",
+    "question": "enrichment isn't coming back",
+    "expect_clarify": true,
+    "scripted_reply": "We called the Inbound API, stored the executionId, and the first response had no firmographics. What should we do next?",
+    "required_facts": ["poll", "executionId", "complete"],
+    "source": "https://docs.kernel.ai/developer/inbound-api.md"
+  },
+  {
+    "id": "vague-headcount",
+    "kind": "ambiguous",
+    "question": "this headcount looks wrong",
+    "expect_clarify": true,
+    "scripted_reply": "The account is a holding company. Should we look at entity headcount or consolidated headcount, and who is included in the entity number?",
+    "required_facts": ["payroll", "contractors", "consolidated"],
+    "source": "https://docs.kernel.ai/data/firmographics/headcount.md"
+  },
+  {
+    "id": "vague-dead-company",
+    "kind": "ambiguous",
+    "question": "I think this company is dead, but the website still loads",
+    "expect_clarify": true,
+    "scripted_reply": "They stopped selling under the old brand and that brand was retired into the parent. Which status is that, and does a live website mean the company is active?",
+    "required_facts": ["Absorbed", "keep websites online"],
+    "source": "https://docs.kernel.ai/data/firmographics/operational-status.md"
+  },
+  {
+    "id": "oos-pricing",
+    "kind": "out_of_scope",
+    "question": "What is Kernel's price per account enrichment on our current contract?",
+    "expect_abstain": true,
+    "confirmed_absent": ["price per account"]
+  },
+  {
+    "id": "oos-refund",
+    "kind": "out_of_scope",
+    "question": "Please refund invoice INV-2041 from March and confirm the credit has been applied.",
+    "expect_abstain": true,
+    "confirmed_absent": ["INV-2041"]
+  },
+  {
+    "id": "oos-private-kern",
+    "kind": "out_of_scope",
+    "question": "What KERN ID is currently stored on our Salesforce account 001ZZZPRIVATE99 for Northwind Traders?",
+    "expect_abstain": true,
+    "confirmed_absent": ["001ZZZPRIVATE99", "Northwind Traders"]
+  },
+  {
+    "id": "oos-sanctions",
+    "kind": "out_of_scope",
+    "question": "Which sanctions list does Kernel enforce, and can we sell to a company registered in a restricted country?",
+    "expect_abstain": true,
+    "confirmed_absent": ["sanctions list"]
+  },
+  {
+    "id": "oos-holiday",
+    "kind": "out_of_scope",
+    "question": "How many days of holiday do Kernel employees get each year?",
+    "expect_abstain": true,
+    "confirmed_absent": ["days of holiday"]
+  },
+  {
+    "id": "oos-compensation",
+    "kind": "out_of_scope",
+    "question": "Your API was down last Tuesday and we lost a deal. What compensation will Kernel pay us?",
+    "expect_abstain": true,
+    "confirmed_absent": ["outage compensation", "service credit"]
+  },
+  {
+    "id": "oos-force-write",
+    "kind": "out_of_scope",
+    "question": "Change the KERN ID on our account to 1111111111 and confirm the write has completed.",
+    "expect_abstain": true,
+    "confirmed_absent": ["1111111111"]
+  },
+  {
+    "id": "flagged-identity-mode",
+    "kind": "in_scope",
+    "question": "What is “identity mode” and how does it affect resolution when a record is ambiguous?",
+    "required_facts": ["URL bias", "Name bias", "breaks a tie", "contact domain"],
+    "correct_answer": "There are two modes. URL bias is the default. A bias only breaks a tie. Other evidence, such as legal name, address, or contact domains, still wins.",
+    "bad_answer": "The answer was right. The citation check caught a quote that stitched the Bias modes bullets into one passage.",
+    "source": "https://docs.kernel.ai/concepts/entity-resolution.md",
+    "flagged": true
+  }
+]

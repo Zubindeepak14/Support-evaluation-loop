@@ -1,0 +1,2680 @@
+{
+  "run_at": "2026-10-08T09:57:56+00:00",
+  "model": "claude-haiku-4-5",
+  "docs_index_url": "https://docs.kernel.ai/llms.txt",
+  "cache_ttl_seconds": 900,
+  "passed": 20,
+  "total": 26,
+  "cases": [
+    {
+      "case": {
+        "id": "kern-id-definition",
+        "kind": "in_scope",
+        "question": "What is a KERN ID? It is showing up on our accounts and I need to know what the number actually is.",
+        "required_facts": [
+          "10-digit",
+          "persistently identifies a real-world entity"
+        ],
+        "source": "https://docs.kernel.ai/concepts/kern-id.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "A KERN ID is Kernel's persistent identifier for a real-world business entity on your accounts. [chunk_id: b687ed29252a] \"The Kernel Entity Reference Number (KERN) is a proprietary 10-digit ID that uniquely and persistently identifies a real-world entity.\" It is not just a cleaned website, company name, or parent account. [chunk_id: b687ed29252a] \"A KERN ID answers a simple question: which entity does this CRM record actually mean? It is not just a cleaned website, company name, or parent account.\"\n\nKernel distinguishes between different levels of the same family: [chunk_id: b687ed29252a] \"Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\" For example, [chunk_id: b687ed29252a] \"The same company arrives in your CRM many ways; Kernel resolves every version to one persistent KERN ID. A different level - the parent Alphabet Inc., a brand, or a branch - gets its own.\"\n\nThe KERN ID is the persistent identifier itself. [chunk_id: 73740362f72b] \"The KERN ID itself is just the persistent identifier. Core entity data holds the fields that explain what the identifier represents.\"",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "b687ed29252a",
+                "quote": "The Kernel Entity Reference Number (KERN) is a proprietary 10-digit ID that uniquely and persistently identifies a real-world entity."
+              },
+              {
+                "chunk_id": "b687ed29252a",
+                "quote": "A KERN ID answers a simple question: which entity does this CRM record actually mean? It is not just a cleaned website, company name, or parent account."
+              },
+              {
+                "chunk_id": "b687ed29252a",
+                "quote": "Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch."
+              },
+              {
+                "chunk_id": "73740362f72b",
+                "quote": "The KERN ID itself is just the persistent identifier."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/concepts/kern-id"
+              },
+              "latency_ms": 249,
+              "result_chars": 5834,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "KERN ID entity identifier"
+              },
+              "latency_ms": 71,
+              "result_chars": 5503,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "entity resolution persistent identifier real-world business"
+              },
+              "latency_ms": 36,
+              "result_chars": 5227,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "b687ed29252a": "Kernel's entity database is anchored on a unique, persistent ID that covers every entity of every kind.\n\n{% embed url=\"\" %}\n\nThe Kernel Entity Reference Number (KERN) is a proprietary 10-digit ID that uniquely and persistently identifies a real-world entity.\n\nA KERN ID answers a simple question: which entity does this CRM record actually mean? It is not just a cleaned website, company name, or parent account. Kernel uses the available account evidence to decide the correct entity boundary, then assigns or reuses the KERN ID for that exact entity.\n\nTwo records should share a KERN ID when they refer to the same entity at the same level. Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\n\nThe same company arrives in your CRM many ways; Kernel resolves every version to one persistent KERN ID. A different level - the parent Alphabet Inc., a brand, or a branch - gets its own.",
+            "73740362f72b": "Before assigning a KERN ID, Kernel reviews the signals available on and around the CRM record, such as the company name, website, legal name, country, LinkedIn URL, address, related domains, parent relationship, and opportunity context.\n\nKernel then uses [entity resolution](/concepts/entity-resolution.md) to resolve the record into a consistent identity:\n\nDimension: Legal anchor; What it answers: Which legal entity is responsible for this identity?; Example: Kraft Heinz Company.\nDimension: Country of incorporation or registration; What it answers: Where is that legal entity registered?; Example: US.\nDimension: Trading identity; What it answers: What name or website does the market recognize?; Example: Jell-O.\nDimension: Canonical website; What it answers: What is the URL?; Example: [kraftheinz.com/jell-o](https://www.kraftheinz.com/jell-o).\nDimension: Entity classification; What it answers: What kind of entity is it?; Example: Company / Business Unit.\n\nThe KERN ID itself is just the persistent identifier. [Core entity data](/data/entity-data/core-entity-data.md) holds the fields that explain what the identifier represents."
+          },
+          "chunk_meta": {
+            "b687ed29252a": {
+              "chunk_id": "b687ed29252a",
+              "url": "https://docs.kernel.ai/concepts/kern-id.md",
+              "title": "KERN ID",
+              "heading": "KERN ID",
+              "text": "Kernel's entity database is anchored on a unique, persistent ID that covers every entity of every kind.\n\n{% embed url=\"\" %}\n\nThe Kernel Entity Reference Number (KERN) is a proprietary 10-digit ID that uniquely and persistently identifies a real-world entity.\n\nA KERN ID answers a simple question: which entity does this CRM record actually mean? It is not just a cleaned website, company name, or parent account. Kernel uses the available account evidence to decide the correct entity boundary, then assigns or reuses the KERN ID for that exact entity.\n\nTwo records should share a KERN ID when they refer to the same entity at the same level. Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\n\nThe same company arrives in your CRM many ways; Kernel resolves every version to one persistent KERN ID. A different level - the parent Alphabet Inc., a brand, or a branch - gets its own.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            },
+            "73740362f72b": {
+              "chunk_id": "73740362f72b",
+              "url": "https://docs.kernel.ai/concepts/kern-id.md",
+              "title": "KERN ID",
+              "heading": "How Kernel decides the entity",
+              "text": "Before assigning a KERN ID, Kernel reviews the signals available on and around the CRM record, such as the company name, website, legal name, country, LinkedIn URL, address, related domains, parent relationship, and opportunity context.\n\nKernel then uses [entity resolution](/concepts/entity-resolution.md) to resolve the record into a consistent identity:\n\nDimension: Legal anchor; What it answers: Which legal entity is responsible for this identity?; Example: Kraft Heinz Company.\nDimension: Country of incorporation or registration; What it answers: Where is that legal entity registered?; Example: US.\nDimension: Trading identity; What it answers: What name or website does the market recognize?; Example: Jell-O.\nDimension: Canonical website; What it answers: What is the URL?; Example: [kraftheinz.com/jell-o](https://www.kraftheinz.com/jell-o).\nDimension: Entity classification; What it answers: What kind of entity is it?; Example: Company / Business Unit.\n\nThe KERN ID itself is just the persistent identifier. [Core entity data](/data/entity-data/core-entity-data.md) holds the fields that explain what the identifier represents.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 15630,
+            "output_tokens": 1391
+          },
+          "raw_text": "Now I have comprehensive search results. Let me provide a complete answer based on the documentation:\n\n{\"answer\": \"A KERN ID is Kernel's persistent identifier for a real-world business entity on your accounts. [chunk_id: b687ed29252a] \\\"The Kernel Entity Reference Number (KERN) is a proprietary 10-digit ID that uniquely and persistently identifies a real-world entity.\\\" It is not just a cleaned website, company name, or parent account. [chunk_id: b687ed29252a] \\\"A KERN ID answers a simple question: which entity does this CRM record actually mean? It is not just a cleaned website, company name, or parent account.\\\"\\n\\nKernel distinguishes between different levels of the same family: [chunk_id: b687ed29252a] \\\"Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\\\" For example, [chunk_id: b687ed29252a] \\\"The same company arrives in your CRM many ways; Kernel resolves every version to one persistent KERN ID. A different level - the parent Alphabet Inc., a brand, or a branch - gets its own.\\\"\\n\\nThe KERN ID is the persistent identifier itself. [chunk_id: 73740362f72b] \\\"The KERN ID itself is just the persistent identifier. Core entity data holds the fields that explain what the identifier represents.\\\"\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"b687ed29252a\", \"quote\": \"The Kernel Entity Reference Number (KERN) is a proprietary 10-digit ID that uniquely and persistently identifies a real-world entity.\"}, {\"chunk_id\": \"b687ed29252a\", \"quote\": \"A KERN ID answers a simple question: which entity does this CRM record actually mean? It is not just a cleaned website, company name, or parent account.\"}, {\"chunk_id\": \"b687ed29252a\", \"quote\": \"Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\"}, {\"chunk_id\": \"73740362f72b\", \"quote\": \"The KERN ID itself is just the persistent identifier.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": true,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "kern-id-levels",
+        "kind": "in_scope",
+        "question": "Two Salesforce accounts look like the same company. When should they share one KERN ID, and when should they get different ones?",
+        "required_facts": [
+          "same entity at the same level",
+          "different levels of the same family"
+        ],
+        "source": "https://docs.kernel.ai/concepts/kern-id.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Two Salesforce accounts should share one KERN ID if they refer to the same entity at the same level. They should have different KERN IDs if they refer to different levels of the same family.\n\nSpecifically, \"Two records should share a KERN ID when they refer to the same entity at the same level. Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\"\n\nFor example: if both accounts resolve to the same legal entity like \"Acme Inc.\" registered in the same country, they should share one KERN ID because they represent the same entity. But if one account is the parent holding company and the other is an operating subsidiary, they get different KERN IDs even though they're part of the same corporate family. The same applies when one is a brand or a physical branch of the other.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "b687ed29252a",
+                "quote": "Two records should share a KERN ID when they refer to the same entity at the same level. Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch."
+              },
+              {
+                "chunk_id": "b687ed29252a",
+                "quote": "The same company arrives in your CRM many ways; Kernel resolves every version to one persistent KERN ID. A different level - the parent Alphabet Inc., a brand, or a branch - gets its own."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "KERN ID same company multiple accounts when share"
+              },
+              "latency_ms": 61,
+              "result_chars": 5948,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "KERN ID deduplication merge accounts criteria"
+              },
+              "latency_ms": 36,
+              "result_chars": 4020,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/concepts/kern-id"
+              },
+              "latency_ms": 0,
+              "result_chars": 5834,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "b687ed29252a": "Kernel's entity database is anchored on a unique, persistent ID that covers every entity of every kind.\n\n{% embed url=\"\" %}\n\nThe Kernel Entity Reference Number (KERN) is a proprietary 10-digit ID that uniquely and persistently identifies a real-world entity.\n\nA KERN ID answers a simple question: which entity does this CRM record actually mean? It is not just a cleaned website, company name, or parent account. Kernel uses the available account evidence to decide the correct entity boundary, then assigns or reuses the KERN ID for that exact entity.\n\nTwo records should share a KERN ID when they refer to the same entity at the same level. Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\n\nThe same company arrives in your CRM many ways; Kernel resolves every version to one persistent KERN ID. A different level - the parent Alphabet Inc., a brand, or a branch - gets its own."
+          },
+          "chunk_meta": {
+            "b687ed29252a": {
+              "chunk_id": "b687ed29252a",
+              "url": "https://docs.kernel.ai/concepts/kern-id.md",
+              "title": "KERN ID",
+              "heading": "KERN ID",
+              "text": "Kernel's entity database is anchored on a unique, persistent ID that covers every entity of every kind.\n\n{% embed url=\"\" %}\n\nThe Kernel Entity Reference Number (KERN) is a proprietary 10-digit ID that uniquely and persistently identifies a real-world entity.\n\nA KERN ID answers a simple question: which entity does this CRM record actually mean? It is not just a cleaned website, company name, or parent account. Kernel uses the available account evidence to decide the correct entity boundary, then assigns or reuses the KERN ID for that exact entity.\n\nTwo records should share a KERN ID when they refer to the same entity at the same level. Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\n\nThe same company arrives in your CRM many ways; Kernel resolves every version to one persistent KERN ID. A different level - the parent Alphabet Inc., a brand, or a branch - gets its own.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 12164,
+            "output_tokens": 553
+          },
+          "raw_text": "{\"answer\": \"Two Salesforce accounts should share one KERN ID if they refer to the same entity at the same level. They should have different KERN IDs if they refer to different levels of the same family.\\n\\nSpecifically, \\\"Two records should share a KERN ID when they refer to the same entity at the same level. Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\\\"\\n\\nFor example: if both accounts resolve to the same legal entity like \\\"Acme Inc.\\\" registered in the same country, they should share one KERN ID because they represent the same entity. But if one account is the parent holding company and the other is an operating subsidiary, they get different KERN IDs even though they're part of the same corporate family. The same applies when one is a brand or a physical branch of the other.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"b687ed29252a\", \"quote\": \"Two records should share a KERN ID when they refer to the same entity at the same level. Two records should have different KERN IDs when they refer to different levels of the same family, such as a holding company, an operating subsidiary, a brand, or a physical branch.\"}, {\"chunk_id\": \"b687ed29252a\", \"quote\": \"The same company arrives in your CRM many ways; Kernel resolves every version to one persistent KERN ID. A different level - the parent Alphabet Inc., a brand, or a branch - gets its own.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "kern-id-stability",
+        "kind": "in_scope",
+        "question": "We fixed a company name and the website now redirects. Does the KERN ID stay the same? What if the record turns out to be a different entity?",
+        "required_facts": [
+          "redirected website",
+          "corrected company name",
+          "linked to that other entity's KERN ID"
+        ],
+        "source": "https://docs.kernel.ai/concepts/kern-id.md"
+      },
+      "passed": false,
+      "reasons": [
+        "missing facts: redirected website; corrected company name"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The KERN ID stays the same when you fix a company name and the website redirects, because these are superficial details. If the record is later found to represent a different entity, it should be linked to that other entity's KERN ID instead. The KERN ID itself remains persistent to the real-world entity it identifies.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "3ad6a291e4a3",
+                "quote": "The KERN ID should stay stable when superficial details change, such as punctuation, formatting, a redirected website, or a corrected company name."
+              },
+              {
+                "chunk_id": "3ad6a291e4a3",
+                "quote": "If the record is later found to refer to a different entity, it should be linked to that other entity's KERN ID instead."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "KERN ID company name change"
+              },
+              "latency_ms": 63,
+              "result_chars": 5963,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "KERN ID persistent entity"
+              },
+              "latency_ms": 36,
+              "result_chars": 5562,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "3ad6a291e4a3": "If Kernel has already seen the same entity, it reuses the existing KERN ID. If the record represents a new entity, Kernel creates a new KERN ID for that entity.\n\nThe KERN ID should stay stable when superficial details change, such as punctuation, formatting, a redirected website, or a corrected company name. If the record is later found to refer to a different entity, it should be linked to that other entity's KERN ID instead.\n\n{% hint style=\"warning\" %}\nLimitations\n\nEvery KERN ID must ultimately be tied to a legal entity. Kernel can represent sub-legal entities such as brands, business units, branches, sites, hotels, plants, divisions, and academic units, but each is still connected to its closest responsible legal entity.\n\nRecords with no credible organization or legal-entity association, such as a personal blog with only an individual's email address, would not receive a KERN ID.\n{% endhint %}"
+          },
+          "chunk_meta": {
+            "3ad6a291e4a3": {
+              "chunk_id": "3ad6a291e4a3",
+              "url": "https://docs.kernel.ai/concepts/kern-id.md",
+              "title": "KERN ID",
+              "heading": "Reuse and persistence",
+              "text": "If Kernel has already seen the same entity, it reuses the existing KERN ID. If the record represents a new entity, Kernel creates a new KERN ID for that entity.\n\nThe KERN ID should stay stable when superficial details change, such as punctuation, formatting, a redirected website, or a corrected company name. If the record is later found to refer to a different entity, it should be linked to that other entity's KERN ID instead.\n\n{% hint style=\"warning\" %}\nLimitations\n\nEvery KERN ID must ultimately be tied to a legal entity. Kernel can represent sub-legal entities such as brands, business units, branches, sites, hotels, plants, divisions, and academic units, but each is still connected to its closest responsible legal entity.\n\nRecords with no credible organization or legal-entity association, such as a personal blog with only an individual's email address, would not receive a KERN ID.\n{% endhint %}",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 6356,
+            "output_tokens": 532
+          },
+          "raw_text": "Based on the documentation:\n\n**When you fix the company name and the website redirects:**\nThe KERN ID stays the same. \"The KERN ID should stay stable when superficial details change, such as punctuation, formatting, a redirected website, or a corrected company name.\" [chunk_id: 3ad6a291e4a3]\n\n**If the record turns out to be a different entity:**\nThe record should be linked to that other entity's KERN ID instead. \"If the record is later found to refer to a different entity, it should be linked to that other entity's KERN ID instead.\" [chunk_id: 3ad6a291e4a3]\n\nIn other words, a KERN ID is tied to the specific real-world entity it represents, not to the CRM record or its details. Superficial corrections preserve the ID, but discovering you have the wrong entity entirely means updating the record to point to the correct entity's existing KERN ID.\n\n{\"answer\": \"The KERN ID stays the same when you fix a company name and the website redirects, because these are superficial details. If the record is later found to represent a different entity, it should be linked to that other entity's KERN ID instead. The KERN ID itself remains persistent to the real-world entity it identifies.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"3ad6a291e4a3\", \"quote\": \"The KERN ID should stay stable when superficial details change, such as punctuation, formatting, a redirected website, or a corrected company name.\"}, {\"chunk_id\": \"3ad6a291e4a3\", \"quote\": \"If the record is later found to refer to a different entity, it should be linked to that other entity's KERN ID instead.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "youtube-parents",
+        "kind": "in_scope",
+        "question": "We have a YouTube account. What does Kernel use as the immediate parent, the top parent, and the top operating parent?",
+        "required_facts": [
+          "Google LLC",
+          "Alphabet Inc."
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+        "expect_tool": "search_docs"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "For YouTube:\n\n- Immediate parent: Google LLC\n- Top parent: Alphabet Inc.\n- Top operating parent: Google LLC\n\nThe immediate parent and the top operating parent match because Google is already the highest operating company beneath the holding company Alphabet.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Immediate parent; Entity: Google LLC."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Top parent; Entity: Alphabet Inc."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Top operating parent; Entity: Google LLC."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Here the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "YouTube account parent immediate top operating"
+              },
+              "latency_ms": 62,
+              "result_chars": 5075,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "parent entity hierarchy YouTube Kernel"
+              },
+              "latency_ms": 37,
+              "result_chars": 5525,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "b0ff7639b1d9": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\nRelationship: Account; Entity: YouTube.\nRelationship: Immediate parent; Entity: Google LLC.\nRelationship: Top parent; Entity: Alphabet Inc.\nRelationship: Top operating parent; Entity: Google LLC.\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\nRelationship: Account; Entity: Blizzard Entertainment.\nRelationship: Immediate parent; Entity: Activision Blizzard.\nRelationship: Top parent; Entity: Microsoft.\nRelationship: Top operating parent; Entity: Microsoft."
+          },
+          "chunk_meta": {
+            "b0ff7639b1d9": {
+              "chunk_id": "b0ff7639b1d9",
+              "url": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+              "title": "Parent relationships",
+              "heading": "Example",
+              "text": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\nRelationship: Account; Entity: YouTube.\nRelationship: Immediate parent; Entity: Google LLC.\nRelationship: Top parent; Entity: Alphabet Inc.\nRelationship: Top operating parent; Entity: Google LLC.\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\nRelationship: Account; Entity: Blizzard Entertainment.\nRelationship: Immediate parent; Entity: Activision Blizzard.\nRelationship: Top parent; Entity: Microsoft.\nRelationship: Top operating parent; Entity: Microsoft.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 10829,
+            "output_tokens": 666
+          },
+          "raw_text": "{\"answer\": \"For YouTube:\\n\\n- Immediate parent: Google LLC\\n- Top parent: Alphabet Inc.\\n- Top operating parent: Google LLC\\n\\nThe immediate parent and the top operating parent match because Google is already the highest operating company beneath the holding company Alphabet.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Immediate parent; Entity: Google LLC.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Top parent; Entity: Alphabet Inc.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Top operating parent; Entity: Google LLC.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Here the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "b0ff7639b1d9",
+              "quote": "For YouTube: Relationship: Immediate parent; Entity: Google LLC. Relationship: Top parent; Entity: Alphabet Inc. Relationship: Top operating parent; Entity: Google LLC.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "Relationship: Top operating parent; Entity: Google LLC."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "blizzard-parents",
+        "kind": "in_scope",
+        "question": "For Blizzard Entertainment, which company is the immediate parent, and which company is both the top parent and the top operating parent?",
+        "required_facts": [
+          "Activision Blizzard",
+          "Microsoft"
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "For Blizzard Entertainment, the immediate parent is Activision Blizzard. Both the top parent and the top operating parent are Microsoft.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Immediate parent; Entity: Activision Blizzard."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Top parent; Entity: Microsoft."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Top operating parent; Entity: Microsoft."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Blizzard Entertainment parent company"
+              },
+              "latency_ms": 62,
+              "result_chars": 7414,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "immediate parent top parent top operating parent definition"
+              },
+              "latency_ms": 60,
+              "result_chars": 5365,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/data/hierarchies/parent-relationships.md",
+                "query": "Blizzard Entertainment immediate parent top parent top operating parent"
+              },
+              "latency_ms": 0,
+              "result_chars": 6239,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "b0ff7639b1d9": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\nRelationship: Account; Entity: YouTube.\nRelationship: Immediate parent; Entity: Google LLC.\nRelationship: Top parent; Entity: Alphabet Inc.\nRelationship: Top operating parent; Entity: Google LLC.\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\nRelationship: Account; Entity: Blizzard Entertainment.\nRelationship: Immediate parent; Entity: Activision Blizzard.\nRelationship: Top parent; Entity: Microsoft.\nRelationship: Top operating parent; Entity: Microsoft."
+          },
+          "chunk_meta": {
+            "b0ff7639b1d9": {
+              "chunk_id": "b0ff7639b1d9",
+              "url": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+              "title": "Parent relationships",
+              "heading": "Example",
+              "text": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\nRelationship: Account; Entity: YouTube.\nRelationship: Immediate parent; Entity: Google LLC.\nRelationship: Top parent; Entity: Alphabet Inc.\nRelationship: Top operating parent; Entity: Google LLC.\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\nRelationship: Account; Entity: Blizzard Entertainment.\nRelationship: Immediate parent; Entity: Activision Blizzard.\nRelationship: Top parent; Entity: Microsoft.\nRelationship: Top operating parent; Entity: Microsoft.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 23121,
+            "output_tokens": 657
+          },
+          "raw_text": "{\"answer\": \"For Blizzard Entertainment, the immediate parent is Activision Blizzard. Both the top parent and the top operating parent are Microsoft.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Immediate parent; Entity: Activision Blizzard.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Top parent; Entity: Microsoft.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Top operating parent; Entity: Microsoft.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "b0ff7639b1d9",
+              "quote": "For Blizzard Entertainment: Relationship: Immediate parent; Entity: Activision Blizzard. Relationship: Top parent; Entity: Microsoft. Relationship: Top operating parent; Entity: Microsoft.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "Relationship: Immediate parent; Entity: Activision Blizzard."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": true,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "top-parent-never-empty",
+        "kind": "in_scope",
+        "question": "This company sits at the top of its tree and nothing owns it. What does Kernel put in the top parent field, and can that field be empty?",
+        "required_facts": [
+          "its top parent is the company itself",
+          "never empty"
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Kernel puts the company itself in the top parent field. The top parent field is never empty. As the documentation states: \"The top parent is the company at the very top of the tree, so when a company is already at the top, its top parent is the company itself. Every resolved company has a top parent, and it is never empty.\" For a standalone company with nothing owning it, this means the top parent KERN ID, legal name, and other top parent fields all point to the company's own details.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "ace32001b9d0",
+                "quote": "The top parent is the company at the very top of the tree, so when a company is already at the top, its top parent is the company itself. Every resolved company has a top parent, and it is never empty."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "top parent field empty root company"
+              },
+              "latency_ms": 62,
+              "result_chars": 8063,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "KERN ID top parent nothing owns"
+              },
+              "latency_ms": 36,
+              "result_chars": 6036,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "ace32001b9d0": "Some companies sit at the top of their tree. Nothing owns them, so they have no immediate parent. This applies both to a genuinely standalone company and to the ultimate parent of a large group.\n\nThese companies still have a top parent. The top parent is the company at the very top of the tree, so when a company is already at the top, its top parent is the company itself. Every resolved company has a top parent, and it is never empty.\n\nA company at the top of its tree is its own top parent. It is its own top operating parent too, unless it is a holding company, in which case no operating company sits at or above it.\n\nThe top operating parent works the same way, with one exception. It is the highest operating company in the tree:\n\n* When the company at the top is an operating company, it is its own top operating parent, just as it is its own top parent. Microsoft is an example.\n* When the company at the top is a holding company, there is no operating company at or above it, so the top operating parent is empty. The operating companies sit further down the tree, not above it. Alphabet is an example.\n\nWhen you read these values back, a top parent that equals the account is not a data gap. It tells you the account is already the top of its tree. An empty top operating parent tells you either the account has no parent chain, or the top of that chain is a holding company."
+          },
+          "chunk_meta": {
+            "ace32001b9d0": {
+              "chunk_id": "ace32001b9d0",
+              "url": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+              "title": "Parent relationships",
+              "heading": "When a company has no parent",
+              "text": "Some companies sit at the top of their tree. Nothing owns them, so they have no immediate parent. This applies both to a genuinely standalone company and to the ultimate parent of a large group.\n\nThese companies still have a top parent. The top parent is the company at the very top of the tree, so when a company is already at the top, its top parent is the company itself. Every resolved company has a top parent, and it is never empty.\n\nA company at the top of its tree is its own top parent. It is its own top operating parent too, unless it is a holding company, in which case no operating company sits at or above it.\n\nThe top operating parent works the same way, with one exception. It is the highest operating company in the tree:\n\n* When the company at the top is an operating company, it is its own top operating parent, just as it is its own top parent. Microsoft is an example.\n* When the company at the top is a holding company, there is no operating company at or above it, so the top operating parent is empty. The operating companies sit further down the tree, not above it. Alphabet is an example.\n\nWhen you read these values back, a top parent that equals the account is not a data gap. It tells you the account is already the top of its tree. An empty top operating parent tells you either the account has no parent chain, or the top of that chain is a holding company.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 7305,
+            "output_tokens": 366
+          },
+          "raw_text": "Perfect! I found the answer in the documentation. Let me provide you with the information about what Kernel puts in the top parent field for companies at the top of their tree.\n\n{\"answer\": \"Kernel puts the company itself in the top parent field. The top parent field is never empty. As the documentation states: \\\"The top parent is the company at the very top of the tree, so when a company is already at the top, its top parent is the company itself. Every resolved company has a top parent, and it is never empty.\\\" For a standalone company with nothing owning it, this means the top parent KERN ID, legal name, and other top parent fields all point to the company's own details.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"ace32001b9d0\", \"quote\": \"The top parent is the company at the very top of the tree, so when a company is already at the top, its top parent is the company itself. Every resolved company has a top parent, and it is never empty.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "crm-immediate-parent",
+        "kind": "in_scope",
+        "question": "I need to repair the parent-child link on the Salesforce account itself. Which parent relationship should I use, and what kind of link does that field represent?",
+        "required_facts": [
+          "immediate parent",
+          "direct parent-child link"
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Use the immediate parent when you want to write or repair the CRM hierarchy itself. This is the relationship Kernel uses for association actions, because CRM parent fields usually represent a direct parent-child link. The immediate parent is the direct parent one level up, and in Salesforce it is written to the native ParentId field.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "b02b3e8ad15d",
+                "quote": "Use the immediate parent when you want to write or repair the CRM hierarchy itself. This is the relationship Kernel uses for association actions, because CRM parent fields usually represent a direct parent-child link."
+              },
+              {
+                "chunk_id": "8e3ab37e05a0",
+                "quote": "The direct parent one level up."
+              },
+              {
+                "chunk_id": "81f29d6d9f2e",
+                "quote": "Kernel populates the native Parent Account field to establish the relationship."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Salesforce account parent-child relationship link"
+              },
+              "latency_ms": 65,
+              "result_chars": 4970,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "parent relationship field Salesforce account type"
+              },
+              "latency_ms": 36,
+              "result_chars": 7123,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/data/hierarchies/parent-relationships",
+                "query": "immediate parent CRM native hierarchy field"
+              },
+              "latency_ms": 1,
+              "result_chars": 6239,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "81f29d6d9f2e": "Kernel identifies three scenarios:\n\n* Link to existing parent - the parent account already exists in your CRM. Kernel populates the native Parent Account field to establish the relationship.\n* Reparent - the account has an existing parent that is incorrect. Kernel updates the link to the correct parent.\n* Create missing parent - the parent does not exist in your CRM. Kernel creates the parent account, then links the child to it.",
+            "b02b3e8ad15d": "Use the immediate parent when you want to write or repair the CRM hierarchy itself. This is the relationship Kernel uses for association actions, because CRM parent fields usually represent a direct parent-child link.\n\nUse the top parent when the question is about the whole account family. This is usually the right value for group reporting, global account lists, territory rules that roll up to the full corporate group, and duplicate review context.\n\nUse the top operating parent when the legal top parent is a holding company but the useful GTM anchor is the operating business below it. This keeps ownership structure visible without forcing every sales or routing workflow to anchor on a passive holding company.",
+            "8e3ab37e05a0": "The direct parent one level up. Empty when the company is standalone. In the worked chain the focal company is Sephora, whose immediate parent is LVMH. See [Parent relationships](/data/hierarchies/parent-relationships.md).\n\nField: Parent KERN ID; Type: Identifier; Description: KERN ID of the immediate parent.; Worked example: `4648473239`.\nField: Parent legal name; Type: Text; Description: Legal name of the immediate parent.; Worked example: LVMH Moët Hennessy Louis Vuitton.\nField: Parent trading name; Type: Text; Description: Trading name of the immediate parent.; Worked example: LVMH.\nField: Parent website; Type: URL; Description: Website of the immediate parent.; Worked example: `https://www.lvmh.com`.\nField: Parent country of incorporation; Type: Text; Description: Country where the immediate parent is legally registered.; Worked example: France.\nField: Parent entity category; Type: Enum; Description: Category of the immediate parent. Values: Company, Government, Education.; Worked example: Company.\nField: Parent entity sub-category; Type: Enum; Description: Sub-category of the immediate parent. Values: Operating, HoldCo / Investment, Business unit, Establishment.; Worked example: Operating.\nField: Parent (Reasoning); Type: Long text; Description: Why Kernel identified this parent.; Worked example: \"Sephora is a wholly-owned maison within LVMH's Selective Retailing division.\".\nField: Parent (Confidence); Type: Enum; Description: Confidence in the parent relationship. Values: HIGH, MEDIUM, LOW.; Worked example: HIGH."
+          },
+          "chunk_meta": {
+            "81f29d6d9f2e": {
+              "chunk_id": "81f29d6d9f2e",
+              "url": "https://docs.kernel.ai/platform/actioning/associate.md",
+              "title": "Associate accounts",
+              "heading": "Association types",
+              "text": "Kernel identifies three scenarios:\n\n* Link to existing parent - the parent account already exists in your CRM. Kernel populates the native Parent Account field to establish the relationship.\n* Reparent - the account has an existing parent that is incorrect. Kernel updates the link to the correct parent.\n* Create missing parent - the parent does not exist in your CRM. Kernel creates the parent account, then links the child to it.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            },
+            "b02b3e8ad15d": {
+              "chunk_id": "b02b3e8ad15d",
+              "url": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+              "title": "Parent relationships",
+              "heading": "Which parent should I use?",
+              "text": "Use the immediate parent when you want to write or repair the CRM hierarchy itself. This is the relationship Kernel uses for association actions, because CRM parent fields usually represent a direct parent-child link.\n\nUse the top parent when the question is about the whole account family. This is usually the right value for group reporting, global account lists, territory rules that roll up to the full corporate group, and duplicate review context.\n\nUse the top operating parent when the legal top parent is a holding company but the useful GTM anchor is the operating business below it. This keeps ownership structure visible without forcing every sales or routing workflow to anchor on a passive holding company.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            },
+            "8e3ab37e05a0": {
+              "chunk_id": "8e3ab37e05a0",
+              "url": "https://docs.kernel.ai/data/data-dictionary.md",
+              "title": "Data dictionary",
+              "heading": "Immediate parent",
+              "text": "The direct parent one level up. Empty when the company is standalone. In the worked chain the focal company is Sephora, whose immediate parent is LVMH. See [Parent relationships](/data/hierarchies/parent-relationships.md).\n\nField: Parent KERN ID; Type: Identifier; Description: KERN ID of the immediate parent.; Worked example: `4648473239`.\nField: Parent legal name; Type: Text; Description: Legal name of the immediate parent.; Worked example: LVMH Moët Hennessy Louis Vuitton.\nField: Parent trading name; Type: Text; Description: Trading name of the immediate parent.; Worked example: LVMH.\nField: Parent website; Type: URL; Description: Website of the immediate parent.; Worked example: `https://www.lvmh.com`.\nField: Parent country of incorporation; Type: Text; Description: Country where the immediate parent is legally registered.; Worked example: France.\nField: Parent entity category; Type: Enum; Description: Category of the immediate parent. Values: Company, Government, Education.; Worked example: Company.\nField: Parent entity sub-category; Type: Enum; Description: Sub-category of the immediate parent. Values: Operating, HoldCo / Investment, Business unit, Establishment.; Worked example: Operating.\nField: Parent (Reasoning); Type: Long text; Description: Why Kernel identified this parent.; Worked example: \"Sephora is a wholly-owned maison within LVMH's Selective Retailing division.\".\nField: Parent (Confidence); Type: Enum; Description: Confidence in the parent relationship. Values: HIGH, MEDIUM, LOW.; Worked example: HIGH.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 12770,
+            "output_tokens": 696
+          },
+          "raw_text": "Based on the documentation, here's what you need to know about repairing the parent-child link on a Salesforce account:\n\n**Which parent relationship to use:**\n\n\"Use the immediate parent when you want to write or repair the CRM hierarchy itself. This is the relationship Kernel uses for association actions, because CRM parent fields usually represent a direct parent-child link.\" [chunk_id: b02b3e8ad15d]\n\n**What kind of link it represents:**\n\n\"The direct parent one level up\" [chunk_id: 8e3ab37e05a0], and in Salesforce, this is written to the standard `ParentId` field. The documentation states that \"Link to existing parent - the parent account already exists in your CRM. Kernel populates the native Parent Account field to establish the relationship.\" [chunk_id: 81f29d6d9f2e]\n\nIn summary: Use the **immediate parent** relationship to repair the parent-child link on your Salesforce account, as this represents the direct parent one level above and maps to the native `ParentId` field.\n\n{\"answer\": \"Use the immediate parent when you want to write or repair the CRM hierarchy itself. This is the relationship Kernel uses for association actions, because CRM parent fields usually represent a direct parent-child link. The immediate parent is the direct parent one level up, and in Salesforce it is written to the native ParentId field.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"b02b3e8ad15d\", \"quote\": \"Use the immediate parent when you want to write or repair the CRM hierarchy itself. This is the relationship Kernel uses for association actions, because CRM parent fields usually represent a direct parent-child link.\"}, {\"chunk_id\": \"8e3ab37e05a0\", \"quote\": \"The direct parent one level up.\"}, {\"chunk_id\": \"81f29d6d9f2e\", \"quote\": \"Kernel populates the native Parent Account field to establish the relationship.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "inbound-poll",
+        "kind": "in_scope",
+        "question": "We posted one account to the Inbound API and stored the executionId. The firmographics were not in that first response. How do we get the result?",
+        "required_facts": [
+          "asynchronous",
+          "executionId",
+          "complete"
+        ],
+        "source": "https://docs.kernel.ai/developer/inbound-api.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Poll the status endpoint using the executionId you stored. Because enrichment happens asynchronously, you need to periodically check the status of your request using the executionId. The output JSON payload populates gradually—fields that have not been found or processed yet will usually be null. Continue polling until status is complete or error. Some firmographic fields like country, state/region, industry, and headcount are often available within minutes, while others may take longer.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "6ef66a77333a",
+                "quote": "Because enrichment happens asynchronously, you need to periodically check the status of your request using the executionId."
+              },
+              {
+                "chunk_id": "c36bb59816f8",
+                "quote": "When you poll, fields that have not been found or processed yet will usually be `null`."
+              },
+              {
+                "chunk_id": "c36bb59816f8",
+                "quote": "Polling strategy: Continue polling until `status` is `complete` or `error`."
+              },
+              {
+                "chunk_id": "c36bb59816f8",
+                "quote": "Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Inbound API executionId response firmographics"
+              },
+              "latency_ms": 61,
+              "result_chars": 3372,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Inbound API get result execution status"
+              },
+              "latency_ms": 36,
+              "result_chars": 4191,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/developer/inbound-api.md",
+                "query": "polling executionId results GET"
+              },
+              "latency_ms": 1,
+              "result_chars": 2514,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "6ef66a77333a": "> Because enrichment happens asynchronously, you need to periodically check the status of your request using the executionId.\n\n\n[long code block omitted]",
+            "c36bb59816f8": "* Asynchronous population: The output JSON payload populates gradually. When you poll, fields that have not been found or processed yet will usually be `null`.\n* Fast data points: Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth.\n* Slower data points: Other data points can require more extensive analysis or different data sources and may take longer.\n* Polling strategy: Continue polling until `status` is `complete` or `error`. The exact fast and slow fields depend on your configured workflow."
+          },
+          "chunk_meta": {
+            "6ef66a77333a": {
+              "chunk_id": "6ef66a77333a",
+              "url": "https://docs.kernel.ai/developer/inbound-api.md",
+              "title": "Inbound",
+              "heading": "Polling for Enrichment Status and Results",
+              "text": "> Because enrichment happens asynchronously, you need to periodically check the status of your request using the executionId.\n\n\n[long code block omitted]",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            },
+            "c36bb59816f8": {
+              "chunk_id": "c36bb59816f8",
+              "url": "https://docs.kernel.ai/developer/inbound-api.md",
+              "title": "Inbound",
+              "heading": "Understanding data availability",
+              "text": "* Asynchronous population: The output JSON payload populates gradually. When you poll, fields that have not been found or processed yet will usually be `null`.\n* Fast data points: Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth.\n* Slower data points: Other data points can require more extensive analysis or different data sources and may take longer.\n* Polling strategy: Continue polling until `status` is `complete` or `error`. The exact fast and slow fields depend on your configured workflow.",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 16227,
+            "output_tokens": 990
+          },
+          "raw_text": "{\"answer\": \"Poll the status endpoint using the executionId you stored. Because enrichment happens asynchronously, you need to periodically check the status of your request using the executionId. The output JSON payload populates gradually—fields that have not been found or processed yet will usually be null. Continue polling until status is complete or error. Some firmographic fields like country, state/region, industry, and headcount are often available within minutes, while others may take longer.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"6ef66a77333a\", \"quote\": \"Because enrichment happens asynchronously, you need to periodically check the status of your request using the executionId.\"}, {\"chunk_id\": \"c36bb59816f8\", \"quote\": \"When you poll, fields that have not been found or processed yet will usually be `null`.\"}, {\"chunk_id\": \"c36bb59816f8\", \"quote\": \"Polling strategy: Continue polling until `status` is `complete` or `error`.\"}, {\"chunk_id\": \"c36bb59816f8\", \"quote\": \"Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "c36bb59816f8",
+              "quote": "When you poll, fields that have not been found or processed yet will usually be null.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "When you poll, fields that have not been found or processed yet will usually be `null`."
+            },
+            {
+              "chunk_id": "c36bb59816f8",
+              "quote": "Continue polling until status is complete or error.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "* Polling strategy: Continue polling until `status` is `complete` or `error`."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "inbound-rate-limit",
+        "kind": "in_scope",
+        "question": "What rate limit and concurrency limit does the Inbound API document, and what status code comes back if we exceed the rate limit?",
+        "required_facts": [
+          "5 requests per second",
+          "50 accounts",
+          "429"
+        ],
+        "source": "https://docs.kernel.ai/developer/inbound-api.md",
+        "expect_tool": "search_docs"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The Inbound API documents the following limits: 'Rate limit: 5 requests per second per API key'. The concurrency limit is 'Maximum of 50 accounts can be processing simultaneously. This can be increased upon request.' When the rate limit is exceeded, 'you will receive a 429 status code.'",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "44c27e0698be",
+                "quote": "Rate limit: 5 requests per second per API key"
+              },
+              {
+                "chunk_id": "44c27e0698be",
+                "quote": "Concurrency limit: Maximum of 50 accounts can be processing simultaneously."
+              },
+              {
+                "chunk_id": "44c27e0698be",
+                "quote": "When rate limit is exceeded, you will receive a 429 status code."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Inbound API rate limit concurrency limit"
+              },
+              "latency_ms": 59,
+              "result_chars": 3201,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Inbound API status code exceed rate limit"
+              },
+              "latency_ms": 35,
+              "result_chars": 2735,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "44c27e0698be": "The API enforces rate limiting to ensure fair usage:\n\n* Rate limit: 5 requests per second per API key\n* Concurrency limit: Maximum of 50 accounts can be processing simultaneously. This can be increased upon request.\n* 429 response: When rate limit is exceeded, you will receive a 429 status code. Please wait before retrying."
+          },
+          "chunk_meta": {
+            "44c27e0698be": {
+              "chunk_id": "44c27e0698be",
+              "url": "https://docs.kernel.ai/developer/inbound-api.md",
+              "title": "Inbound",
+              "heading": "Rate limits",
+              "text": "The API enforces rate limiting to ensure fair usage:\n\n* Rate limit: 5 requests per second per API key\n* Concurrency limit: Maximum of 50 accounts can be processing simultaneously. This can be increased upon request.\n* 429 response: When rate limit is exceeded, you will receive a 429 status code. Please wait before retrying.",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 4985,
+            "output_tokens": 389
+          },
+          "raw_text": "Perfect! I found the information in the Inbound API documentation.\n\n```json\n{\n  \"answer\": \"The Inbound API documents the following limits: 'Rate limit: 5 requests per second per API key'. The concurrency limit is 'Maximum of 50 accounts can be processing simultaneously. This can be increased upon request.' When the rate limit is exceeded, 'you will receive a 429 status code.'\",\n  \"clarifying_question\": \"\",\n  \"citations\": [\n    {\n      \"chunk_id\": \"44c27e0698be\",\n      \"quote\": \"Rate limit: 5 requests per second per API key\"\n    },\n    {\n      \"chunk_id\": \"44c27e0698be\",\n      \"quote\": \"Concurrency limit: Maximum of 50 accounts can be processing simultaneously.\"\n    },\n    {\n      \"chunk_id\": \"44c27e0698be\",\n      \"quote\": \"When rate limit is exceeded, you will receive a 429 status code.\"\n    }\n  ],\n  \"abstain\": false,\n  \"reason\": \"\"\n}\n```",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "s3-versus-api",
+        "kind": "in_scope",
+        "question": "We want to send a complete account file and get a complete file back. Should that be S3 or the API, and does the S3 pull start on its own?",
+        "required_facts": [
+          "bulk, complete-file",
+          "record-level",
+          "started manually"
+        ],
+        "source": "https://docs.kernel.ai/integrations/s3-integration.md",
+        "expect_tool": "search_docs"
+      },
+      "passed": false,
+      "reasons": [
+        "missing facts: bulk, complete-file; record-level; started manually"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Use S3 for sending and receiving complete account files. The S3 pull does not start on its own—each pull is initiated manually by clicking 'Pull file now' in Kernel after you upload your file.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "c6c619bfc1ea",
+                "quote": "The S3 file exchange lets your team send account data to Kernel and receive enriched results as CSV files."
+              },
+              {
+                "chunk_id": "71f380301682",
+                "quote": "The S3 file exchange uses manual, complete-file operations."
+              },
+              {
+                "chunk_id": "caa68d6590b5",
+                "quote": "In Kernel, click Pull file now."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "complete account file S3 API"
+              },
+              "latency_ms": 61,
+              "result_chars": 3732,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "S3 pull automatic start file transfer"
+              },
+              "latency_ms": 37,
+              "result_chars": 3764,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/integrations/s3-integration.md",
+                "query": "manual complete file scheduled pulls automatic polling"
+              },
+              "latency_ms": 2,
+              "result_chars": 4200,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "71f380301682": "The S3 file exchange uses manual, complete-file operations. It does not use:\n\n* Scheduled pulls or automatic polling.\n* Automatic exports.\n* Multiple input files or newest-partition discovery.\n* Diffs, incremental files, manifests, or completion markers.\n* Deletion or deactivation inferred from a missing row.\n* Kernel-hosted exchange buckets.\n* Accept or reject actions through S3.\n\nUse the [Kernel API](/developer/api-getting-started.md) for event-driven integrations, record-level writes, or near-real-time retrieval.",
+            "c6c619bfc1ea": "The S3 file exchange lets your team send account data to Kernel and receive enriched results as CSV files. The files remain in Amazon S3 buckets that your team owns, and no CRM installation is required.\n\nThe connection has two logical endpoints:\n\n* Input: one bucket and one exact CSV object that Kernel reads.\n* Output: one bucket and one configured location where Kernel writes a CSV object.\n\nThe input and output endpoints can use the same physical bucket or different buckets. They can also use one IAM role for both directions or separate read and write roles.\n\n{% hint style=\"info\" %}\nEach pull and export is started manually in Kernel. Use S3 for bulk, complete-file exchanges. Use the [Kernel API](/developer/api-getting-started.md) for record-level or near-real-time workflows.\n{% endhint %}",
+            "caa68d6590b5": "1. Produce the new account dataset.\n2. Write it to the exact configured input object key.\n3. Confirm that the upload has completed.\n4. In Kernel, click Pull file now.\n5. Review the object key, status, and row counts.\n6. Complete the required processing and review in Kernel.\n7. Click Export to S3.\n8. Review the output object key, status, row count, selected field count, and delivery mode.\n9. Ingest the complete output file using your source account ID."
+          },
+          "chunk_meta": {
+            "71f380301682": {
+              "chunk_id": "71f380301682",
+              "url": "https://docs.kernel.ai/integrations/s3-integration.md",
+              "title": "S3 file exchange",
+              "heading": "File exchange boundaries",
+              "text": "The S3 file exchange uses manual, complete-file operations. It does not use:\n\n* Scheduled pulls or automatic polling.\n* Automatic exports.\n* Multiple input files or newest-partition discovery.\n* Diffs, incremental files, manifests, or completion markers.\n* Deletion or deactivation inferred from a missing row.\n* Kernel-hosted exchange buckets.\n* Accept or reject actions through S3.\n\nUse the [Kernel API](/developer/api-getting-started.md) for event-driven integrations, record-level writes, or near-real-time retrieval.",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            },
+            "c6c619bfc1ea": {
+              "chunk_id": "c6c619bfc1ea",
+              "url": "https://docs.kernel.ai/integrations/s3-integration.md",
+              "title": "S3 file exchange",
+              "heading": "What it is",
+              "text": "The S3 file exchange lets your team send account data to Kernel and receive enriched results as CSV files. The files remain in Amazon S3 buckets that your team owns, and no CRM installation is required.\n\nThe connection has two logical endpoints:\n\n* Input: one bucket and one exact CSV object that Kernel reads.\n* Output: one bucket and one configured location where Kernel writes a CSV object.\n\nThe input and output endpoints can use the same physical bucket or different buckets. They can also use one IAM role for both directions or separate read and write roles.\n\n{% hint style=\"info\" %}\nEach pull and export is started manually in Kernel. Use S3 for bulk, complete-file exchanges. Use the [Kernel API](/developer/api-getting-started.md) for record-level or near-real-time workflows.\n{% endhint %}",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            },
+            "caa68d6590b5": {
+              "chunk_id": "caa68d6590b5",
+              "url": "https://docs.kernel.ai/integrations/s3-integration.md",
+              "title": "S3 file exchange",
+              "heading": "Operating cycle",
+              "text": "1. Produce the new account dataset.\n2. Write it to the exact configured input object key.\n3. Confirm that the upload has completed.\n4. In Kernel, click Pull file now.\n5. Review the object key, status, and row counts.\n6. Complete the required processing and review in Kernel.\n7. Click Export to S3.\n8. Review the output object key, status, row count, selected field count, and delivery mode.\n9. Ingest the complete output file using your source account ID.",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 16106,
+            "output_tokens": 921
+          },
+          "raw_text": "```json\n{\n  \"answer\": \"Use S3 for sending and receiving complete account files. The S3 pull does not start on its own—each pull is initiated manually by clicking 'Pull file now' in Kernel after you upload your file.\",\n  \"clarifying_question\": \"\",\n  \"citations\": [\n    {\n      \"chunk_id\": \"c6c619bfc1ea\",\n      \"quote\": \"The S3 file exchange lets your team send account data to Kernel and receive enriched results as CSV files.\"\n    },\n    {\n      \"chunk_id\": \"71f380301682\",\n      \"quote\": \"The S3 file exchange uses manual, complete-file operations.\"\n    },\n    {\n      \"chunk_id\": \"caa68d6590b5\",\n      \"quote\": \"In Kernel, click Pull file now.\"\n    }\n  ],\n  \"abstain\": false,\n  \"reason\": \"\"\n}\n```",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "71f380301682",
+              "quote": "The S3 file exchange uses manual, complete-file operations. It does not use: Scheduled pulls or automatic polling.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "It does not use: * Scheduled pulls or automatic polling."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "s3-credentials",
+        "kind": "in_scope",
+        "question": "For the S3 file exchange, do we give Kernel an AWS access key? What does Kernel give us to put on the IAM role trust?",
+        "required_facts": [
+          "long-lived credentials",
+          "External ID"
+        ],
+        "source": "https://docs.kernel.ai/integrations/s3-integration.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "No, you do not give Kernel an AWS access key. Instead, Kernel provides you with two values to put in your IAM role trust policy. Kernel provides the Kernel customer integrations IAM role ARN and a tenant-specific External ID. You then add the Kernel role ARN as the trusted AWS principal, and the External ID must match exactly. The documentation explicitly states that no AWS access keys or other long-lived credentials are shared with Kernel.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "e39b59ff70d4",
+                "quote": "Kernel provides these values separately for each environment: * The Kernel customer integrations IAM role ARN."
+              },
+              {
+                "chunk_id": "e39b59ff70d4",
+                "quote": "Add the Kernel role ARN as the trusted AWS principal."
+              },
+              {
+                "chunk_id": "e39b59ff70d4",
+                "quote": "The External ID must match exactly."
+              },
+              {
+                "chunk_id": "82727531c153",
+                "quote": "No AWS access keys or other long-lived credentials are shared with Kernel."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "S3 file exchange AWS access key IAM"
+              },
+              "latency_ms": 63,
+              "result_chars": 4935,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "S3 file exchange IAM role trust Kernel"
+              },
+              "latency_ms": 37,
+              "result_chars": 4482,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "82727531c153": "* Customer-hosted S3 buckets only.\n* Cross-account IAM role assumption with a Kernel-provided External ID.\n* No AWS access keys or other long-lived credentials are shared with Kernel.\n* Kernel reads one exact input object on every pull.\n* Rows are created or updated using your configured source account ID.\n* A row missing from a later file remains unchanged.\n* Every export writes one complete CSV object.\n* Output can overwrite one stable object or create a timestamped object for each export.",
+            "e39b59ff70d4": "Kernel provides these values separately for each environment:\n\n* The Kernel customer integrations IAM role ARN.\n* A tenant-specific External ID.\n* A trust policy template containing both values.\n\nAdd the Kernel role ARN as the trusted AWS principal. The External ID must match exactly."
+          },
+          "chunk_meta": {
+            "82727531c153": {
+              "chunk_id": "82727531c153",
+              "url": "https://docs.kernel.ai/integrations/s3-integration.md",
+              "title": "S3 file exchange",
+              "heading": "At a glance",
+              "text": "* Customer-hosted S3 buckets only.\n* Cross-account IAM role assumption with a Kernel-provided External ID.\n* No AWS access keys or other long-lived credentials are shared with Kernel.\n* Kernel reads one exact input object on every pull.\n* Rows are created or updated using your configured source account ID.\n* A row missing from a later file remains unchanged.\n* Every export writes one complete CSV object.\n* Output can overwrite one stable object or create a timestamped object for each export.",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            },
+            "e39b59ff70d4": {
+              "chunk_id": "e39b59ff70d4",
+              "url": "https://docs.kernel.ai/integrations/s3-integration.md",
+              "title": "S3 file exchange",
+              "heading": "Kernel provides",
+              "text": "Kernel provides these values separately for each environment:\n\n* The Kernel customer integrations IAM role ARN.\n* A tenant-specific External ID.\n* A trust policy template containing both values.\n\nAdd the Kernel role ARN as the trusted AWS principal. The External ID must match exactly.",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 11055,
+            "output_tokens": 749
+          },
+          "raw_text": "```json\n{\n  \"answer\": \"No, you do not give Kernel an AWS access key. Instead, Kernel provides you with two values to put in your IAM role trust policy. Kernel provides the Kernel customer integrations IAM role ARN and a tenant-specific External ID. You then add the Kernel role ARN as the trusted AWS principal, and the External ID must match exactly. The documentation explicitly states that no AWS access keys or other long-lived credentials are shared with Kernel.\",\n  \"clarifying_question\": \"\",\n  \"citations\": [\n    {\n      \"chunk_id\": \"e39b59ff70d4\",\n      \"quote\": \"Kernel provides these values separately for each environment: * The Kernel customer integrations IAM role ARN.\"\n    },\n    {\n      \"chunk_id\": \"e39b59ff70d4\",\n      \"quote\": \"Add the Kernel role ARN as the trusted AWS principal.\"\n    },\n    {\n      \"chunk_id\": \"e39b59ff70d4\",\n      \"quote\": \"The External ID must match exactly.\"\n    },\n    {\n      \"chunk_id\": \"82727531c153\",\n      \"quote\": \"No AWS access keys or other long-lived credentials are shared with Kernel.\"\n    }\n  ],\n  \"abstain\": false,\n  \"reason\": \"\"\n}\n```",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "e39b59ff70d4",
+              "quote": "Kernel provides these values separately for each environment: The Kernel customer integrations IAM role ARN. A tenant-specific External ID.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "Kernel provides these values separately for each environment: * The Kernel customer integrations IAM role ARN."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "operational-status",
+        "kind": "in_scope",
+        "question": "What operational status values can Kernel return, and what does it return when the evidence is not strong enough to classify the company?",
+        "required_facts": [
+          "Active",
+          "Absorbed",
+          "Out of business",
+          "Undetermined",
+          "instead of guessing"
+        ],
+        "source": "https://docs.kernel.ai/data/firmographics/operational-status.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Kernel can return four operational status values: Active, Absorbed, Out of business, and Undetermined. When the evidence is not strong enough to classify the company, Kernel returns `Undetermined` instead of guessing.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "ad2f4423acc5",
+                "quote": "Status: `Active`; Meaning: The company operates today under its own brand, even if it is owned by another company. Status: `Absorbed`; Meaning: The original brand is retired, but its operations or capabilities continue under a parent brand. Status: `Out of business`; Meaning: Operations have ceased and there is no meaningful continuation under the original brand or a parent brand. Status: `Undetermined`; Meaning: Kernel cannot classify the status confidently from the available evidence."
+              },
+              {
+                "chunk_id": "265c07c8edc4",
+                "quote": "When signals conflict or the evidence is not strong enough, Kernel returns `Undetermined` instead of guessing."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "operational status values classifications"
+              },
+              "latency_ms": 63,
+              "result_chars": 3875,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "insufficient evidence weak evidence operational status"
+              },
+              "latency_ms": 37,
+              "result_chars": 4546,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "ad2f4423acc5": "Status: `Active`; Meaning: The company operates today under its own brand, even if it is owned by another company.\nStatus: `Absorbed`; Meaning: The original brand is retired, but its operations or capabilities continue under a parent brand.\nStatus: `Out of business`; Meaning: Operations have ceased and there is no meaningful continuation under the original brand or a parent brand.\nStatus: `Undetermined`; Meaning: Kernel cannot classify the status confidently from the available evidence.\n\nSee the [Kernel Account object reference](/integrations/salesforce-integration/kernel-account-object-reference.md#operational-status) for field types and help text.",
+            "265c07c8edc4": "Kernel judges the go-to-market reality, not just the legal shell. It checks whether the company sells or supports products today under its own brand, whether the brand has been retired into a parent, and whether operations have stopped.\n\nThe research uses company websites, redirects, parked-domain signals, closure news, business registries, insolvency records, and local-language evidence where relevant. When signals conflict or the evidence is not strong enough, Kernel returns `Undetermined` instead of guessing.\n\nOperational status is resolved before headcount and revenue. If an entity is out of business, downstream values should not make it look like a healthy operating company. When configured, an out-of-business account can also route to the [Delete inoperational](/platform/actioning/delete.md) review queue."
+          },
+          "chunk_meta": {
+            "ad2f4423acc5": {
+              "chunk_id": "ad2f4423acc5",
+              "url": "https://docs.kernel.ai/data/firmographics/operational-status.md",
+              "title": "Operational status",
+              "heading": "Status values",
+              "text": "Status: `Active`; Meaning: The company operates today under its own brand, even if it is owned by another company.\nStatus: `Absorbed`; Meaning: The original brand is retired, but its operations or capabilities continue under a parent brand.\nStatus: `Out of business`; Meaning: Operations have ceased and there is no meaningful continuation under the original brand or a parent brand.\nStatus: `Undetermined`; Meaning: Kernel cannot classify the status confidently from the available evidence.\n\nSee the [Kernel Account object reference](/integrations/salesforce-integration/kernel-account-object-reference.md#operational-status) for field types and help text.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            },
+            "265c07c8edc4": {
+              "chunk_id": "265c07c8edc4",
+              "url": "https://docs.kernel.ai/data/firmographics/operational-status.md",
+              "title": "Operational status",
+              "heading": "How Kernel determines status",
+              "text": "Kernel judges the go-to-market reality, not just the legal shell. It checks whether the company sells or supports products today under its own brand, whether the brand has been retired into a parent, and whether operations have stopped.\n\nThe research uses company websites, redirects, parked-domain signals, closure news, business registries, insolvency records, and local-language evidence where relevant. When signals conflict or the evidence is not strong enough, Kernel returns `Undetermined` instead of guessing.\n\nOperational status is resolved before headcount and revenue. If an entity is out of business, downstream values should not make it look like a healthy operating company. When configured, an out-of-business account can also route to the [Delete inoperational](/platform/actioning/delete.md) review queue.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 5466,
+            "output_tokens": 416
+          },
+          "raw_text": "Perfect! I found the information needed to answer both parts of your question.\n\n{\n  \"answer\": \"Kernel can return four operational status values: Active, Absorbed, Out of business, and Undetermined. When the evidence is not strong enough to classify the company, Kernel returns `Undetermined` instead of guessing.\",\n  \"clarifying_question\": \"\",\n  \"citations\": [\n    {\n      \"chunk_id\": \"ad2f4423acc5\",\n      \"quote\": \"Status: `Active`; Meaning: The company operates today under its own brand, even if it is owned by another company. Status: `Absorbed`; Meaning: The original brand is retired, but its operations or capabilities continue under a parent brand. Status: `Out of business`; Meaning: Operations have ceased and there is no meaningful continuation under the original brand or a parent brand. Status: `Undetermined`; Meaning: Kernel cannot classify the status confidently from the available evidence.\"\n    },\n    {\n      \"chunk_id\": \"265c07c8edc4\",\n      \"quote\": \"When signals conflict or the evidence is not strong enough, Kernel returns `Undetermined` instead of guessing.\"\n    }\n  ],\n  \"abstain\": false,\n  \"reason\": \"\"\n}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "headcount-and-revenue",
+        "kind": "in_scope",
+        "question": "What does entity headcount count, and what does Kernel refuse to treat as annual revenue?",
+        "required_facts": [
+          "directly employed",
+          "contractors",
+          "EBITDA"
+        ],
+        "source": [
+          "https://docs.kernel.ai/data/firmographics/headcount.md",
+          "https://docs.kernel.ai/data/firmographics/revenue.md"
+        ],
+        "sources": [
+          "https://docs.kernel.ai/data/firmographics/headcount.md",
+          "https://docs.kernel.ai/data/firmographics/revenue.md"
+        ],
+        "expect_tool": "search_docs"
+      },
+      "passed": false,
+      "reasons": [
+        "missing facts: contractors"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Entity headcount counts \"the number of people directly employed by the company and on its payroll\" (chunk_id: 40db1c561af4). Kernel refuses to treat several items as annual revenue: \"It does not use EBITDA, net income, operating income, balance-sheet items, or a single quarter as annual revenue\" (chunk_id: 8b1e3bfd50dc).",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "40db1c561af4",
+                "quote": "Kernel treats it as a researched firmographic field: the number of people directly employed by the company and on its payroll."
+              },
+              {
+                "chunk_id": "8b1e3bfd50dc",
+                "quote": "Kernel looks for total revenue, net revenue, net sales, turnover, or operating revenue. It does not use EBITDA, net income, operating income, balance-sheet items, or a single quarter as annual revenue."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "entity headcount count"
+              },
+              "latency_ms": 63,
+              "result_chars": 6026,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "annual revenue Kernel refuse"
+              },
+              "latency_ms": 36,
+              "result_chars": 6714,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/data/firmographics/headcount.md",
+                "query": "entity headcount count directly employed payroll"
+              },
+              "latency_ms": 1,
+              "result_chars": 4665,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/data/firmographics/revenue.md",
+                "query": "Kernel does not refuse EBITDA net income balance sheet"
+              },
+              "latency_ms": 0,
+              "result_chars": 5046,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "40db1c561af4": "How Kernel determines payroll-based headcount at entity and consolidated scope\n\n{% embed url=\"\" %}\n\nHeadcount looks simple until you define the entity and the scope. Kernel treats it as a researched firmographic field: the number of people directly employed by the company and on its payroll.\n\nIt is headcount, not FTE. Kernel does not count contractors, consultants, agency workers, franchise employees, gig workers, or everyone connected to a brand. If a subsidiary has its own payroll, those employees belong to that subsidiary. They are not automatically counted as direct employees of the parent legal entity.",
+            "8b1e3bfd50dc": "How Kernel determines annual revenue, currency, source, and scope\n\n{% embed url=\"\" %}\n\nRevenue is the company's annual top-line figure. Kernel looks for total revenue, net revenue, net sales, turnover, or operating revenue. It does not use EBITDA, net income, operating income, balance-sheet items, or a single quarter as annual revenue.\n\nRevenue is the annual top line, as reported. Profit metrics, single quarters, forecasts, and balance-sheet items do not qualify.\n\nMost private companies do not disclose a clean number, and even public figures can be hard to compare. One source may report pounds for a fiscal year ending in March. Another may report euros for a calendar year. A bare number without currency, period, source, or scope is not very useful."
+          },
+          "chunk_meta": {
+            "40db1c561af4": {
+              "chunk_id": "40db1c561af4",
+              "url": "https://docs.kernel.ai/data/firmographics/headcount.md",
+              "title": "Headcount",
+              "heading": "Headcount",
+              "text": "How Kernel determines payroll-based headcount at entity and consolidated scope\n\n{% embed url=\"\" %}\n\nHeadcount looks simple until you define the entity and the scope. Kernel treats it as a researched firmographic field: the number of people directly employed by the company and on its payroll.\n\nIt is headcount, not FTE. Kernel does not count contractors, consultants, agency workers, franchise employees, gig workers, or everyone connected to a brand. If a subsidiary has its own payroll, those employees belong to that subsidiary. They are not automatically counted as direct employees of the parent legal entity.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            },
+            "8b1e3bfd50dc": {
+              "chunk_id": "8b1e3bfd50dc",
+              "url": "https://docs.kernel.ai/data/firmographics/revenue.md",
+              "title": "Revenue",
+              "heading": "Revenue",
+              "text": "How Kernel determines annual revenue, currency, source, and scope\n\n{% embed url=\"\" %}\n\nRevenue is the company's annual top-line figure. Kernel looks for total revenue, net revenue, net sales, turnover, or operating revenue. It does not use EBITDA, net income, operating income, balance-sheet items, or a single quarter as annual revenue.\n\nRevenue is the annual top line, as reported. Profit metrics, single quarters, forecasts, and balance-sheet items do not qualify.\n\nMost private companies do not disclose a clean number, and even public figures can be hard to compare. One source may report pounds for a fiscal year ending in March. Another may report euros for a calendar year. A bare number without currency, period, source, or scope is not very useful.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 15226,
+            "output_tokens": 552
+          },
+          "raw_text": "Perfect! I have found the answers to both questions. Let me compile the response.\n\n{\"answer\": \"Entity headcount counts \\\"the number of people directly employed by the company and on its payroll\\\" (chunk_id: 40db1c561af4). Kernel refuses to treat several items as annual revenue: \\\"It does not use EBITDA, net income, operating income, balance-sheet items, or a single quarter as annual revenue\\\" (chunk_id: 8b1e3bfd50dc).\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"40db1c561af4\", \"quote\": \"Kernel treats it as a researched firmographic field: the number of people directly employed by the company and on its payroll.\"}, {\"chunk_id\": \"8b1e3bfd50dc\", \"quote\": \"Kernel looks for total revenue, net revenue, net sales, turnover, or operating revenue. It does not use EBITDA, net income, operating income, balance-sheet items, or a single quarter as annual revenue.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "send-feedback",
+        "kind": "in_scope",
+        "question": "A rep wants to flag a wrong parent from the Salesforce account. Which button do they use, which package version does that need, and where in the Kernel platform do they track the ticket?",
+        "required_facts": [
+          "Send Kernel Feedback",
+          "3.11.4",
+          "app.kernel.ai/feedback"
+        ],
+        "source": "https://docs.kernel.ai/concepts/feedback-loop.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "To flag a wrong parent from the Salesforce account, a rep uses the **Send Kernel Feedback button**. \"Send Kernel Feedback is a Lightning quick action, so it appears as a button in the action row at the top of a record.\" It's available on both the standard Account and Kernel Account objects.\n\nThis requires **Kernel Salesforce package version 3.11.4 or later**. \"Requires Kernel Salesforce package version 3.11.4 or later. Version 3.11.4 includes the Send Kernel Feedback label and lets reps submit from a standard Account without first creating a Kernel Account.\"\n\nTo track the ticket, reps access the **Data feedback loop page in the Kernel Platform** at app.kernel.ai/feedback. \"You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at [app.kernel.ai/feedback](https://app.kernel.ai/feedback).\"",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "7235958a8ef0",
+                "quote": "Send Kernel Feedback is a Lightning quick action, so it appears as a button in the action row at the top of a record."
+              },
+              {
+                "chunk_id": "1178b4e09de2",
+                "quote": "Requires Kernel Salesforce package version 3.11.4 or later. Version 3.11.4 includes the Send Kernel Feedback label and lets reps submit from a standard Account without first creating a Kernel Account."
+              },
+              {
+                "chunk_id": "7c7dd093fd3a",
+                "quote": "You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at [app.kernel.ai/feedback](https://app.kernel.ai/feedback)."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "flag wrong parent Salesforce account button"
+              },
+              "latency_ms": 62,
+              "result_chars": 6016,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "wrong parent Salesforce package version ticket tracking"
+              },
+              "latency_ms": 36,
+              "result_chars": 5944,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/concepts/feedback-loop",
+                "query": "track ticket where to see outcomes resolution"
+              },
+              "latency_ms": 1,
+              "result_chars": 5431,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "1178b4e09de2": "Turn on the Send Kernel Feedback button and add it to your Account and Kernel Account pages so reps can send data feedback to Kernel from Salesforce.\n\nSend Kernel Feedback is the Salesforce feedback form for Kernel. It lets a rep flag a data issue - a wrong match, an off headcount, a missing parent - directly from an Account or Kernel Account record, and sends it to the Kernel data team as a tracked ticket. It replaces the older method of typing feedback into a Salesforce field.\n\nThis page covers how to switch the button on and show it on your records. For what happens after an issue is raised and where to track outcomes, see the [Feedback loop](/concepts/feedback-loop.md) concept page.\n\n{% hint style=\"info\" %}\nRequires Kernel Salesforce package version 3.11.4 or later. Version 3.11.4 includes the Send Kernel Feedback label and lets reps submit from a standard Account without first creating a Kernel Account. Check your installed version under Setup → Installed Packages and [upgrade the package](/integrations/salesforce-integration/package-installation-guide.md#upgrade-an-existing-installation) if needed.\n{% endhint %}",
+            "7235958a8ef0": "Send Kernel Feedback is a Lightning quick action, so it appears as a button in the action row at the top of a record. It is available on two objects:\n\n* the standard Account, and\n* the Kernel Account (`Kernel_Accountc`) that stores Kernel's resolved data for that account.\n\nWhen a rep clicks it, a short form opens. The rep chooses the field they disagree with and describes the correct value; Kernel captures the current value automatically. On submit, Kernel creates a support ticket for the data team and stores a tracking record in Salesforce. If the Account has a linked Kernel Account, the tracking record is associated with both records.\n\n{% hint style=\"info\" %}\nA standard Account does not need a linked Kernel Account to submit feedback in package version 3.11.4 and later. A Kernel Account does need to be linked to its Salesforce Account so Kernel can identify the CRM record.\n{% endhint %}",
+            "7c7dd093fd3a": "You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at [app.kernel.ai/feedback](https://app.kernel.ai/feedback).\n\nThe page lists each piece of feedback as a row, showing:\n\n* the account the feedback was raised against,\n* the disputed field and the value you expected,\n* the status as it moves from submitted, through in review, to resolved, and\n* a link back to the account in your CRM.\n\nClick into a row to see the full detail: what was submitted, the resolution the data team reached, and the reasoning behind it - so you can see not just that an issue was fixed, but why. Feedback from every rep in your organisation appears here, giving your team one shared view of what has been raised and where it stands.\n\nThe Data feedback loop page in the Kernel Platform, where you can track every issue raised and its outcome.\n\nWhen you raise feedback from Salesforce, the issue is stored as a Kernel Feedback record against the standard Account. If your organisation uses linked Kernel Account records, the same issue appears in the Kernel Feedback related list there, so your team can see the history without leaving Salesforce.\n\nSubmitted feedback appears in the Kernel Feedback related list on the Kernel Account, with its status.\n\n{% hint style=\"info\" %}\nUsing the legacy feedback field? Some Kernel implementations still collect feedback through a Salesforce custom field (`kernel_feedbackc`, labeled \"Kernel - Feedback\") that Kernel reads on a schedule. This method is still supported. When an issue raised through the field is resolved, t"
+          },
+          "chunk_meta": {
+            "1178b4e09de2": {
+              "chunk_id": "1178b4e09de2",
+              "url": "https://docs.kernel.ai/integrations/salesforce-integration/report-data-issues.md",
+              "title": "Send Kernel Feedback",
+              "heading": "Send Kernel Feedback",
+              "text": "Turn on the Send Kernel Feedback button and add it to your Account and Kernel Account pages so reps can send data feedback to Kernel from Salesforce.\n\nSend Kernel Feedback is the Salesforce feedback form for Kernel. It lets a rep flag a data issue - a wrong match, an off headcount, a missing parent - directly from an Account or Kernel Account record, and sends it to the Kernel data team as a tracked ticket. It replaces the older method of typing feedback into a Salesforce field.\n\nThis page covers how to switch the button on and show it on your records. For what happens after an issue is raised and where to track outcomes, see the [Feedback loop](/concepts/feedback-loop.md) concept page.\n\n{% hint style=\"info\" %}\nRequires Kernel Salesforce package version 3.11.4 or later. Version 3.11.4 includes the Send Kernel Feedback label and lets reps submit from a standard Account without first creating a Kernel Account. Check your installed version under Setup → Installed Packages and [upgrade the package](/integrations/salesforce-integration/package-installation-guide.md#upgrade-an-existing-installation) if needed.\n{% endhint %}",
+              "fetched_at": "2026-10-08T09:46:54+00:00"
+            },
+            "7235958a8ef0": {
+              "chunk_id": "7235958a8ef0",
+              "url": "https://docs.kernel.ai/integrations/salesforce-integration/report-data-issues.md",
+              "title": "Send Kernel Feedback",
+              "heading": "How it works",
+              "text": "Send Kernel Feedback is a Lightning quick action, so it appears as a button in the action row at the top of a record. It is available on two objects:\n\n* the standard Account, and\n* the Kernel Account (`Kernel_Accountc`) that stores Kernel's resolved data for that account.\n\nWhen a rep clicks it, a short form opens. The rep chooses the field they disagree with and describes the correct value; Kernel captures the current value automatically. On submit, Kernel creates a support ticket for the data team and stores a tracking record in Salesforce. If the Account has a linked Kernel Account, the tracking record is associated with both records.\n\n{% hint style=\"info\" %}\nA standard Account does not need a linked Kernel Account to submit feedback in package version 3.11.4 and later. A Kernel Account does need to be linked to its Salesforce Account so Kernel can identify the CRM record.\n{% endhint %}",
+              "fetched_at": "2026-10-08T09:46:54+00:00"
+            },
+            "7c7dd093fd3a": {
+              "chunk_id": "7c7dd093fd3a",
+              "url": "https://docs.kernel.ai/concepts/feedback-loop.md",
+              "title": "Feedback loop",
+              "heading": "Tracking feedback and outcomes",
+              "text": "You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at [app.kernel.ai/feedback](https://app.kernel.ai/feedback).\n\nThe page lists each piece of feedback as a row, showing:\n\n* the account the feedback was raised against,\n* the disputed field and the value you expected,\n* the status as it moves from submitted, through in review, to resolved, and\n* a link back to the account in your CRM.\n\nClick into a row to see the full detail: what was submitted, the resolution the data team reached, and the reasoning behind it - so you can see not just that an issue was fixed, but why. Feedback from every rep in your organisation appears here, giving your team one shared view of what has been raised and where it stands.\n\nThe Data feedback loop page in the Kernel Platform, where you can track every issue raised and its outcome.\n\nWhen you raise feedback from Salesforce, the issue is stored as a Kernel Feedback record against the standard Account. If your organisation uses linked Kernel Account records, the same issue appears in the Kernel Feedback related list there, so your team can see the history without leaving Salesforce.\n\nSubmitted feedback appears in the Kernel Feedback related list on the Kernel Account, with its status.\n\n{% hint style=\"info\" %}\nUsing the legacy feedback field? Some Kernel implementations still collect feedback through a Salesforce custom field (`kernel_feedbackc`, labeled \"Kernel - Feedback\") that Kernel reads on a schedule. This method is still supported. When an issue raised through the field is resolved, t",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 20215,
+            "output_tokens": 1288
+          },
+          "raw_text": "```json\n{\n  \"answer\": \"To flag a wrong parent from the Salesforce account, a rep uses the **Send Kernel Feedback button**. \\\"Send Kernel Feedback is a Lightning quick action, so it appears as a button in the action row at the top of a record.\\\" It's available on both the standard Account and Kernel Account objects.\\n\\nThis requires **Kernel Salesforce package version 3.11.4 or later**. \\\"Requires Kernel Salesforce package version 3.11.4 or later. Version 3.11.4 includes the Send Kernel Feedback label and lets reps submit from a standard Account without first creating a Kernel Account.\\\"\\n\\nTo track the ticket, reps access the **Data feedback loop page in the Kernel Platform** at app.kernel.ai/feedback. \\\"You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at [app.kernel.ai/feedback](https://app.kernel.ai/feedback).\\\"\",\n  \"clarifying_question\": \"\",\n  \"citations\": [\n    {\n      \"chunk_id\": \"7235958a8ef0\",\n      \"quote\": \"Send Kernel Feedback is a Lightning quick action, so it appears as a button in the action row at the top of a record.\"\n    },\n    {\n      \"chunk_id\": \"1178b4e09de2\",\n      \"quote\": \"Requires Kernel Salesforce package version 3.11.4 or later. Version 3.11.4 includes the Send Kernel Feedback label and lets reps submit from a standard Account without first creating a Kernel Account.\"\n    },\n    {\n      \"chunk_id\": \"7c7dd093fd3a\",\n      \"quote\": \"You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at [app.kernel.ai/feedback](https://app.kernel.ai/feedback).\"\n    }\n  ],\n  \"abstain\": false,\n  \"reason\": \"\"\n}\n```",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "7c7dd093fd3a",
+              "quote": "You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at app.kernel.ai/feedback.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at [app.kernel.ai/feedback](https://app.kernel.ai/feedback)."
+            },
+            {
+              "chunk_id": "7c7dd093fd3a",
+              "quote": "The page lists each piece of feedback as a row, showing the status as it moves from submitted, through in review, to resolved.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "You can follow the status of every issue you have raised on the Data feedback loop page of the Kernel Platform, at [app.kernel.ai/feedback](https://app.kernel.ai/feedback)."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "vague-parent",
+        "kind": "ambiguous",
+        "question": "the parent on this account looks wrong",
+        "expect_clarify": true,
+        "clarify_must_not": [
+          "KERN ID"
+        ],
+        "scripted_reply": "It's the YouTube account. I need the immediate parent, the top parent, and the top operating parent.",
+        "required_facts": [
+          "Google LLC",
+          "Alphabet Inc."
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "Which company is the account for, and which parent relationship looks wrong—the immediate parent, the top parent, or the top operating parent?",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 2697,
+            "output_tokens": 119
+          },
+          "raw_text": "{\"answer\": \"\", \"clarifying_question\": \"Which company is the account for, and which parent relationship looks wrong—the immediate parent, the top parent, or the top operating parent?\", \"citations\": [], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        },
+        {
+          "parsed": {
+            "answer": "For YouTube: Immediate parent is Google LLC. Top parent is Alphabet Inc. Top operating parent is Google LLC.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Immediate parent; Entity: Google LLC."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Top parent; Entity: Alphabet Inc."
+              },
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Relationship: Top operating parent; Entity: Google LLC."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "parent company hierarchy immediate top operating"
+              },
+              "latency_ms": 63,
+              "result_chars": 4607,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "account parent relationship KERN ID"
+              },
+              "latency_ms": 36,
+              "result_chars": 6077,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "b0ff7639b1d9": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\nRelationship: Account; Entity: YouTube.\nRelationship: Immediate parent; Entity: Google LLC.\nRelationship: Top parent; Entity: Alphabet Inc.\nRelationship: Top operating parent; Entity: Google LLC.\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\nRelationship: Account; Entity: Blizzard Entertainment.\nRelationship: Immediate parent; Entity: Activision Blizzard.\nRelationship: Top parent; Entity: Microsoft.\nRelationship: Top operating parent; Entity: Microsoft."
+          },
+          "chunk_meta": {
+            "b0ff7639b1d9": {
+              "chunk_id": "b0ff7639b1d9",
+              "url": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+              "title": "Parent relationships",
+              "heading": "Example",
+              "text": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\nRelationship: Account; Entity: YouTube.\nRelationship: Immediate parent; Entity: Google LLC.\nRelationship: Top parent; Entity: Alphabet Inc.\nRelationship: Top operating parent; Entity: Google LLC.\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\nRelationship: Account; Entity: Blizzard Entertainment.\nRelationship: Immediate parent; Entity: Activision Blizzard.\nRelationship: Top parent; Entity: Microsoft.\nRelationship: Top operating parent; Entity: Microsoft.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 13763,
+            "output_tokens": 559
+          },
+          "raw_text": "{\"answer\": \"For YouTube: Immediate parent is Google LLC. Top parent is Alphabet Inc. Top operating parent is Google LLC.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Immediate parent; Entity: Google LLC.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Top parent; Entity: Alphabet Inc.\"}, {\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Relationship: Top operating parent; Entity: Google LLC.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "b0ff7639b1d9",
+              "quote": "For YouTube: Relationship: Immediate parent; Entity: Google LLC. Relationship: Top parent; Entity: Alphabet Inc. Relationship: Top operating parent; Entity: Google LLC.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "Relationship: Top operating parent; Entity: Google LLC."
+            }
+          ],
+          "abstain_search_retried": true,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "vague-enrichment",
+        "kind": "ambiguous",
+        "question": "enrichment isn't coming back",
+        "expect_clarify": true,
+        "scripted_reply": "We called the Inbound API, stored the executionId, and the first response had no firmographics. What should we do next?",
+        "required_facts": [
+          "poll",
+          "executionId",
+          "complete"
+        ],
+        "source": "https://docs.kernel.ai/developer/inbound-api.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "Are you using the Inbound API, a scheduled workflow, or enriching records in the Kernel UI? What status or error are you seeing?",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "enrichment not coming back"
+              },
+              "latency_ms": 62,
+              "result_chars": 3154,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "enrichment API response data"
+              },
+              "latency_ms": 36,
+              "result_chars": 3703,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "enrichment workflow error status"
+              },
+              "latency_ms": 61,
+              "result_chars": 2931,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/developer/inbound-api",
+                "query": "enrichment not returning data error"
+              },
+              "latency_ms": 0,
+              "result_chars": 5057,
+              "error": null
+            }
+          ],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 11518,
+            "output_tokens": 664
+          },
+          "raw_text": "Based on the documentation, I can help you troubleshoot enrichment not returning data. Here's what the docs say:\n\n**If you're using the API:**\n\nWhen you poll the enrichment status, there are a few things to understand:\n\n1. **Asynchronous processing**: \"The output JSON payload populates gradually. When you poll, fields that have not been found or processed yet will usually be `null`.\" (chunk_id: c36bb59816f8)\n\n2. **Timing varies**: \"Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth. Other data points can require more extensive analysis or different data sources and may take longer.\" (chunk_id: c36bb59816f8)\n\n3. **Keep polling**: \"Continue polling until `status` is `complete` or `error`.\" (chunk_id: c36bb59816f8)\n\n**If you get an error:**\n\nIf the response shows `\"status\": \"error\"`, this means \"the enrichment workflow identified by the `executionId` encountered an error during processing.\" (chunk_id: 993e19094aef) The recommended action is to \"retry the request after some time. If the error persists, contact Kernel support.\" (chunk_id: 993e19094aef)\n\nTo help you better, could you clarify: **Are you using the Inbound API, a scheduled workflow, or enriching records in the Kernel UI?** Also, what is the current status you're seeing when you check?\n\n{\"answer\": \"\", \"clarifying_question\": \"Are you using the Inbound API, a scheduled workflow, or enriching records in the Kernel UI? What status or error are you seeing?\", \"citations\": [], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        },
+        {
+          "parsed": {
+            "answer": "Keep polling using your stored executionId. The output JSON payload populates gradually. When you poll, fields that have not been found or processed yet will usually be `null`. Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth. Other data points can require more extensive analysis or different data sources and may take longer. Polling strategy: Continue polling until `status` is `complete` or `error`.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "c36bb59816f8",
+                "quote": "Asynchronous population: The output JSON payload populates gradually."
+              },
+              {
+                "chunk_id": "c36bb59816f8",
+                "quote": "When you poll, fields that have not been found or processed yet will usually be `null`."
+              },
+              {
+                "chunk_id": "c36bb59816f8",
+                "quote": "Fast data points: Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth."
+              },
+              {
+                "chunk_id": "c36bb59816f8",
+                "quote": "Slower data points: Other data points can require more extensive analysis or different data sources and may take longer."
+              },
+              {
+                "chunk_id": "c36bb59816f8",
+                "quote": "Polling strategy: Continue polling until `status` is `complete` or `error`."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "first response null fields poll again firmographics"
+              },
+              "latency_ms": 63,
+              "result_chars": 4567,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "poll executionId complete status enrichment"
+              },
+              "latency_ms": 36,
+              "result_chars": 2969,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "c36bb59816f8": "* Asynchronous population: The output JSON payload populates gradually. When you poll, fields that have not been found or processed yet will usually be `null`.\n* Fast data points: Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth.\n* Slower data points: Other data points can require more extensive analysis or different data sources and may take longer.\n* Polling strategy: Continue polling until `status` is `complete` or `error`. The exact fast and slow fields depend on your configured workflow."
+          },
+          "chunk_meta": {
+            "c36bb59816f8": {
+              "chunk_id": "c36bb59816f8",
+              "url": "https://docs.kernel.ai/developer/inbound-api.md",
+              "title": "Inbound",
+              "heading": "Understanding data availability",
+              "text": "* Asynchronous population: The output JSON payload populates gradually. When you poll, fields that have not been found or processed yet will usually be `null`.\n* Fast data points: Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth.\n* Slower data points: Other data points can require more extensive analysis or different data sources and may take longer.\n* Polling strategy: Continue polling until `status` is `complete` or `error`. The exact fast and slow fields depend on your configured workflow.",
+              "fetched_at": "2026-10-08T09:47:07+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 25741,
+            "output_tokens": 1036
+          },
+          "raw_text": "{\"answer\": \"Keep polling using your stored executionId. The output JSON payload populates gradually. When you poll, fields that have not been found or processed yet will usually be `null`. Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth. Other data points can require more extensive analysis or different data sources and may take longer. Polling strategy: Continue polling until `status` is `complete` or `error`.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"c36bb59816f8\", \"quote\": \"Asynchronous population: The output JSON payload populates gradually.\"}, {\"chunk_id\": \"c36bb59816f8\", \"quote\": \"When you poll, fields that have not been found or processed yet will usually be `null`.\"}, {\"chunk_id\": \"c36bb59816f8\", \"quote\": \"Fast data points: Some firmographic fields are often available within minutes, such as country, state or region, industry, headcount, and headcount growth.\"}, {\"chunk_id\": \"c36bb59816f8\", \"quote\": \"Slower data points: Other data points can require more extensive analysis or different data sources and may take longer.\"}, {\"chunk_id\": \"c36bb59816f8\", \"quote\": \"Polling strategy: Continue polling until `status` is `complete` or `error`.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "c36bb59816f8",
+              "quote": "The output JSON payload populates gradually. When you poll, fields that have not been found or processed yet will usually be null.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "When you poll, fields that have not been found or processed yet will usually be `null`."
+            },
+            {
+              "chunk_id": "c36bb59816f8",
+              "quote": "Continue polling until status is complete or error.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "* Polling strategy: Continue polling until `status` is `complete` or `error`."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "vague-headcount",
+        "kind": "ambiguous",
+        "question": "this headcount looks wrong",
+        "expect_clarify": true,
+        "scripted_reply": "The account is a holding company. Should we look at entity headcount or consolidated headcount, and who is included in the entity number?",
+        "required_facts": [
+          "payroll",
+          "contractors",
+          "consolidated"
+        ],
+        "source": "https://docs.kernel.ai/data/firmographics/headcount.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "Which company (KERN ID or company name) does this headcount belong to, and where in Kernel are you seeing it?",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 2770,
+            "output_tokens": 195
+          },
+          "raw_text": "{\"answer\": \"\", \"clarifying_question\": \"Which company (KERN ID or company name) does this headcount belong to, and where in Kernel are you seeing it?\", \"citations\": [], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        },
+        {
+          "parsed": {
+            "answer": "For a holding company, Kernel distinguishes between **Entity headcount** and **Consolidated headcount**. Entity headcount means \"direct payroll headcount for that entity\" (chunk_id: bab69b76e1e6), which excludes employees of subsidiaries. Consolidated headcount includes \"the entity plus its subsidiaries, when a reliable group-level value is available.\" For holding companies specifically, \"Kernel may recommend the consolidated value because it better represents the account's scale\" (chunk_id: bab69b76e1e6). Headcount counts only \"people directly employed by the company and on its payroll\"—not contractors, consultants, agency workers, or franchise employees (chunk_id: 40db1c561af4). If a subsidiary has its own payroll, \"those employees belong to that subsidiary. They are not automatically counted as direct employees of the parent legal entity\" (chunk_id: 40db1c561af4).",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "bab69b76e1e6",
+                "quote": "Entity-level and consolidated headcount describe different scopes."
+              },
+              {
+                "chunk_id": "bab69b76e1e6",
+                "quote": "For headcount, this means direct payroll headcount for that entity."
+              },
+              {
+                "chunk_id": "bab69b76e1e6",
+                "quote": "For holding companies or group parents, Kernel may recommend the consolidated value because it better represents the account's scale."
+              },
+              {
+                "chunk_id": "40db1c561af4",
+                "quote": "Kernel treats it as a researched firmographic field: the number of people directly employed by the company and on its payroll."
+              },
+              {
+                "chunk_id": "40db1c561af4",
+                "quote": "If a subsidiary has its own payroll, those employees belong to that subsidiary."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "entity headcount consolidated headcount holding company"
+              },
+              "latency_ms": 50,
+              "result_chars": 6986,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "headcount definition who is included employees"
+              },
+              "latency_ms": 38,
+              "result_chars": 5510,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "bab69b76e1e6": "Kernel keeps the value and its scope separate before choosing a CRM-ready recommendation.\n\nEntity-level and consolidated headcount describe different scopes. Recommended is the value Kernel maps to the primary CRM field.\n\nTerm: Entity; Meaning: The value for the resolved legal entity itself. For headcount, this means direct payroll headcount for that entity. For revenue, this means annual revenue attributable to that entity.\nTerm: Consolidated; Meaning: The value for the entity plus its subsidiaries, when a reliable group-level value is available. This is useful when the account is a parent or holding company and the standalone entity does not reflect the scale of the operating group below it.\nTerm: Recommended; Meaning: Kernel chooses either Entity or Consolidated depending on the entity.For most operating companies, this is the entity value. For holding companies or group parents, Kernel may recommend the consolidated value because it better represents the account's scale.\n\nThe reasoning field explains which scope Kernel selected and why.\n\nSee the [Kernel Account object reference](/integrations/salesforce-integration/kernel-account-object-reference.md#headcount) for field types and help text.",
+            "40db1c561af4": "How Kernel determines payroll-based headcount at entity and consolidated scope\n\n{% embed url=\"\" %}\n\nHeadcount looks simple until you define the entity and the scope. Kernel treats it as a researched firmographic field: the number of people directly employed by the company and on its payroll.\n\nIt is headcount, not FTE. Kernel does not count contractors, consultants, agency workers, franchise employees, gig workers, or everyone connected to a brand. If a subsidiary has its own payroll, those employees belong to that subsidiary. They are not automatically counted as direct employees of the parent legal entity."
+          },
+          "chunk_meta": {
+            "bab69b76e1e6": {
+              "chunk_id": "bab69b76e1e6",
+              "url": "https://docs.kernel.ai/data/firmographics/headcount.md",
+              "title": "Headcount",
+              "heading": "Entity/Consolidated/Recommended",
+              "text": "Kernel keeps the value and its scope separate before choosing a CRM-ready recommendation.\n\nEntity-level and consolidated headcount describe different scopes. Recommended is the value Kernel maps to the primary CRM field.\n\nTerm: Entity; Meaning: The value for the resolved legal entity itself. For headcount, this means direct payroll headcount for that entity. For revenue, this means annual revenue attributable to that entity.\nTerm: Consolidated; Meaning: The value for the entity plus its subsidiaries, when a reliable group-level value is available. This is useful when the account is a parent or holding company and the standalone entity does not reflect the scale of the operating group below it.\nTerm: Recommended; Meaning: Kernel chooses either Entity or Consolidated depending on the entity.For most operating companies, this is the entity value. For holding companies or group parents, Kernel may recommend the consolidated value because it better represents the account's scale.\n\nThe reasoning field explains which scope Kernel selected and why.\n\nSee the [Kernel Account object reference](/integrations/salesforce-integration/kernel-account-object-reference.md#headcount) for field types and help text.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            },
+            "40db1c561af4": {
+              "chunk_id": "40db1c561af4",
+              "url": "https://docs.kernel.ai/data/firmographics/headcount.md",
+              "title": "Headcount",
+              "heading": "Headcount",
+              "text": "How Kernel determines payroll-based headcount at entity and consolidated scope\n\n{% embed url=\"\" %}\n\nHeadcount looks simple until you define the entity and the scope. Kernel treats it as a researched firmographic field: the number of people directly employed by the company and on its payroll.\n\nIt is headcount, not FTE. Kernel does not count contractors, consultants, agency workers, franchise employees, gig workers, or everyone connected to a brand. If a subsidiary has its own payroll, those employees belong to that subsidiary. They are not automatically counted as direct employees of the parent legal entity.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 7186,
+            "output_tokens": 539
+          },
+          "raw_text": "{\"answer\": \"For a holding company, Kernel distinguishes between **Entity headcount** and **Consolidated headcount**. Entity headcount means \\\"direct payroll headcount for that entity\\\" (chunk_id: bab69b76e1e6), which excludes employees of subsidiaries. Consolidated headcount includes \\\"the entity plus its subsidiaries, when a reliable group-level value is available.\\\" For holding companies specifically, \\\"Kernel may recommend the consolidated value because it better represents the account's scale\\\" (chunk_id: bab69b76e1e6). Headcount counts only \\\"people directly employed by the company and on its payroll\\\"—not contractors, consultants, agency workers, or franchise employees (chunk_id: 40db1c561af4). If a subsidiary has its own payroll, \\\"those employees belong to that subsidiary. They are not automatically counted as direct employees of the parent legal entity\\\" (chunk_id: 40db1c561af4).\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"bab69b76e1e6\", \"quote\": \"Entity-level and consolidated headcount describe different scopes.\"}, {\"chunk_id\": \"bab69b76e1e6\", \"quote\": \"For headcount, this means direct payroll headcount for that entity.\"}, {\"chunk_id\": \"bab69b76e1e6\", \"quote\": \"For holding companies or group parents, Kernel may recommend the consolidated value because it better represents the account's scale.\"}, {\"chunk_id\": \"40db1c561af4\", \"quote\": \"Kernel treats it as a researched firmographic field: the number of people directly employed by the company and on its payroll.\"}, {\"chunk_id\": \"40db1c561af4\", \"quote\": \"If a subsidiary has its own payroll, those employees belong to that subsidiary.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "vague-dead-company",
+        "kind": "ambiguous",
+        "question": "I think this company is dead, but the website still loads",
+        "expect_clarify": true,
+        "scripted_reply": "They stopped selling under the old brand and that brand was retired into the parent. Which status is that, and does a live website mean the company is active?",
+        "required_facts": [
+          "Absorbed",
+          "keep websites online"
+        ],
+        "source": "https://docs.kernel.ai/data/firmographics/operational-status.md"
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "What company are you asking about? Please provide either the company name or their KERN ID if you have it.",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 2730,
+            "output_tokens": 136
+          },
+          "raw_text": "{\"answer\": \"\", \"clarifying_question\": \"What company are you asking about? Please provide either the company name or their KERN ID if you have it.\", \"citations\": [], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        },
+        {
+          "parsed": {
+            "answer": "When a brand is retired into the parent, the status is `Absorbed`. According to Kernel's documentation, a live website does not by itself indicate the company is active. Kernel does not treat website liveness as a simple active-or-inactive flag—dead companies can keep websites online, and active companies can have stale, broken, or redirected domains.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "ad2f4423acc5",
+                "quote": "Status: `Absorbed`; Meaning: The original brand is retired, but its operations or capabilities continue under a parent brand."
+              },
+              {
+                "chunk_id": "a66c784c7bac",
+                "quote": "Kernel does not treat website liveness as a simple active-or-inactive flag. Dead companies can keep websites online, and active companies can have stale, broken, or redirected domains."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "brand retired into parent status"
+              },
+              "latency_ms": 64,
+              "result_chars": 5217,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "company status retired merged parent website active"
+              },
+              "latency_ms": 37,
+              "result_chars": 4394,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "ad2f4423acc5": "Status: `Active`; Meaning: The company operates today under its own brand, even if it is owned by another company.\nStatus: `Absorbed`; Meaning: The original brand is retired, but its operations or capabilities continue under a parent brand.\nStatus: `Out of business`; Meaning: Operations have ceased and there is no meaningful continuation under the original brand or a parent brand.\nStatus: `Undetermined`; Meaning: Kernel cannot classify the status confidently from the available evidence.\n\nSee the [Kernel Account object reference](/integrations/salesforce-integration/kernel-account-object-reference.md#operational-status) for field types and help text.",
+            "a66c784c7bac": "How Kernel determines whether an entity is active, absorbed, out of business, or undetermined\n\n{% embed url=\"\" %}\n\nOperational status answers a practical question: is this company still trading in the market your team cares about?\n\nKernel does not treat website liveness as a simple active-or-inactive flag. Dead companies can keep websites online, and active companies can have stale, broken, or redirected domains. Acquisitions also need care: one acquired brand may continue selling under its own name, another may be folded into the parent, and another may be shut down."
+          },
+          "chunk_meta": {
+            "ad2f4423acc5": {
+              "chunk_id": "ad2f4423acc5",
+              "url": "https://docs.kernel.ai/data/firmographics/operational-status.md",
+              "title": "Operational status",
+              "heading": "Status values",
+              "text": "Status: `Active`; Meaning: The company operates today under its own brand, even if it is owned by another company.\nStatus: `Absorbed`; Meaning: The original brand is retired, but its operations or capabilities continue under a parent brand.\nStatus: `Out of business`; Meaning: Operations have ceased and there is no meaningful continuation under the original brand or a parent brand.\nStatus: `Undetermined`; Meaning: Kernel cannot classify the status confidently from the available evidence.\n\nSee the [Kernel Account object reference](/integrations/salesforce-integration/kernel-account-object-reference.md#operational-status) for field types and help text.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            },
+            "a66c784c7bac": {
+              "chunk_id": "a66c784c7bac",
+              "url": "https://docs.kernel.ai/data/firmographics/operational-status.md",
+              "title": "Operational status",
+              "heading": "Operational status",
+              "text": "How Kernel determines whether an entity is active, absorbed, out of business, or undetermined\n\n{% embed url=\"\" %}\n\nOperational status answers a practical question: is this company still trading in the market your team cares about?\n\nKernel does not treat website liveness as a simple active-or-inactive flag. Dead companies can keep websites online, and active companies can have stale, broken, or redirected domains. Acquisitions also need care: one acquired brand may continue selling under its own name, another may be folded into the parent, and another may be shut down.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 6175,
+            "output_tokens": 312
+          },
+          "raw_text": "{\"answer\": \"When a brand is retired into the parent, the status is `Absorbed`. According to Kernel's documentation, a live website does not by itself indicate the company is active. Kernel does not treat website liveness as a simple active-or-inactive flag—dead companies can keep websites online, and active companies can have stale, broken, or redirected domains.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"ad2f4423acc5\", \"quote\": \"Status: `Absorbed`; Meaning: The original brand is retired, but its operations or capabilities continue under a parent brand.\"}, {\"chunk_id\": \"a66c784c7bac\", \"quote\": \"Kernel does not treat website liveness as a simple active-or-inactive flag. Dead companies can keep websites online, and active companies can have stale, broken, or redirected domains.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "oos-pricing",
+        "kind": "out_of_scope",
+        "question": "What is Kernel's price per account enrichment on our current contract?",
+        "expect_abstain": true,
+        "confirmed_absent": [
+          "price per account"
+        ]
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The public documentation at docs.kernel.ai does not contain pricing information, contract terms, or per-unit costs for account enrichment.",
+            "clarifying_question": "",
+            "citations": [],
+            "abstain": true,
+            "reason": "Pricing and contract details are not available in the public docs. Two searches with different keywords returned no results on pricing or billing rates for account enrichment."
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "price per account enrichment contract pricing"
+              },
+              "latency_ms": 63,
+              "result_chars": 3275,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "account enrichment cost billing rates"
+              },
+              "latency_ms": 38,
+              "result_chars": 5978,
+              "error": null
+            },
+            {
+              "name": "write_handoff",
+              "arguments": {
+                "summary": "User asked: \"What is Kernel's price per account enrichment on our current contract?\"\n\nSearches performed:\n1. \"price per account enrichment contract pricing\"\n2. \"account enrichment cost billing rates\"\n\nWhat is missing: The public documentation at docs.kernel.ai does not contain pricing information, contract terms, or per-unit costs for account enrichment. Pricing is customer-specific and managed through individual contracts, not in the public docs."
+              },
+              "latency_ms": 3,
+              "result_chars": 31,
+              "error": null
+            }
+          ],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": true,
+          "handoff_summary": "User asked: \"What is Kernel's price per account enrichment on our current contract?\"\n\nSearches performed:\n1. \"price per account enrichment contract pricing\"\n2. \"account enrichment cost billing rates\"\n\nWhat is missing: The public documentation at docs.kernel.ai does not contain pricing information, contract terms, or per-unit costs for account enrichment. Pricing is customer-specific and managed through individual contracts, not in the public docs.",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 13792,
+            "output_tokens": 517
+          },
+          "raw_text": "{\"answer\": \"The public documentation at docs.kernel.ai does not contain pricing information, contract terms, or per-unit costs for account enrichment.\", \"clarifying_question\": \"\", \"citations\": [], \"abstain\": true, \"reason\": \"Pricing and contract details are not available in the public docs. Two searches with different keywords returned no results on pricing or billing rates for account enrichment.\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": true,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "oos-refund",
+        "kind": "out_of_scope",
+        "question": "Please refund invoice INV-2041 from March and confirm the credit has been applied.",
+        "expect_abstain": true,
+        "confirmed_absent": [
+          "INV-2041"
+        ]
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The public documentation at docs.kernel.ai does not contain information about invoices, refunds, or account credits. Your request requires access to Kernel's billing system or customer support outside of this documentation.",
+            "clarifying_question": "",
+            "citations": [],
+            "abstain": true,
+            "reason": "After two searches with different terms, the docs contain no information about invoicing, refund processes, or credit application. This is a billing and account management matter outside the scope of the public documentation."
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "refund invoice credit billing"
+              },
+              "latency_ms": 65,
+              "result_chars": 7240,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "payment invoice account charges"
+              },
+              "latency_ms": 37,
+              "result_chars": 6308,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "invoice number refund process"
+              },
+              "latency_ms": 79,
+              "result_chars": 6043,
+              "error": null
+            },
+            {
+              "name": "write_handoff",
+              "arguments": {
+                "summary": "User requested a refund for invoice INV-2041 from March and confirmation that a credit has been applied. This is a billing and account management request. Searched twice with different terms (\"refund invoice credit billing\" and \"payment invoice account charges\" and \"invoice number refund process\"). The Kernel public documentation at docs.kernel.ai contains no information about invoices, refunds, billing processes, or account credits. The docs cover KERN ID concepts, entity hierarchies, data fields, and integrations—not billing or account management. This request requires access to Kernel's billing system or customer support, not the public documentation."
+              },
+              "latency_ms": 1,
+              "result_chars": 31,
+              "error": null
+            }
+          ],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": true,
+          "handoff_summary": "User requested a refund for invoice INV-2041 from March and confirmation that a credit has been applied. This is a billing and account management request. Searched twice with different terms (\"refund invoice credit billing\" and \"payment invoice account charges\" and \"invoice number refund process\"). The Kernel public documentation at docs.kernel.ai contains no information about invoices, refunds, billing processes, or account credits. The docs cover KERN ID concepts, entity hierarchies, data fields, and integrations—not billing or account management. This request requires access to Kernel's billing system or customer support, not the public documentation.",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 26325,
+            "output_tokens": 730
+          },
+          "raw_text": "{\"answer\": \"The public documentation at docs.kernel.ai does not contain information about invoices, refunds, or account credits. Your request requires access to Kernel's billing system or customer support outside of this documentation.\", \"clarifying_question\": \"\", \"citations\": [], \"abstain\": true, \"reason\": \"After two searches with different terms, the docs contain no information about invoicing, refund processes, or credit application. This is a billing and account management matter outside the scope of the public documentation.\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": true,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "oos-private-kern",
+        "kind": "out_of_scope",
+        "question": "What KERN ID is currently stored on our Salesforce account 001ZZZPRIVATE99 for Northwind Traders?",
+        "expect_abstain": true,
+        "confirmed_absent": [
+          "001ZZZPRIVATE99",
+          "Northwind Traders"
+        ]
+      },
+      "passed": false,
+      "reasons": [
+        "asked instead of refusing",
+        "handoff was not written"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "I cannot look up customer accounts or KERN IDs from the public documentation. Are you asking how KERN IDs work, or how to find a KERN ID in your Salesforce account using Kernel's documented procedures?",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 2806,
+            "output_tokens": 197
+          },
+          "raw_text": "{\"answer\": \"\",\"clarifying_question\":\"I cannot look up customer accounts or KERN IDs from the public documentation. Are you asking how KERN IDs work, or how to find a KERN ID in your Salesforce account using Kernel's documented procedures?\",\"citations\":[],\"abstain\":false,\"reason\":\"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "oos-sanctions",
+        "kind": "out_of_scope",
+        "question": "Which sanctions list does Kernel enforce, and can we sell to a company registered in a restricted country?",
+        "expect_abstain": true,
+        "confirmed_absent": [
+          "sanctions list"
+        ]
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The public Kernel documentation does not contain information about which sanctions lists Kernel enforces or policies regarding selling to companies registered in restricted countries. The docs reference a Trust Center for compliance documentation, but these specific details are not covered in the public documentation.",
+            "clarifying_question": "",
+            "citations": [],
+            "abstain": true,
+            "reason": "Sanctions list enforcement and geographic restrictions policies are not documented in the public docs. The Trust Center is referenced for compliance resources but specific sanctions and export restriction details are not available in docs.kernel.ai."
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "sanctions list enforcement restricted countries"
+              },
+              "latency_ms": 64,
+              "result_chars": 7686,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "can we sell to sanctioned countries compliance"
+              },
+              "latency_ms": 37,
+              "result_chars": 5099,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "OFAC sanctions compliance export restrictions"
+              },
+              "latency_ms": 55,
+              "result_chars": 3866,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "SDN Specially Designated Nationals banned countries"
+              },
+              "latency_ms": 36,
+              "result_chars": 7078,
+              "error": null
+            },
+            {
+              "name": "write_handoff",
+              "arguments": {
+                "summary": "User asked: Which sanctions list does Kernel enforce, and can we sell to a company registered in a restricted country?\n\nSearches performed:\n1. \"sanctions list enforcement restricted countries\"\n2. \"can we sell to sanctioned countries compliance\"\n3. \"OFAC sanctions compliance export restrictions\"\n4. \"SDN Specially Designated Nationals banned countries\"\n\nInformation missing: The public documentation does not contain specific information about:\n- Which sanctions lists Kernel enforces (e.g., OFAC, UN, EU, etc.)\n- Whether Kernel checks for or flags companies on sanctions lists\n- Policies on selling/providing services to companies registered in restricted or sanctioned countries\n- Any geographic restrictions or blacklist checks\n\nThe Trust Center is referenced as containing compliance documentation, but these specific sanctions and export restriction details are not in the public docs.kernel.ai pages."
+              },
+              "latency_ms": 0,
+              "result_chars": 31,
+              "error": null
+            }
+          ],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": true,
+          "handoff_summary": "User asked: Which sanctions list does Kernel enforce, and can we sell to a company registered in a restricted country?\n\nSearches performed:\n1. \"sanctions list enforcement restricted countries\"\n2. \"can we sell to sanctioned countries compliance\"\n3. \"OFAC sanctions compliance export restrictions\"\n4. \"SDN Specially Designated Nationals banned countries\"\n\nInformation missing: The public documentation does not contain specific information about:\n- Which sanctions lists Kernel enforces (e.g., OFAC, UN, EU, etc.)\n- Whether Kernel checks for or flags companies on sanctions lists\n- Policies on selling/providing services to companies registered in restricted or sanctioned countries\n- Any geographic restrictions or blacklist checks\n\nThe Trust Center is referenced as containing compliance documentation, but these specific sanctions and export restriction details are not in the public docs.kernel.ai pages.",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 24745,
+            "output_tokens": 677
+          },
+          "raw_text": "{\"answer\": \"The public Kernel documentation does not contain information about which sanctions lists Kernel enforces or policies regarding selling to companies registered in restricted countries. The docs reference a Trust Center for compliance documentation, but these specific details are not covered in the public documentation.\", \"clarifying_question\": \"\", \"citations\": [], \"abstain\": true, \"reason\": \"Sanctions list enforcement and geographic restrictions policies are not documented in the public docs. The Trust Center is referenced for compliance resources but specific sanctions and export restriction details are not available in docs.kernel.ai.\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "oos-holiday",
+        "kind": "out_of_scope",
+        "question": "How many days of holiday do Kernel employees get each year?",
+        "expect_abstain": true,
+        "confirmed_absent": [
+          "days of holiday"
+        ]
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The public documentation at docs.kernel.ai does not contain information about Kernel employees' holiday entitlements or other internal HR policies. The docs focus on Kernel's data products and services.",
+            "clarifying_question": "",
+            "citations": [],
+            "abstain": true,
+            "reason": "Information about employee benefits and holidays is not included in the public documentation."
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "employee holiday days per year vacation"
+              },
+              "latency_ms": 55,
+              "result_chars": 4625,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Kernel employees paid time off PTO benefits"
+              },
+              "latency_ms": 36,
+              "result_chars": 4147,
+              "error": null
+            },
+            {
+              "name": "write_handoff",
+              "arguments": {
+                "summary": "User asked: How many days of holiday do Kernel employees get each year?\n\nSearches performed:\n1. \"employee holiday days per year vacation\"\n2. \"Kernel employees paid time off PTO benefits\"\n\nWhat is missing: The public docs at docs.kernel.ai do not contain information about Kernel's internal employee benefits, holiday allowances, or HR policies. The documentation covers Kernel's data products, API, and integrations, not company HR details."
+              },
+              "latency_ms": 0,
+              "result_chars": 31,
+              "error": null
+            }
+          ],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": true,
+          "handoff_summary": "User asked: How many days of holiday do Kernel employees get each year?\n\nSearches performed:\n1. \"employee holiday days per year vacation\"\n2. \"Kernel employees paid time off PTO benefits\"\n\nWhat is missing: The public docs at docs.kernel.ai do not contain information about Kernel's internal employee benefits, holiday allowances, or HR policies. The documentation covers Kernel's data products, API, and integrations, not company HR details.",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 10260,
+            "output_tokens": 385
+          },
+          "raw_text": "{\"answer\": \"The public documentation at docs.kernel.ai does not contain information about Kernel employees' holiday entitlements or other internal HR policies. The docs focus on Kernel's data products and services.\", \"clarifying_question\": \"\", \"citations\": [], \"abstain\": true, \"reason\": \"Information about employee benefits and holidays is not included in the public documentation.\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "oos-compensation",
+        "kind": "out_of_scope",
+        "question": "Your API was down last Tuesday and we lost a deal. What compensation will Kernel pay us?",
+        "expect_abstain": true,
+        "confirmed_absent": [
+          "outage compensation",
+          "service credit"
+        ]
+      },
+      "passed": false,
+      "reasons": [
+        "asked instead of refusing",
+        "handoff was not written"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "Are you asking about Kernel's published policies on API uptime, service level agreements, or incident response procedures that may be documented?",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 2841,
+            "output_tokens": 236
+          },
+          "raw_text": "{\"answer\": \"\", \"clarifying_question\": \"Are you asking about Kernel's published policies on API uptime, service level agreements, or incident response procedures that may be documented?\", \"citations\": [], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "oos-force-write",
+        "kind": "out_of_scope",
+        "question": "Change the KERN ID on our account to 1111111111 and confirm the write has completed.",
+        "expect_abstain": true,
+        "confirmed_absent": [
+          "1111111111"
+        ]
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The Kernel documentation does not contain procedures for changing a KERN ID on an account or confirming that the change has been written. The Accounts page mentions that 'Change identity' and 'Reject identity' controls appear in the account detail drawer when enabled for a workspace, but the documentation does not describe what these controls do or how to use them.",
+            "clarifying_question": "",
+            "citations": [],
+            "abstain": true,
+            "reason": "The docs do not contain procedures for directly changing a KERN ID to a specific value or how to use the identity change controls. The account modification process is not documented."
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "change KERN ID modify account"
+              },
+              "latency_ms": 63,
+              "result_chars": 6481,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "update KERN ID customer management"
+              },
+              "latency_ms": 37,
+              "result_chars": 6339,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "reject identity change identity account resolution"
+              },
+              "latency_ms": 64,
+              "result_chars": 4696,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/platform/accounts",
+                "query": "change identity reject identity KERN ID modify"
+              },
+              "latency_ms": 1,
+              "result_chars": 2727,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "\"Change identity\" \"Reject identity\" procedure steps"
+              },
+              "latency_ms": 63,
+              "result_chars": 3897,
+              "error": null
+            },
+            {
+              "name": "write_handoff",
+              "arguments": {
+                "summary": "User asked how to change the KERN ID on their account to a specific value (1111111111) and confirm the write completed. \n\nSearches performed:\n1. \"change KERN ID modify account\"\n2. \"update KERN ID customer management\"  \n3. \"reject identity change identity account resolution\"\n\nThe docs explain what a KERN ID is, how it is assigned, and that entity resolution determines which KERN ID an account receives. The Accounts page mentions that \"Change identity\" and \"Reject identity\" controls appear in the account detail drawer when enabled for a workspace, but the documentation does not describe what these controls do, how to use them, or whether they allow directly changing a KERN ID to a specific value.\n\nThe docs do not contain procedures for changing a KERN ID on an account or confirming that the change has been written."
+              },
+              "latency_ms": 0,
+              "result_chars": 31,
+              "error": null
+            }
+          ],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": true,
+          "handoff_summary": "User asked how to change the KERN ID on their account to a specific value (1111111111) and confirm the write completed. \n\nSearches performed:\n1. \"change KERN ID modify account\"\n2. \"update KERN ID customer management\"  \n3. \"reject identity change identity account resolution\"\n\nThe docs explain what a KERN ID is, how it is assigned, and that entity resolution determines which KERN ID an account receives. The Accounts page mentions that \"Change identity\" and \"Reject identity\" controls appear in the account detail drawer when enabled for a workspace, but the documentation does not describe what these controls do, how to use them, or whether they allow directly changing a KERN ID to a specific value.\n\nThe docs do not contain procedures for changing a KERN ID on an account or confirming that the change has been written.",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 42913,
+            "output_tokens": 1057
+          },
+          "raw_text": "{\"answer\": \"The Kernel documentation does not contain procedures for changing a KERN ID on an account or confirming that the change has been written. The Accounts page mentions that 'Change identity' and 'Reject identity' controls appear in the account detail drawer when enabled for a workspace, but the documentation does not describe what these controls do or how to use them.\",\"clarifying_question\": \"\",\"citations\": [],\"abstain\": true,\"reason\": \"The docs do not contain procedures for directly changing a KERN ID to a specific value or how to use the identity change controls. The account modification process is not documented.\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": true,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "flagged-identity-mode",
+        "kind": "in_scope",
+        "question": "What is “identity mode” and how does it affect resolution when a record is ambiguous?",
+        "required_facts": [
+          "URL bias",
+          "Name bias",
+          "breaks a tie",
+          "contact domain"
+        ],
+        "correct_answer": "There are two modes. URL bias is the default. A bias only breaks a tie. Other evidence, such as legal name, address, or contact domains, still wins.",
+        "bad_answer": "The answer was right. The citation check caught a quote that stitched the Bias modes bullets into one passage.",
+        "source": "https://docs.kernel.ai/concepts/entity-resolution.md",
+        "flagged": true
+      },
+      "passed": false,
+      "reasons": [
+        "missing facts: breaks a tie"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Identity mode tells Kernel how to resolve ambiguous records when a company's name and website point to different entities. The mode acts as a tiebreaker: \"The identity mode tells Kernel which input to lean on when the record is ambiguous.\" (chunk_id: 4a053f5f3298)\n\nThere are two identity modes:\n\n1. **URL bias (default)** - Lean on the website. \"Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain.\" (chunk_id: 15e0ab9fccf9)\n\n2. **Name bias** - \"lean on the company name as the strongest statement of what the record was meant to represent. Best when reps typed account names by hand or when a previous vendor has been used that keys on company name.\" (chunk_id: 15e0ab9fccf9)\n\nImportantly, identity mode is not a hard rule: \"The same ambiguous record resolves differently depending on the bias - but a bias only breaks the tie.\" (chunk_id: 15e0ab9fccf9) Other reliable evidence still takes precedence: \"Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match.\" (chunk_id: 4a053f5f3298)",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "4a053f5f3298",
+                "quote": "The identity mode tells Kernel which input to lean on when the record is ambiguous."
+              },
+              {
+                "chunk_id": "15e0ab9fccf9",
+                "quote": "Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain."
+              },
+              {
+                "chunk_id": "15e0ab9fccf9",
+                "quote": "Name bias - lean on the company name as the strongest statement of what the record was meant to represent."
+              },
+              {
+                "chunk_id": "15e0ab9fccf9",
+                "quote": "The same ambiguous record resolves differently depending on the bias - but a bias only breaks the tie."
+              },
+              {
+                "chunk_id": "4a053f5f3298",
+                "quote": "Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "identity mode ambiguous record resolution"
+              },
+              "latency_ms": 52,
+              "result_chars": 4899,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "identity mode definition"
+              },
+              "latency_ms": 35,
+              "result_chars": 7261,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/concepts/entity-resolution.md",
+                "query": "identity mode ambiguous"
+              },
+              "latency_ms": 1,
+              "result_chars": 4040,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "4a053f5f3298": "[Open Entity resolution in Kernel](https://app.kernel.ai/cleaning/master-data)\n\nEntity resolution matches each CRM record to the real company behind it and assigns a [KERN ID](/concepts/kern-id.md). Review a sample before approval. Look at the matched entity, reasoning, confidence, and any fields that changed.\n\nThe identity mode tells Kernel which input to lean on when the record is ambiguous. URL bias leans on the website. Name bias leans on the account name. Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match.\n\nWhen the sample looks right, approve and lock the configuration. See [Entity resolution](/concepts/entity-resolution.md) for the full matching model.\n\n{% hint style=\"info\" %}\nApproval locks the identity configuration used for future runs. Review the sample and selected identity mode before you approve it.\n{% endhint %}",
+            "15e0ab9fccf9": "When a record's name and website point to different companies and nothing else is decisive (see example below), which should Kernel lean on? That usually depends on how the CRM was built and maintained - where the records came from, and which field the team kept clean.\n\nKernel treats this as a bias, not a hard rule.\n\nThe same ambiguous record resolves differently depending on the bias - but a bias only breaks the tie.\n\n* URL bias (default) - lean on the website. Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain.\n* Name bias - lean on the company name as the strongest statement of what the record was meant to represent. Best when reps typed account names by hand or when a previous vendor has been used that keys on company name.\n\nA bias only breaks a tie. When the address, legal name, LinkedIn, or contact domains clearly corroborate one entity, that evidence wins."
+          },
+          "chunk_meta": {
+            "4a053f5f3298": {
+              "chunk_id": "4a053f5f3298",
+              "url": "https://docs.kernel.ai/platform/data-setup.md",
+              "title": "Data setup",
+              "heading": "4. Entity resolution",
+              "text": "[Open Entity resolution in Kernel](https://app.kernel.ai/cleaning/master-data)\n\nEntity resolution matches each CRM record to the real company behind it and assigns a [KERN ID](/concepts/kern-id.md). Review a sample before approval. Look at the matched entity, reasoning, confidence, and any fields that changed.\n\nThe identity mode tells Kernel which input to lean on when the record is ambiguous. URL bias leans on the website. Name bias leans on the account name. Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match.\n\nWhen the sample looks right, approve and lock the configuration. See [Entity resolution](/concepts/entity-resolution.md) for the full matching model.\n\n{% hint style=\"info\" %}\nApproval locks the identity configuration used for future runs. Review the sample and selected identity mode before you approve it.\n{% endhint %}",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            },
+            "15e0ab9fccf9": {
+              "chunk_id": "15e0ab9fccf9",
+              "url": "https://docs.kernel.ai/concepts/entity-resolution.md",
+              "title": "Entity resolution",
+              "heading": "Bias modes",
+              "text": "When a record's name and website point to different companies and nothing else is decisive (see example below), which should Kernel lean on? That usually depends on how the CRM was built and maintained - where the records came from, and which field the team kept clean.\n\nKernel treats this as a bias, not a hard rule.\n\nThe same ambiguous record resolves differently depending on the bias - but a bias only breaks the tie.\n\n* URL bias (default) - lean on the website. Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain.\n* Name bias - lean on the company name as the strongest statement of what the record was meant to represent. Best when reps typed account names by hand or when a previous vendor has been used that keys on company name.\n\nA bias only breaks a tie. When the address, legal name, LinkedIn, or contact domains clearly corroborate one entity, that evidence wins.",
+              "fetched_at": "2026-10-08T09:46:53+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 20171,
+            "output_tokens": 1348
+          },
+          "raw_text": "{\"answer\": \"Identity mode tells Kernel how to resolve ambiguous records when a company's name and website point to different entities. The mode acts as a tiebreaker: \\\"The identity mode tells Kernel which input to lean on when the record is ambiguous.\\\" (chunk_id: 4a053f5f3298)\\n\\nThere are two identity modes:\\n\\n1. **URL bias (default)** - Lean on the website. \\\"Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain.\\\" (chunk_id: 15e0ab9fccf9)\\n\\n2. **Name bias** - \\\"lean on the company name as the strongest statement of what the record was meant to represent. Best when reps typed account names by hand or when a previous vendor has been used that keys on company name.\\\" (chunk_id: 15e0ab9fccf9)\\n\\nImportantly, identity mode is not a hard rule: \\\"The same ambiguous record resolves differently depending on the bias - but a bias only breaks the tie.\\\" (chunk_id: 15e0ab9fccf9) Other reliable evidence still takes precedence: \\\"Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match.\\\" (chunk_id: 4a053f5f3298)\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"4a053f5f3298\", \"quote\": \"The identity mode tells Kernel which input to lean on when the record is ambiguous.\"}, {\"chunk_id\": \"15e0ab9fccf9\", \"quote\": \"Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain.\"}, {\"chunk_id\": \"15e0ab9fccf9\", \"quote\": \"Name bias - lean on the company name as the strongest statement of what the record was meant to represent.\"}, {\"chunk_id\": \"15e0ab9fccf9\", \"quote\": \"The same ambiguous record resolves differently depending on the bias - but a bias only breaks the tie.\"}, {\"chunk_id\": \"4a053f5f3298\", \"quote\": \"Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "15e0ab9fccf9",
+              "quote": "URL bias (default) - lean on the website. Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    }
+  ]
+}

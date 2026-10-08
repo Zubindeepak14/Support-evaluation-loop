@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review</title>
+  <link rel="stylesheet" href="/desk.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">Docs desk</a>
+    <nav class="nav">
+      <a class="ghost" href="/">Ask the docs</a>
+      <a class="ghost" href="/review" aria-current="page">Review</a>
+      <a class="ghost" href="/bulk">Bulk run</a>
+    </nav>
+  </header>
+  <div class="board">
+    <section class="board-main">
+      <p class="kicker">Review</p>
+      <h1>Waiting</h1>
+      <p class="lede" id="counter">Loading…</p>
+      <p class="note">A label sends the complaint to the person who fixes that kind of problem. It does not create a test.</p>
+      <div class="board-scroll" id="list"></div>
+    </section>
+    <aside class="board-side" aria-label="Labelled">
+      <p class="history-label">Labelled</p>
+      <div class="buckets" id="buckets"></div>
+    </aside>
+  </div>
+  <script>
+    const counter = document.querySelector("#counter");
+    const list = document.querySelector("#list");
+    const buckets = document.querySelector("#buckets");
+    const order = ["wrong_answer", "should_have_refused", "docs_gap"];
+
+    load();
+
+    async function load() {
+      const response = await fetch("/api/review");
+      render(await response.json());
+    }
+
+    function render(data) {
+      const parts = [data.waiting + " waiting", data.labelled + " labelled"];
+      const bits = [];
+      if (data.counts.wrong_answer) bits.push(data.counts.wrong_answer + " wrong answer");
+      if (data.counts.should_have_refused) bits.push(data.counts.should_have_refused + " should have refused");
+      if (data.counts.docs_gap) bits.push(data.counts.docs_gap + " docs gap");
+      counter.textContent = bits.length ? parts.join(", ") + ": " + bits.join(", ") : parts.join(", ");
+
+      list.replaceChildren();
+      const waiting = data.items.filter(item => !item.label_id);
+      if (!waiting.length) {
+        const empty = document.createElement("p");
+        empty.className = "note";
+        empty.textContent = "Nothing is waiting. When a customer presses This didn't help, the question and the answer show up here.";
+        list.appendChild(empty);
+      }
+      waiting.forEach(item => list.appendChild(ticket(item, data.labels, false)));
+
+      buckets.replaceChildren();
+      order.forEach(id => {
+        const info = data.labels[id];
+        const section = document.createElement("section");
+        section.className = "bucket";
+        const title = document.createElement("h2");
+        const count = data.counts[id] || 0;
+        title.textContent = info.label + " · " + count;
+        const body = document.createElement("div");
+        body.className = "bucket-body";
+        const items = data.items.filter(item => item.label_id === id);
+        if (!items.length) {
+          const empty = document.createElement("p");
+          empty.className = "note";
+          empty.textContent = info.owner;
+          body.appendChild(empty);
+        }
+        items.forEach(item => body.appendChild(ticket(item, data.labels, true)));
+        section.append(title, body);
+        buckets.appendChild(section);
+      });
+    }
+
+    function ticket(item, labels, done) {
+      const article = document.createElement("article");
+      article.className = done ? "ticket" : "case";
+      const question = document.createElement("h3");
+      question.textContent = item.question;
+      const answer = document.createElement("p");
+      answer.textContent = item.answer;
+      article.append(question, answer);
+      if (done) {
+        const who = document.createElement("p");
+        who.className = "meta";
+        who.textContent = item.owner;
+        article.appendChild(who);
+      } else {
+        const actions = document.createElement("div");
+        actions.className = "actions";
+        order.forEach(id => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "ghost";
+          button.textContent = labels[id].label;
+          button.addEventListener("click", () => label(item.id, id, actions));
+          actions.appendChild(button);
+        });
+        article.appendChild(actions);
+      }
+      return article;
+    }
+
+    async function label(id, kind, actions) {
+      actions.querySelectorAll("button").forEach(button => { button.disabled = true; });
+      const response = await fetch("/api/review/label", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, label: kind })
+      });
+      const payload = await response.json();
+      if (!response.ok) {
+        actions.querySelectorAll("button").forEach(button => { button.disabled = false; });
+        return;
+      }
+      render(payload.summary);
+    }
+  </script>
+</body>
+</html>

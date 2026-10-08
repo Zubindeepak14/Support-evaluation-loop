@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bulk run</title>
+  <link rel="stylesheet" href="/desk.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">Docs desk</a>
+    <nav class="nav">
+      <a class="ghost" href="/">Ask the docs</a>
+      <a class="ghost" href="/review">Review</a>
+      <a class="ghost" href="/bulk" aria-current="page">Bulk run</a>
+    </nav>
+  </header>
+  <main class="bulk">
+    <p class="kicker">Recorded suite</p>
+    <h1>Bulk run</h1>
+    <p class="note" id="blurb">Loading…</p>
+    <div class="tabs" id="tabs"></div>
+    <div class="stamps" id="stamps"></div>
+    <div class="lanes" id="lanes"></div>
+  </main>
+  <script>
+    const tabs = document.querySelector("#tabs");
+    const stamps = document.querySelector("#stamps");
+    const lanes = document.querySelector("#lanes");
+    const blurb = document.querySelector("#blurb");
+    const laneOrder = [
+      ["in_scope", "Answerable"],
+      ["ambiguous", "Ambiguous"],
+      ["out_of_scope", "Out of scope"]
+    ];
+    let runs = [];
+    let groupIndex = 0;
+    let stampIndex = 0;
+
+    load();
+
+    async function load() {
+      const response = await fetch("/api/bulk");
+      runs = (await response.json()).runs;
+      draw();
+    }
+
+    function draw() {
+      const group = runs[groupIndex];
+      tabs.replaceChildren();
+      runs.forEach((item, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = index === groupIndex ? "" : "ghost";
+        const stamp = item.stamps.length === 1 ? " · " + when(item.stamps[0].run_at) : "";
+        button.textContent = item.title + stamp + " · " + item.score;
+        button.addEventListener("click", () => {
+          groupIndex = index;
+          stampIndex = item.stamps.length - 1;
+          draw();
+        });
+        tabs.appendChild(button);
+      });
+      blurb.textContent = group.note;
+      stamps.replaceChildren();
+      if (group.stamps.length > 1) {
+        group.stamps.forEach((stamp, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = index === stampIndex ? "" : "ghost";
+          button.textContent = when(stamp.run_at) + " · " + stamp.passed + " of " + stamp.total;
+          button.addEventListener("click", () => {
+            stampIndex = index;
+            draw();
+          });
+          stamps.appendChild(button);
+        });
+      }
+      const stamp = group.stamps[stampIndex];
+      lanes.replaceChildren();
+      laneOrder.forEach(([kind, name]) => {
+        const cases = stamp.cases.filter(item => item.kind === kind);
+        const passed = cases.filter(item => item.passed).length;
+        const section = document.createElement("section");
+        section.className = "lane";
+        const title = document.createElement("h2");
+        title.textContent = name + " · " + passed + "/" + cases.length;
+        const body = document.createElement("div");
+        body.className = "lane-body";
+        if (!cases.length) {
+          const empty = document.createElement("p");
+          empty.className = "note";
+          empty.textContent = "None in this run.";
+          body.appendChild(empty);
+        }
+        cases.forEach(item => {
+          const card = document.createElement("article");
+          card.className = "run-card";
+          const mark = document.createElement("p");
+          mark.className = "mark " + (item.passed ? "ok" : "no");
+          mark.textContent = item.passed ? "Pass" : "Fail";
+          const question = document.createElement("h3");
+          question.textContent = item.question;
+          card.append(mark, question);
+          if (!item.passed && item.reasons.length) {
+            const why = document.createElement("p");
+            why.className = "meta";
+            why.textContent = item.reasons.join("; ");
+            card.appendChild(why);
+          }
+          body.appendChild(card);
+        });
+        section.append(title, body);
+        lanes.appendChild(section);
+      });
+    }
+
+    function when(value) {
+      const date = new Date(value);
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const hh = String(date.getUTCHours()).padStart(2, "0");
+      const mm = String(date.getUTCMinutes()).padStart(2, "0");
+      return date.getUTCDate() + " " + months[date.getUTCMonth()] + " " + hh + ":" + mm + " UTC";
+    }
+  </script>
+</body>
+</html>

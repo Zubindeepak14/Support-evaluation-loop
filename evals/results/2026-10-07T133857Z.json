@@ -1,0 +1,148 @@
+{
+  "run_at": "2026-10-07T13:38:57+00:00",
+  "model": "claude-haiku-4-5",
+  "docs_index_url": "https://docs.kernel.ai/llms.txt",
+  "cache_ttl_seconds": 900,
+  "passed": 0,
+  "total": 1,
+  "cases": [
+    {
+      "case": {
+        "id": "vague-parent",
+        "kind": "ambiguous",
+        "question": "the parent on this account looks wrong",
+        "expect_clarify": true,
+        "clarify_must_not": [
+          "KERN ID"
+        ],
+        "scripted_reply": "It's the YouTube account. I need the immediate parent, the top parent, and the top operating parent.",
+        "required_facts": [
+          "Google LLC",
+          "Alphabet Inc."
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md"
+      },
+      "passed": false,
+      "reasons": [
+        "quote not in chunk b0ff7639b1d9"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "Which company is this account for, and which parent do you mean—the immediate parent, the top parent, or the top operating parent?",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 2245,
+            "output_tokens": 113
+          },
+          "raw_text": "{\"answer\": \"\", \"clarifying_question\": \"Which company is this account for, and which parent do you mean—the immediate parent, the top parent, or the top operating parent?\", \"citations\": [], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": []
+        },
+        {
+          "parsed": {
+            "answer": "For YouTube, the parent relationships are:\n\n- **Immediate parent:** Google LLC\n- **Top parent:** Alphabet Inc.\n- **Top operating parent:** Google LLC\n\nIf these values look wrong on your account, you can report it through the feedback loop. From Salesforce, click the \"Send Kernel Feedback\" button on the Account or Kernel Account record. Choose the hierarchy category, state the parent company you expect to see, and provide evidence like a news article or the parent's website confirming ownership.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "b0ff7639b1d9",
+                "quote": "Immediate parent: Google LLC, Top parent: Alphabet Inc., Top operating parent: Google LLC"
+              },
+              {
+                "chunk_id": "66b6e25d9403",
+                "quote": "Missing or wrong parent. Category: hierarchy. Expected value: the parent company you expect to see."
+              },
+              {
+                "chunk_id": "9cc39f169513",
+                "quote": "On an Account or Kernel Account record, click the Send Kernel Feedback button."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "YouTube parent company immediate top operating"
+              },
+              "latency_ms": 405,
+              "result_chars": 5503,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "how to report wrong parent account"
+              },
+              "latency_ms": 30,
+              "result_chars": 5455,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "b0ff7639b1d9": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\n| Relationship         | Entity        |\n| -------------------- | ------------- |\n| Account              | YouTube       |\n| Immediate parent     | Google LLC    |\n| Top parent           | Alphabet Inc. |\n| Top operating parent | Google LLC    |\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\n| Relationship         | Entity                 |\n| -------------------- | ---------------------- |\n| Account              | Blizzard Entertainment |\n| Immediate parent     | Activision Blizzard    |\n| Top parent           | Microsoft              |\n| Top operating parent | Microsoft              |",
+            "66b6e25d9403": "The more specific the submission, the faster the data team can act on it. A good report names the exact field, states the value you expected, and links to something we can verify against.\n\n* Wrong headcount. Disputed field: Kernel Headcount. Expected value: \"\\~1,200\". Evidence URL: the company's LinkedIn or careers page. Comment: \"Their careers page lists 1,200+ staff; Kernel shows 300.\"\n* Wrong company matched. Category: identity. Expected value: the correct legal name and website. Evidence URL: the correct company homepage. Comment: \"This resolved to the US parent, but our account is the UK trading entity.\"\n* Missing or wrong parent. Category: hierarchy. Expected value: the parent company you expect to see. Evidence URL: a news article or the parent's site confirming ownership. Comment: \"Acquired by Acme in 2025 - should roll up to Acme Group.\"\n\nA short note with a link beats a long description with none.",
+            "9cc39f169513": "You can raise feedback in two places. Both create the same kind of tracked support ticket for the Kernel data team.\n\n#### From Salesforce - \"Send Kernel Feedback\"\n\nOn an Account or Kernel Account record, click the Send Kernel Feedback button. A short form opens where you choose the field you disagree with, tell us the value you expected, and add any evidence or context.\n\nSend Kernel Feedback sits in the record action bar, on both Account and Kernel Account records.\n\nThe current Kernel value is captured for you automatically, so you only need to describe what is wrong.\n\nThe current experience requires Kernel Salesforce package version 3.11.4 or later, installed for all users. Each intended user also needs Kernel Readonly PermissionSet. See [Send Kernel Feedback](/integrations/salesforce-integration/report-data-issues.md) for how to upgrade, assign access, and add it to your Account pages.\n\nThe Send Kernel Feedback form on a Kernel Account record.\n\n#### From the Kernel Platform\n\nIn the Kernel Platform you can reject an identity match or leave a note directly on an account. Kernel turns that note into a feedback ticket in the same way."
+          },
+          "chunk_meta": {
+            "b0ff7639b1d9": {
+              "chunk_id": "b0ff7639b1d9",
+              "url": "https://docs.kernel.ai/data/hierarchies/parent-relationships.md",
+              "title": "Parent relationships",
+              "heading": "Example",
+              "text": "Alphabet is a holding company, so the top operating parent stops at Google LLC, the highest operating company, while the top parent continues to the top of the tree.\n\nFor YouTube:\n\n| Relationship         | Entity        |\n| -------------------- | ------------- |\n| Account              | YouTube       |\n| Immediate parent     | Google LLC    |\n| Top parent           | Alphabet Inc. |\n| Top operating parent | Google LLC    |\n\nHere the immediate parent and the top operating parent match, because Google is already the highest operating company beneath the holding company. That is not always the case. When an account sits under a mid-tier operating company, the immediate parent and the top operating parent differ:\n\nThere is no holding company to skip, so the top operating parent equals the top parent (Microsoft). The immediate parent is the mid-tier operating company, Activision Blizzard.\n\nFor Blizzard Entertainment:\n\n| Relationship         | Entity                 |\n| -------------------- | ---------------------- |\n| Account              | Blizzard Entertainment |\n| Immediate parent     | Activision Blizzard    |\n| Top parent           | Microsoft              |\n| Top operating parent | Microsoft              |",
+              "fetched_at": "2026-10-07T13:35:31+00:00"
+            },
+            "66b6e25d9403": {
+              "chunk_id": "66b6e25d9403",
+              "url": "https://docs.kernel.ai/integrations/salesforce-integration/report-data-issues.md",
+              "title": "Send Kernel Feedback",
+              "heading": "What makes useful feedback",
+              "text": "The more specific the submission, the faster the data team can act on it. A good report names the exact field, states the value you expected, and links to something we can verify against.\n\n* Wrong headcount. Disputed field: Kernel Headcount. Expected value: \"\\~1,200\". Evidence URL: the company's LinkedIn or careers page. Comment: \"Their careers page lists 1,200+ staff; Kernel shows 300.\"\n* Wrong company matched. Category: identity. Expected value: the correct legal name and website. Evidence URL: the correct company homepage. Comment: \"This resolved to the US parent, but our account is the UK trading entity.\"\n* Missing or wrong parent. Category: hierarchy. Expected value: the parent company you expect to see. Evidence URL: a news article or the parent's site confirming ownership. Comment: \"Acquired by Acme in 2025 - should roll up to Acme Group.\"\n\nA short note with a link beats a long description with none.",
+              "fetched_at": "2026-10-07T13:35:36+00:00"
+            },
+            "9cc39f169513": {
+              "chunk_id": "9cc39f169513",
+              "url": "https://docs.kernel.ai/concepts/feedback-loop.md",
+              "title": "Feedback loop",
+              "heading": "How to raise feedback",
+              "text": "You can raise feedback in two places. Both create the same kind of tracked support ticket for the Kernel data team.\n\n#### From Salesforce - \"Send Kernel Feedback\"\n\nOn an Account or Kernel Account record, click the Send Kernel Feedback button. A short form opens where you choose the field you disagree with, tell us the value you expected, and add any evidence or context.\n\nSend Kernel Feedback sits in the record action bar, on both Account and Kernel Account records.\n\nThe current Kernel value is captured for you automatically, so you only need to describe what is wrong.\n\nThe current experience requires Kernel Salesforce package version 3.11.4 or later, installed for all users. Each intended user also needs Kernel Readonly PermissionSet. See [Send Kernel Feedback](/integrations/salesforce-integration/report-data-issues.md) for how to upgrade, assign access, and add it to your Account pages.\n\nThe Send Kernel Feedback form on a Kernel Account record.\n\n#### From the Kernel Platform\n\nIn the Kernel Platform you can reject an identity match or leave a note directly on an account. Kernel turns that note into a feedback ticket in the same way.",
+              "fetched_at": "2026-10-07T13:35:31+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 10874,
+            "output_tokens": 650
+          },
+          "raw_text": "{\"answer\": \"For YouTube, the parent relationships are:\\n\\n- **Immediate parent:** Google LLC\\n- **Top parent:** Alphabet Inc.\\n- **Top operating parent:** Google LLC\\n\\nIf these values look wrong on your account, you can report it through the feedback loop. From Salesforce, click the \\\"Send Kernel Feedback\\\" button on the Account or Kernel Account record. Choose the hierarchy category, state the parent company you expect to see, and provide evidence like a news article or the parent's website confirming ownership.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"b0ff7639b1d9\", \"quote\": \"Immediate parent: Google LLC, Top parent: Alphabet Inc., Top operating parent: Google LLC\"}, {\"chunk_id\": \"66b6e25d9403\", \"quote\": \"Missing or wrong parent. Category: hierarchy. Expected value: the parent company you expect to see.\"}, {\"chunk_id\": \"9cc39f169513\", \"quote\": \"On an Account or Kernel Account record, click the Send Kernel Feedback button.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "b0ff7639b1d9",
+              "quote": "For YouTube: Account: YouTube, Immediate parent: Google LLC, Top parent: Alphabet Inc., Top operating parent: Google LLC",
+              "reason": "not a contiguous passage in the chunk the model was given"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

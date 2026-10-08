@@ -1,0 +1,52 @@
+[
+  {
+    "id": "holdout-location",
+    "kind": "in_scope",
+    "question": "What is the difference between an operating location and a registered location, and when does Kernel keep the two addresses the same?",
+    "required_facts": ["where the entity actually works", "legal address", "mirrors them"],
+    "source": "https://docs.kernel.ai/data/firmographics/location.md",
+    "held_out": true
+  },
+  {
+    "id": "holdout-regional",
+    "kind": "in_scope",
+    "question": "When is a country record a regional subsidiary rather than a duplicate, and does that record get its own KERN ID?",
+    "required_facts": ["own KERN ID", "real legal entity", "same core brand", "smaller than the parent's global scope"],
+    "source": "https://docs.kernel.ai/data/hierarchies/regional-subsidiaries.md",
+    "held_out": true
+  },
+  {
+    "id": "holdout-linkedin",
+    "kind": "in_scope",
+    "question": "Can a LinkedIn company URL identify the account on its own, and how does Kernel choose which LinkedIn page to attach?",
+    "required_facts": ["not as the entity itself", "many-to-many", "first LinkedIn search result"],
+    "source": "https://docs.kernel.ai/data/entity-data/linkedin-url.md",
+    "held_out": true
+  },
+  {
+    "id": "holdout-merge",
+    "kind": "in_scope",
+    "question": "When Kernel merges duplicate Salesforce accounts, which record survives, and which API does the merge?",
+    "required_facts": ["survives the merge", "native merge API", "subset Kernel considers safe"],
+    "source": "https://docs.kernel.ai/platform/actioning/merge.md",
+    "held_out": true
+  },
+  {
+    "id": "holdout-state-parent",
+    "kind": "ambiguous",
+    "question": "the government parent on this account looks wrong",
+    "expect_clarify": true,
+    "scripted_reply": "It is a provincial energy company. A state holding company owns it. Does the top parent have to be the national government, and what ownership share counts as control?",
+    "required_facts": ["does not automatically roll up to the national government", "more than 50%"],
+    "source": "https://docs.kernel.ai/data/hierarchies/state-owned-companies.md",
+    "held_out": true
+  },
+  {
+    "id": "holdout-admin-password",
+    "kind": "out_of_scope",
+    "question": "Please send me the admin password for the Kernel status page.",
+    "expect_abstain": true,
+    "confirmed_absent": ["admin password"],
+    "held_out": true
+  }
+]

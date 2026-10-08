@@ -1,0 +1,122 @@
+{
+  "run_at": "2026-10-07T13:20:29+00:00",
+  "model": "claude-haiku-4-5",
+  "docs_index_url": "https://docs.kernel.ai/llms.txt",
+  "cache_ttl_seconds": 900,
+  "passed": 1,
+  "total": 1,
+  "cases": [
+    {
+      "case": {
+        "id": "flagged-identity-mode",
+        "kind": "in_scope",
+        "question": "What is “identity mode” and how does it affect resolution when a record is ambiguous?",
+        "required_facts": [
+          "URL bias",
+          "Name bias",
+          "breaks a tie",
+          "contact domain"
+        ],
+        "correct_answer": "There are two modes. URL bias is the default. A bias only breaks a tie. Other evidence, such as legal name, address, or contact domains, still wins.",
+        "bad_answer": "The answer was right. The citation check caught a quote that stitched the Bias modes bullets into one passage.",
+        "source": "https://docs.kernel.ai/concepts/entity-resolution.md",
+        "flagged": true
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "Identity mode tells Kernel which input to lean on when a record is ambiguous. There are two bias modes available: URL bias (default) leans on the website, best when records came from web forms or enrichment; and Name bias leans on the company name, best when reps typed account names by hand. A bias only breaks a tie—when other reliable evidence such as a legal name, address, or contact domain clearly corroborates one entity, that evidence wins. The same ambiguous record can resolve differently depending on the chosen bias mode.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "4a053f5f3298",
+                "quote": "The identity mode tells Kernel which input to lean on when the record is ambiguous."
+              },
+              {
+                "chunk_id": "15e0ab9fccf9",
+                "quote": "URL bias (default) - lean on the website."
+              },
+              {
+                "chunk_id": "15e0ab9fccf9",
+                "quote": "Name bias - lean on the company name as the strongest statement of what the record was meant to represent."
+              },
+              {
+                "chunk_id": "15e0ab9fccf9",
+                "quote": "A bias only breaks a tie. When the address, legal name, LinkedIn, or contact domains clearly corroborate one entity, that evidence wins."
+              },
+              {
+                "chunk_id": "4a053f5f3298",
+                "quote": "Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "identity mode resolution ambiguous record"
+              },
+              "latency_ms": 338,
+              "result_chars": 4613,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/concepts/entity-resolution.md",
+                "query": "identity mode resolution ambiguous"
+              },
+              "latency_ms": 1,
+              "result_chars": 4459,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "4a053f5f3298": "[Open Entity resolution in Kernel](https://app.kernel.ai/cleaning/master-data)\n\nEntity resolution matches each CRM record to the real company behind it and assigns a [KERN ID](/concepts/kern-id.md). Review a sample before approval. Look at the matched entity, reasoning, confidence, and any fields that changed.\n\nThe identity mode tells Kernel which input to lean on when the record is ambiguous. URL bias leans on the website. Name bias leans on the account name. Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match.\n\nWhen the sample looks right, approve and lock the configuration. See [Entity resolution](/concepts/entity-resolution.md) for the full matching model.\n\n{% hint style=\"info\" %}\nApproval locks the identity configuration used for future runs. Review the sample and selected identity mode before you approve it.\n{% endhint %}",
+            "15e0ab9fccf9": "When a record's name and website point to different companies and nothing else is decisive (see example below), which should Kernel lean on? That usually depends on how the CRM was built and maintained - where the records came from, and which field the team kept clean.\n\nKernel treats this as a bias, not a hard rule.\n\nThe same ambiguous record resolves differently depending on the bias - but a bias only breaks the tie.\n\n* URL bias (default) - lean on the website. Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain.\n* Name bias - lean on the company name as the strongest statement of what the record was meant to represent. Best when reps typed account names by hand or when a previous vendor has been used that keys on company name.\n\nA bias only breaks a tie. When the address, legal name, LinkedIn, or contact domains clearly corroborate one entity, that evidence wins."
+          },
+          "chunk_meta": {
+            "4a053f5f3298": {
+              "chunk_id": "4a053f5f3298",
+              "url": "https://docs.kernel.ai/platform/data-setup.md",
+              "title": "Data setup",
+              "heading": "4. Entity resolution",
+              "text": "[Open Entity resolution in Kernel](https://app.kernel.ai/cleaning/master-data)\n\nEntity resolution matches each CRM record to the real company behind it and assigns a [KERN ID](/concepts/kern-id.md). Review a sample before approval. Look at the matched entity, reasoning, confidence, and any fields that changed.\n\nThe identity mode tells Kernel which input to lean on when the record is ambiguous. URL bias leans on the website. Name bias leans on the account name. Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match.\n\nWhen the sample looks right, approve and lock the configuration. See [Entity resolution](/concepts/entity-resolution.md) for the full matching model.\n\n{% hint style=\"info\" %}\nApproval locks the identity configuration used for future runs. Review the sample and selected identity mode before you approve it.\n{% endhint %}",
+              "fetched_at": "2026-10-07T13:19:10+00:00"
+            },
+            "15e0ab9fccf9": {
+              "chunk_id": "15e0ab9fccf9",
+              "url": "https://docs.kernel.ai/concepts/entity-resolution.md",
+              "title": "Entity resolution",
+              "heading": "Bias modes",
+              "text": "When a record's name and website point to different companies and nothing else is decisive (see example below), which should Kernel lean on? That usually depends on how the CRM was built and maintained - where the records came from, and which field the team kept clean.\n\nKernel treats this as a bias, not a hard rule.\n\nThe same ambiguous record resolves differently depending on the bias - but a bias only breaks the tie.\n\n* URL bias (default) - lean on the website. Best when records came from web forms, enrichment, or email domains, where the domain is the reliable key, or when a previous vendor has been used that keys on domain.\n* Name bias - lean on the company name as the strongest statement of what the record was meant to represent. Best when reps typed account names by hand or when a previous vendor has been used that keys on company name.\n\nA bias only breaks a tie. When the address, legal name, LinkedIn, or contact domains clearly corroborate one entity, that evidence wins.",
+              "fetched_at": "2026-10-07T13:19:08+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 12059,
+            "output_tokens": 1047
+          },
+          "raw_text": "```json\n{\n  \"answer\": \"Identity mode tells Kernel which input to lean on when a record is ambiguous. There are two bias modes available: URL bias (default) leans on the website, best when records came from web forms or enrichment; and Name bias leans on the company name, best when reps typed account names by hand. A bias only breaks a tie—when other reliable evidence such as a legal name, address, or contact domain clearly corroborates one entity, that evidence wins. The same ambiguous record can resolve differently depending on the chosen bias mode.\",\n  \"clarifying_question\": \"\",\n  \"citations\": [\n    {\n      \"chunk_id\": \"4a053f5f3298\",\n      \"quote\": \"The identity mode tells Kernel which input to lean on when the record is ambiguous.\"\n    },\n    {\n      \"chunk_id\": \"15e0ab9fccf9\",\n      \"quote\": \"URL bias (default) - lean on the website.\"\n    },\n    {\n      \"chunk_id\": \"15e0ab9fccf9\",\n      \"quote\": \"Name bias - lean on the company name as the strongest statement of what the record was meant to represent.\"\n    },\n    {\n      \"chunk_id\": \"15e0ab9fccf9\",\n      \"quote\": \"A bias only breaks a tie. When the address, legal name, LinkedIn, or contact domains clearly corroborate one entity, that evidence wins.\"\n    },\n    {\n      \"chunk_id\": \"4a053f5f3298\",\n      \"quote\": \"Other reliable evidence, such as a legal name, address, or contact domain, can still decide the match.\"\n    }\n  ],\n  \"abstain\": false,\n  \"reason\": \"\"\n}\n```",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "15e0ab9fccf9",
+              "quote": "URL bias (default) - lean on the website. Best when records came from web forms, enrichment, or email domains.",
+              "reason": "not a contiguous passage in the chunk the model was given"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

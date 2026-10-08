@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kernel · Docs agent</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.2.5/index.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <a class="brand" href="/">
+        <span class="mark"><i class="ph ph-cube"></i></span>
+        <span><span class="brand-name">Kernel</span><span class="brand-sub">Docs agent</span></span>
+      </a>
+      <nav class="nav">
+        <a href="/" data-screen="ask"><i class="ph ph-chat-circle-dots"></i><span>Ask the docs</span></a>
+        <a href="/review" data-screen="review"><i class="ph ph-tray"></i><span>Review</span><span class="badge" id="badge" hidden></span></a>
+        <a href="/bulk" data-screen="bulk"><i class="ph ph-list-checks"></i><span>Bulk run</span></a>
+      </nav>
+      <a class="back" href="/"><i class="ph ph-arrow-left"></i>Back to the app</a>
+      <div class="hairline"></div>
+    </header>
+    <div class="screen" id="screen"></div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,658 @@
+{
+  "run_at": "2026-10-08T10:09:16+00:00",
+  "model": "claude-haiku-4-5",
+  "docs_index_url": "https://docs.kernel.ai/llms.txt",
+  "held_out": true,
+  "note": "Six cases the agent had not been run against. Not part of the tuned 26.",
+  "passed": 2,
+  "total": 6,
+  "cases": [
+    {
+      "case": {
+        "id": "holdout-location",
+        "kind": "in_scope",
+        "question": "What is the difference between an operating location and a registered location, and when does Kernel keep the two addresses the same?",
+        "required_facts": [
+          "where the entity actually works",
+          "legal address",
+          "mirrors them"
+        ],
+        "source": "https://docs.kernel.ai/data/firmographics/location.md",
+        "held_out": true
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The operating location is where the entity actually works, while the registered address is the legal address from a corporate registry or authoritative filing. For most companies, these addresses are the same—Kernel mirrors them unless evidence shows a real split. The split matters when a company is registered at an agent address but operates elsewhere, a branch operates at one address while legally registered elsewhere, or a remote-first company has no operating street address but a registered office.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "ed4777968915",
+                "quote": "The operating address is where the entity actually works."
+              },
+              {
+                "chunk_id": "ed4777968915",
+                "quote": "The registered address is the legal address from a corporate registry or another authoritative filing."
+              },
+              {
+                "chunk_id": "ed4777968915",
+                "quote": "For most companies, these addresses are the same. Kernel mirrors them unless the evidence says there is a real split."
+              },
+              {
+                "chunk_id": "7d426c9f4d9c",
+                "quote": "A company may be registered at an agent address but operate from another city. A branch, store, plant, or office may operate at one street address while the legal entity is registered somewhere else."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "operating location registered location difference"
+              },
+              "latency_ms": 242,
+              "result_chars": 6444,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "operating location vs registered location"
+              },
+              "latency_ms": 36,
+              "result_chars": 6444,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "7d426c9f4d9c": "Kernel researches location from company websites, regulatory filings, news reports, business registrations, and other evidence tied to the resolved entity.\n\nThe split matters in common cases. A company may be registered at an agent address but operate from another city. A branch, store, plant, or office may operate at one street address while the legal entity is registered somewhere else. A remote-first company may have no operating street address but still have a registered office.\n\nUse operating location for territory assignment, routing, and understanding where work actually happens. Use registered location for legal identity, compliance, and incorporation context.",
+            "ed4777968915": "Why Kernel separates operating and registered location\n\n{% embed url=\"\" %}\n\nLocation sounds like one field. In Kernel, it is deliberately two: where the entity operates, and where it is legally registered.\n\nThe operating address is where the entity actually works. Think headquarters, head office, main office, or the physical site your CRM account is meant to track. The registered address is the legal address from a corporate registry or another authoritative filing.\n\nFor most companies, these addresses are the same. Kernel mirrors them unless the evidence says there is a real split."
+          },
+          "chunk_meta": {
+            "7d426c9f4d9c": {
+              "chunk_id": "7d426c9f4d9c",
+              "url": "https://docs.kernel.ai/data/firmographics/location.md",
+              "title": "Location",
+              "heading": "How Kernel determines location",
+              "text": "Kernel researches location from company websites, regulatory filings, news reports, business registrations, and other evidence tied to the resolved entity.\n\nThe split matters in common cases. A company may be registered at an agent address but operate from another city. A branch, store, plant, or office may operate at one street address while the legal entity is registered somewhere else. A remote-first company may have no operating street address but still have a registered office.\n\nUse operating location for territory assignment, routing, and understanding where work actually happens. Use registered location for legal identity, compliance, and incorporation context.",
+              "fetched_at": "2026-10-08T10:08:06+00:00"
+            },
+            "ed4777968915": {
+              "chunk_id": "ed4777968915",
+              "url": "https://docs.kernel.ai/data/firmographics/location.md",
+              "title": "Location",
+              "heading": "Location",
+              "text": "Why Kernel separates operating and registered location\n\n{% embed url=\"\" %}\n\nLocation sounds like one field. In Kernel, it is deliberately two: where the entity operates, and where it is legally registered.\n\nThe operating address is where the entity actually works. Think headquarters, head office, main office, or the physical site your CRM account is meant to track. The registered address is the legal address from a corporate registry or another authoritative filing.\n\nFor most companies, these addresses are the same. Kernel mirrors them unless the evidence says there is a real split.",
+              "fetched_at": "2026-10-08T10:08:06+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 6689,
+            "output_tokens": 648
+          },
+          "raw_text": "Based on the documentation, I can answer your question:\n\n**Difference:**\n\nThe operating location is \"where the entity actually works. Think headquarters, head office, main office, or the physical site your CRM account is meant to track.\" (ed4777968915)\n\nThe registered address is \"the legal address from a corporate registry or another authoritative filing.\" (ed4777968915)\n\n**When they are the same:**\n\n\"For most companies, these addresses are the same. Kernel mirrors them unless the evidence says there is a real split.\" (ed4777968915)\n\n**Use cases:**\n\n\"Use operating location for territory assignment, routing, and understanding where work actually happens. Use registered location for legal identity, compliance, and incorporation context.\" (7d426c9f4d9c)\n\n**Common scenarios where they differ:**\n\n\"A company may be registered at an agent address but operate from another city. A branch, store, plant, or office may operate at one street address while the legal entity is registered somewhere else. A remote-first company may have no operating street address but still have a registered office.\" (7d426c9f4d9c)\n\n{\"answer\": \"The operating location is where the entity actually works, while the registered address is the legal address from a corporate registry or authoritative filing. For most companies, these addresses are the same—Kernel mirrors them unless evidence shows a real split. The split matters when a company is registered at an agent address but operates elsewhere, a branch operates at one address while legally registered elsewhere, or a remote-first company has no operating street address but a registered office.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"ed4777968915\", \"quote\": \"The operating address is where the entity actually works.\"}, {\"chunk_id\": \"ed4777968915\", \"quote\": \"The registered address is the legal address from a corporate registry or another authoritative filing.\"}, {\"chunk_id\": \"ed4777968915\", \"quote\": \"For most companies, these addresses are the same. Kernel mirrors them unless the evidence says there is a real split.\"}, {\"chunk_id\": \"7d426c9f4d9c\", \"quote\": \"A company may be registered at an agent address but operate from another city. A branch, store, plant, or office may operate at one street address while the legal entity is registered somewhere else.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "holdout-regional",
+        "kind": "in_scope",
+        "question": "When is a country record a regional subsidiary rather than a duplicate, and does that record get its own KERN ID?",
+        "required_facts": [
+          "own KERN ID",
+          "real legal entity",
+          "same core brand",
+          "smaller than the parent's global scope"
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/regional-subsidiaries.md",
+        "held_out": true
+      },
+      "passed": false,
+      "reasons": [
+        "missing facts: real legal entity; same core brand"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "A country record is a regional subsidiary rather than a duplicate when it meets all four criteria: it is a verified legal entity, operates under the shared core brand, has explicit geographic identity, and serves a market smaller than the parent's global scope. Yes, a regional subsidiary gets its own KERN ID, its own entity-level data, and a parent relationship back to the wider company family.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "643bdebbac37",
+                "quote": "A record must meet all four criteria: 1. Verified existence - it is a real legal entity, not a loose regional label. 2. Shared brand - it operates under the same core brand as the parent. 3. Explicit geography - its name or evidence points to a specific country, region, or market. 4. Regional scope - it serves a market that is smaller than the parent's global scope."
+              },
+              {
+                "chunk_id": "ffefcb052ea1",
+                "quote": "A regional subsidiary gets its own KERN ID, its own entity-level data, and a parent relationship back to the wider company family."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "country record regional subsidiary duplicate KERN ID"
+              },
+              "latency_ms": 59,
+              "result_chars": 5980,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "regional subsidiary independent KERN ID separate"
+              },
+              "latency_ms": 37,
+              "result_chars": 5510,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/data/hierarchies/regional-subsidiaries"
+              },
+              "latency_ms": 0,
+              "result_chars": 4224,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "ffefcb052ea1": "How Kernel distinguishes regional subsidiaries from duplicate accounts\n\n{% embed url=\"\" %}\n\nA global company can appear in a CRM as a parent company, a country subsidiary, and several local branches. Some of those records are true duplicates. Others are real entities that should stay separate.\n\nKernel treats regional subsidiaries as distinct entities when the evidence supports it. A regional subsidiary gets its own KERN ID, its own entity-level data, and a parent relationship back to the wider company family.",
+            "643bdebbac37": "A record must meet all four criteria:\n\n1. Verified existence - it is a real legal entity, not a loose regional label.\n2. Shared brand - it operates under the same core brand as the parent.\n3. Explicit geography - its name or evidence points to a specific country, region, or market.\n4. Regional scope - it serves a market that is smaller than the parent's global scope.\n\nBoth are real subsidiaries of Salesforce. Salesforce Japan shares the brand and serves a smaller market, so it is regional; Slack is a separate brand in the same market, so it is a subsidiary but not a regional one.\n\nFor example, Google Japan Inc. can be a regional subsidiary when it is the legal entity for Google's Japanese operations. A product division such as Google Cloud Japan is not automatically a regional subsidiary unless it is also the legal entity representing that region."
+          },
+          "chunk_meta": {
+            "ffefcb052ea1": {
+              "chunk_id": "ffefcb052ea1",
+              "url": "https://docs.kernel.ai/data/hierarchies/regional-subsidiaries.md",
+              "title": "Regional subsidiaries",
+              "heading": "Regional subsidiaries",
+              "text": "How Kernel distinguishes regional subsidiaries from duplicate accounts\n\n{% embed url=\"\" %}\n\nA global company can appear in a CRM as a parent company, a country subsidiary, and several local branches. Some of those records are true duplicates. Others are real entities that should stay separate.\n\nKernel treats regional subsidiaries as distinct entities when the evidence supports it. A regional subsidiary gets its own KERN ID, its own entity-level data, and a parent relationship back to the wider company family.",
+              "fetched_at": "2026-10-08T10:08:07+00:00"
+            },
+            "643bdebbac37": {
+              "chunk_id": "643bdebbac37",
+              "url": "https://docs.kernel.ai/data/hierarchies/regional-subsidiaries.md",
+              "title": "Regional subsidiaries",
+              "heading": "What counts as a regional subsidiary",
+              "text": "A record must meet all four criteria:\n\n1. Verified existence - it is a real legal entity, not a loose regional label.\n2. Shared brand - it operates under the same core brand as the parent.\n3. Explicit geography - its name or evidence points to a specific country, region, or market.\n4. Regional scope - it serves a market that is smaller than the parent's global scope.\n\nBoth are real subsidiaries of Salesforce. Salesforce Japan shares the brand and serves a smaller market, so it is regional; Slack is a separate brand in the same market, so it is a subsidiary but not a regional one.\n\nFor example, Google Japan Inc. can be a regional subsidiary when it is the legal entity for Google's Japanese operations. A product division such as Google Cloud Japan is not automatically a regional subsidiary unless it is also the legal entity representing that region.",
+              "fetched_at": "2026-10-08T10:08:07+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 12473,
+            "output_tokens": 731
+          },
+          "raw_text": "Based on the Kernel documentation, I can answer both parts of your question:\n\n**When is a country record a regional subsidiary rather than a duplicate:**\n\nA record must meet all four criteria to be treated as a regional subsidiary: (1) \"it is a real legal entity, not a loose regional label,\" (2) \"it operates under the same core brand as the parent,\" (3) \"its name or evidence points to a specific country, region, or market,\" and (4) \"it serves a market that is smaller than the parent's global scope.\" [chunk_id: 643bdebbac37]\n\n**Does the record get its own KERN ID:**\n\nYes. \"A regional subsidiary gets its own KERN ID, its own entity-level data, and a parent relationship back to the wider company family.\" [chunk_id: ffefcb052ea1]\n\nThe distinction between treating a country record as a regional subsidiary versus a duplicate depends on your CRM policy: \"Kernel keeps the regional entity separate and links it to the parent\" when treating them as subsidiaries, or \"Kernel can merge regional versions into the global company when your rules allow it\" when treating them as duplicates. [chunk_id: a150f44c0318]\n\n{\"answer\": \"A country record is a regional subsidiary rather than a duplicate when it meets all four criteria: it is a verified legal entity, operates under the shared core brand, has explicit geographic identity, and serves a market smaller than the parent's global scope. Yes, a regional subsidiary gets its own KERN ID, its own entity-level data, and a parent relationship back to the wider company family.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"643bdebbac37\", \"quote\": \"A record must meet all four criteria: 1. Verified existence - it is a real legal entity, not a loose regional label. 2. Shared brand - it operates under the same core brand as the parent. 3. Explicit geography - its name or evidence points to a specific country, region, or market. 4. Regional scope - it serves a market that is smaller than the parent's global scope.\"}, {\"chunk_id\": \"ffefcb052ea1\", \"quote\": \"A regional subsidiary gets its own KERN ID, its own entity-level data, and a parent relationship back to the wider company family.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "holdout-linkedin",
+        "kind": "in_scope",
+        "question": "Can a LinkedIn company URL identify the account on its own, and how does Kernel choose which LinkedIn page to attach?",
+        "required_facts": [
+          "not as the entity itself",
+          "many-to-many",
+          "first LinkedIn search result"
+        ],
+        "source": "https://docs.kernel.ai/data/entity-data/linkedin-url.md",
+        "held_out": true
+      },
+      "passed": false,
+      "reasons": [
+        "missing facts: not as the entity itself; many-to-many; first LinkedIn search result"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "A LinkedIn company URL cannot identify an account on its own. According to the docs, \"LinkedIn company pages are useful evidence, but they are not a clean entity identifier on their own.\"\n\nKernel chooses which LinkedIn page to attach by following a three-stage process. First, during candidate generation, \"Kernel builds a candidate set from its LinkedIn profile index, the account website, existing CRM fields, web evidence, and related entity data.\" Second, during candidate ranking, \"Kernel ranks those candidates using signals such as name and slug similarity, website alignment, geography, profile completeness, headcount range, follower count, and parent or regional context.\" Finally, during candidate selection, \"Kernel compares the strongest candidates against the resolved entity boundary and selects the profile whose scope best fits the account.\"\n\nKernel also distinguishes between two match types: an `actual` match means \"The LinkedIn profile is a verified direct match for the resolved entity,\" while an `indicative` match means \"The LinkedIn profile is the best available signal, but it may represent a parent, regional operation, brand, or broader group rather than a clean one-to-one entity match.\"",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "7d727e45dc50",
+                "quote": "LinkedIn company pages are useful evidence, but they are not a clean entity identifier on their own."
+              },
+              {
+                "chunk_id": "24b76782aa99",
+                "quote": "Kernel builds a candidate set from its LinkedIn profile index, the account website, existing CRM fields, web evidence, and related entity data."
+              },
+              {
+                "chunk_id": "24b76782aa99",
+                "quote": "Kernel ranks those candidates using signals such as name and slug similarity, website alignment, geography, profile completeness, headcount range, follower count, and parent or regional context."
+              },
+              {
+                "chunk_id": "24b76782aa99",
+                "quote": "Kernel compares the strongest candidates against the resolved entity boundary and selects the profile whose scope best fits the account."
+              },
+              {
+                "chunk_id": "cea8b5f68038",
+                "quote": "The LinkedIn profile is a verified direct match for the resolved entity."
+              },
+              {
+                "chunk_id": "cea8b5f68038",
+                "quote": "The LinkedIn profile is the best available signal, but it may represent a parent, regional operation, brand, or broader group rather than a clean one-to-one entity match."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "LinkedIn company URL identify account"
+              },
+              "latency_ms": 64,
+              "result_chars": 6349,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "LinkedIn page attach choose attachment"
+              },
+              "latency_ms": 36,
+              "result_chars": 7176,
+              "error": null
+            },
+            {
+              "name": "get_page",
+              "arguments": {
+                "path": "/data/entity-data/linkedin-url",
+                "query": "how Kernel matches chooses which LinkedIn page attach"
+              },
+              "latency_ms": 1,
+              "result_chars": 4951,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "7d727e45dc50": "How Kernel matches a resolved entity to the right LinkedIn company page\n\n{% embed url=\"\" %}\n\nLinkedIn company pages are useful evidence, but they are not a clean entity identifier on their own. Kernel matches LinkedIn URLs after resolving the underlying entity, so the URL is tied to the company, subsidiary, brand, or operating unit the CRM account is meant to represent.\n\nThis matters because the relationship between CRM accounts, real-world entities, and LinkedIn pages is often many-to-many:\n\n* Multiple CRM accounts can share the same LinkedIn URL because the accounts are duplicates, regional records, branches, or records that all point at a global parent profile.\n* One account can have several plausible LinkedIn URLs, such as a global company page, a regional subsidiary page, an acquired brand page, or an older duplicate profile.\n* A LinkedIn page can list a website that redirects, uses a short link, points to a careers page, or belongs to the broader group rather than the specific entity.\n\n{% hint style=\"info\" %}\nExamples:\n\n* Starbucks alone has 100+ LinkedIn profiles.\n* Google's [LinkedIn profile](https://www.linkedin.com/company/google) is associated with [`goo.gle/3DLEokh`](https://goo.gle/3DLEokh), a short link to their careers site.\n* In your CRM, Frito-Lay may be incorrectly associated with `linkedin.com/company/frito-lay-inc/`, which looks correct, but isn't.\n  {% endhint %}\n\nKernel therefore treats LinkedIn as evidence about the entity, not as the entity itself.",
+            "24b76782aa99": "Kernel starts from the resolved entity and the evidence around the CRM account: name, website, legal name, country, hierarchy context, address, existing CRM LinkedIn URL, and related account signals. It does not pick the first LinkedIn search result or assume that matching a website domain is enough.\n\nThe matching flow has three stages:\n\n{% stepper %}\n{% step %}\nCandidate generation\n\nKernel builds a candidate set from its LinkedIn profile index, the account website, existing CRM fields, web evidence, and related entity data.\n{% endstep %}\n\n{% step %}\nCandidate ranking\n\nKernel ranks those candidates using signals such as name and slug similarity, website alignment, geography, profile completeness, headcount range, follower count, and parent or regional context.\n{% endstep %}\n\n{% step %}\nCandidate selection\n\nKernel compares the strongest candidates against the resolved entity boundary and selects the profile whose scope best fits the account.\n{% endstep %}\n{% endstepper %}\n\nThe output can be:\n\nOutput: LinkedIn URL; Meaning: The profile Kernel believes best represents the resolved entity.\nOutput: Match type; Meaning: Whether the profile is an `actual` or `indicative` match.\nOutput: Reasoning; Meaning: A plain-language explanation of why that profile was selected.",
+            "cea8b5f68038": "Kernel uses match type to separate direct matches from useful but less definitive profile links:\n\nMatch type: `actual`; Meaning: The LinkedIn profile is a verified direct match for the resolved entity. The profile identity, website, branding, geography, and supporting evidence line up strongly enough to treat it as the entity's page.\nMatch type: `indicative`; Meaning: The LinkedIn profile is the best available signal, but it may represent a parent, regional operation, brand, or broader group rather than a clean one-to-one entity match.\n\nThis distinction is important for review workflows. Two accounts can legitimately share an indicative group profile, while another account may need a more specific actual profile before the CRM field should be updated.\n\nIn Salesforce, the standard Kernel Account custom object (`Kernel_Accountc`) exposes the matched URL as `Kernel_Linkedin_Urlc`."
+          },
+          "chunk_meta": {
+            "7d727e45dc50": {
+              "chunk_id": "7d727e45dc50",
+              "url": "https://docs.kernel.ai/data/entity-data/linkedin-url.md",
+              "title": "LinkedIn URL",
+              "heading": "LinkedIn URL",
+              "text": "How Kernel matches a resolved entity to the right LinkedIn company page\n\n{% embed url=\"\" %}\n\nLinkedIn company pages are useful evidence, but they are not a clean entity identifier on their own. Kernel matches LinkedIn URLs after resolving the underlying entity, so the URL is tied to the company, subsidiary, brand, or operating unit the CRM account is meant to represent.\n\nThis matters because the relationship between CRM accounts, real-world entities, and LinkedIn pages is often many-to-many:\n\n* Multiple CRM accounts can share the same LinkedIn URL because the accounts are duplicates, regional records, branches, or records that all point at a global parent profile.\n* One account can have several plausible LinkedIn URLs, such as a global company page, a regional subsidiary page, an acquired brand page, or an older duplicate profile.\n* A LinkedIn page can list a website that redirects, uses a short link, points to a careers page, or belongs to the broader group rather than the specific entity.\n\n{% hint style=\"info\" %}\nExamples:\n\n* Starbucks alone has 100+ LinkedIn profiles.\n* Google's [LinkedIn profile](https://www.linkedin.com/company/google) is associated with [`goo.gle/3DLEokh`](https://goo.gle/3DLEokh), a short link to their careers site.\n* In your CRM, Frito-Lay may be incorrectly associated with `linkedin.com/company/frito-lay-inc/`, which looks correct, but isn't.\n  {% endhint %}\n\nKernel therefore treats LinkedIn as evidence about the entity, not as the entity itself.",
+              "fetched_at": "2026-10-08T10:07:32+00:00"
+            },
+            "24b76782aa99": {
+              "chunk_id": "24b76782aa99",
+              "url": "https://docs.kernel.ai/data/entity-data/linkedin-url.md",
+              "title": "LinkedIn URL",
+              "heading": "How Kernel chooses a LinkedIn URL",
+              "text": "Kernel starts from the resolved entity and the evidence around the CRM account: name, website, legal name, country, hierarchy context, address, existing CRM LinkedIn URL, and related account signals. It does not pick the first LinkedIn search result or assume that matching a website domain is enough.\n\nThe matching flow has three stages:\n\n{% stepper %}\n{% step %}\nCandidate generation\n\nKernel builds a candidate set from its LinkedIn profile index, the account website, existing CRM fields, web evidence, and related entity data.\n{% endstep %}\n\n{% step %}\nCandidate ranking\n\nKernel ranks those candidates using signals such as name and slug similarity, website alignment, geography, profile completeness, headcount range, follower count, and parent or regional context.\n{% endstep %}\n\n{% step %}\nCandidate selection\n\nKernel compares the strongest candidates against the resolved entity boundary and selects the profile whose scope best fits the account.\n{% endstep %}\n{% endstepper %}\n\nThe output can be:\n\nOutput: LinkedIn URL; Meaning: The profile Kernel believes best represents the resolved entity.\nOutput: Match type; Meaning: Whether the profile is an `actual` or `indicative` match.\nOutput: Reasoning; Meaning: A plain-language explanation of why that profile was selected.",
+              "fetched_at": "2026-10-08T10:07:32+00:00"
+            },
+            "cea8b5f68038": {
+              "chunk_id": "cea8b5f68038",
+              "url": "https://docs.kernel.ai/data/entity-data/linkedin-url.md",
+              "title": "LinkedIn URL",
+              "heading": "Match types",
+              "text": "Kernel uses match type to separate direct matches from useful but less definitive profile links:\n\nMatch type: `actual`; Meaning: The LinkedIn profile is a verified direct match for the resolved entity. The profile identity, website, branding, geography, and supporting evidence line up strongly enough to treat it as the entity's page.\nMatch type: `indicative`; Meaning: The LinkedIn profile is the best available signal, but it may represent a parent, regional operation, brand, or broader group rather than a clean one-to-one entity match.\n\nThis distinction is important for review workflows. Two accounts can legitimately share an indicative group profile, while another account may need a more specific actual profile before the CRM field should be updated.\n\nIn Salesforce, the standard Kernel Account custom object (`Kernel_Accountc`) exposes the matched URL as `Kernel_Linkedin_Urlc`.",
+              "fetched_at": "2026-10-08T10:07:32+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 13787,
+            "output_tokens": 768
+          },
+          "raw_text": "{\"answer\": \"A LinkedIn company URL cannot identify an account on its own. According to the docs, \\\"LinkedIn company pages are useful evidence, but they are not a clean entity identifier on their own.\\\"\\n\\nKernel chooses which LinkedIn page to attach by following a three-stage process. First, during candidate generation, \\\"Kernel builds a candidate set from its LinkedIn profile index, the account website, existing CRM fields, web evidence, and related entity data.\\\" Second, during candidate ranking, \\\"Kernel ranks those candidates using signals such as name and slug similarity, website alignment, geography, profile completeness, headcount range, follower count, and parent or regional context.\\\" Finally, during candidate selection, \\\"Kernel compares the strongest candidates against the resolved entity boundary and selects the profile whose scope best fits the account.\\\"\\n\\nKernel also distinguishes between two match types: an `actual` match means \\\"The LinkedIn profile is a verified direct match for the resolved entity,\\\" while an `indicative` match means \\\"The LinkedIn profile is the best available signal, but it may represent a parent, regional operation, brand, or broader group rather than a clean one-to-one entity match.\\\"\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"7d727e45dc50\", \"quote\": \"LinkedIn company pages are useful evidence, but they are not a clean entity identifier on their own.\"}, {\"chunk_id\": \"24b76782aa99\", \"quote\": \"Kernel builds a candidate set from its LinkedIn profile index, the account website, existing CRM fields, web evidence, and related entity data.\"}, {\"chunk_id\": \"24b76782aa99\", \"quote\": \"Kernel ranks those candidates using signals such as name and slug similarity, website alignment, geography, profile completeness, headcount range, follower count, and parent or regional context.\"}, {\"chunk_id\": \"24b76782aa99\", \"quote\": \"Kernel compares the strongest candidates against the resolved entity boundary and selects the profile whose scope best fits the account.\"}, {\"chunk_id\": \"cea8b5f68038\", \"quote\": \"The LinkedIn profile is a verified direct match for the resolved entity.\"}, {\"chunk_id\": \"cea8b5f68038\", \"quote\": \"The LinkedIn profile is the best available signal, but it may represent a parent, regional operation, brand, or broader group rather than a clean one-to-one entity match.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "holdout-merge",
+        "kind": "in_scope",
+        "question": "When Kernel merges duplicate Salesforce accounts, which record survives, and which API does the merge?",
+        "required_facts": [
+          "survives the merge",
+          "native merge API",
+          "subset Kernel considers safe"
+        ],
+        "source": "https://docs.kernel.ai/platform/actioning/merge.md",
+        "held_out": true
+      },
+      "passed": false,
+      "reasons": [
+        "missing facts: subset Kernel considers safe"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The primary account record survives the merge and keeps its Salesforce ID, while duplicate records are deleted. Kernel uses Salesforce's native merge API to perform the merge.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "01c336a62167",
+                "quote": "Kernel uses Salesforce's native merge API."
+              },
+              {
+                "chunk_id": "01c336a62167",
+                "quote": "the primary record keeps its Salesforce ID"
+              },
+              {
+                "chunk_id": "4311eeab8af8",
+                "quote": "The primary is the record that keeps its Salesforce ID after the merge."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Kernel merge duplicate Salesforce accounts which record survives"
+              },
+              "latency_ms": 56,
+              "result_chars": 3921,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Salesforce account merge API Kernel"
+              },
+              "latency_ms": 36,
+              "result_chars": 4471,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "4311eeab8af8": "Each duplicate group has one primary account.\n\nThe primary is the record that keeps its Salesforce ID after the merge. The other records are merged into it.\n\nKernel recommends a primary from the duplicate-group data and your configured primary-selection criteria. Review which Salesforce Account is shown as primary before merging.\n\nChoosing the primary record and choosing the source of field values are separate decisions. Account-level source rules choose which record supplies values to the existing primary. They do not replace its Salesforce ID. A rule that copies values from the oldest Account therefore does not make that Account the survivor.\n\nIf your team needs a particular Account to survive, confirm the recommended primary before running the merge. Where similar records must remain separate for billing, regional operations or an integration, add a deliberate-duplicate exclusion.",
+            "01c336a62167": "Kernel uses Salesforce's native merge API.\n\nImportant Salesforce limit:\n\n* each merge request can include at most 3 records: 1 primary and 2 duplicates\n\nIf a merge group has more than 3 records, Kernel processes it in batches.\n\nDuring execution:\n\n* the primary record keeps its Salesforce ID\n* duplicate records are deleted by Salesforce as part of the merge\n* related records follow Salesforce's native merge behavior and the configured Kernel handling\n* any configured delete-before-merge steps remove their selected related records\n* field values are updated using your survivorship rules"
+          },
+          "chunk_meta": {
+            "4311eeab8af8": {
+              "chunk_id": "4311eeab8af8",
+              "url": "https://docs.kernel.ai/platform/actioning/merge.md",
+              "title": "Merge accounts",
+              "heading": "Choosing the primary record",
+              "text": "Each duplicate group has one primary account.\n\nThe primary is the record that keeps its Salesforce ID after the merge. The other records are merged into it.\n\nKernel recommends a primary from the duplicate-group data and your configured primary-selection criteria. Review which Salesforce Account is shown as primary before merging.\n\nChoosing the primary record and choosing the source of field values are separate decisions. Account-level source rules choose which record supplies values to the existing primary. They do not replace its Salesforce ID. A rule that copies values from the oldest Account therefore does not make that Account the survivor.\n\nIf your team needs a particular Account to survive, confirm the recommended primary before running the merge. Where similar records must remain separate for billing, regional operations or an integration, add a deliberate-duplicate exclusion.",
+              "fetched_at": "2026-10-08T10:07:32+00:00"
+            },
+            "01c336a62167": {
+              "chunk_id": "01c336a62167",
+              "url": "https://docs.kernel.ai/platform/actioning/merge.md",
+              "title": "Merge accounts",
+              "heading": "How merge execution works",
+              "text": "Kernel uses Salesforce's native merge API.\n\nImportant Salesforce limit:\n\n* each merge request can include at most 3 records: 1 primary and 2 duplicates\n\nIf a merge group has more than 3 records, Kernel processes it in batches.\n\nDuring execution:\n\n* the primary record keeps its Salesforce ID\n* duplicate records are deleted by Salesforce as part of the merge\n* related records follow Salesforce's native merge behavior and the configured Kernel handling\n* any configured delete-before-merge steps remove their selected related records\n* field values are updated using your survivorship rules",
+              "fetched_at": "2026-10-08T10:07:32+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 5496,
+            "output_tokens": 485
+          },
+          "raw_text": "Based on the documentation, I can answer both parts of your question:\n\n**Which record survives:**\n\"The primary record keeps its Salesforce ID\" (chunk_id: 01c336a62167). Additionally, \"each duplicate group has one primary account. The primary is the record that keeps its Salesforce ID after the merge. The other records are merged into it.\" (chunk_id: 4311eeab8af8)\n\n**Which API does the merge:**\n\"Kernel merges them using Salesforce's native merge API.\" (chunk_id: 84a4b858d4a9)\n\nThe documentation also notes that \"duplicate records are deleted by Salesforce as part of the merge\" (chunk_id: 01c336a62167), and that Kernel recommends which account should be primary based on duplicate-group data and your configured primary-selection criteria.\n\n{\"answer\": \"The primary account record survives the merge and keeps its Salesforce ID, while duplicate records are deleted. Kernel uses Salesforce's native merge API to perform the merge.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"01c336a62167\", \"quote\": \"Kernel uses Salesforce's native merge API.\"}, {\"chunk_id\": \"01c336a62167\", \"quote\": \"the primary record keeps its Salesforce ID\"}, {\"chunk_id\": \"4311eeab8af8\", \"quote\": \"The primary is the record that keeps its Salesforce ID after the merge.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "holdout-state-parent",
+        "kind": "ambiguous",
+        "question": "the government parent on this account looks wrong",
+        "expect_clarify": true,
+        "scripted_reply": "It is a provincial energy company. A state holding company owns it. Does the top parent have to be the national government, and what ownership share counts as control?",
+        "required_facts": [
+          "does not automatically roll up to the national government",
+          "more than 50%"
+        ],
+        "source": "https://docs.kernel.ai/data/hierarchies/state-owned-companies.md",
+        "held_out": true
+      },
+      "passed": false,
+      "reasons": [
+        "missing facts: does not automatically roll up to the national government"
+      ],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "",
+            "clarifying_question": "Which company is this account for, and which parent are you asking about: the immediate parent, the top parent, or the top operating parent?",
+            "citations": [],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 2703,
+            "output_tokens": 124
+          },
+          "raw_text": "{\"answer\": \"\", \"clarifying_question\": \"Which company is this account for, and which parent are you asking about: the immediate parent, the top parent, or the top operating parent?\", \"citations\": [], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        },
+        {
+          "parsed": {
+            "answer": "No. A state-owned company's top parent does not have to be the national government. For ownership share, control is defined as more than 50% ownership or evidenced voting or governance control.",
+            "clarifying_question": "",
+            "citations": [
+              {
+                "chunk_id": "6592f98865ea",
+                "quote": "A state-owned company's top parent can be a national, state or provincial, or local government."
+              },
+              {
+                "chunk_id": "abedb698435a",
+                "quote": "Government roots: national, state or provincial, and local governments each stand independently."
+              },
+              {
+                "chunk_id": "abedb698435a",
+                "quote": "Companies: follow more than 50% ownership or evidenced voting or governance control."
+              }
+            ],
+            "abstain": false,
+            "reason": ""
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "top parent national government ownership control"
+              },
+              "latency_ms": 62,
+              "result_chars": 5003,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "parent entity state holding company government ownership share"
+              },
+              "latency_ms": 37,
+              "result_chars": 7242,
+              "error": null
+            }
+          ],
+          "chunks": {
+            "abedb698435a": "* Companies: follow more than 50% ownership or evidenced voting or governance control. The owner can be a holding company, sovereign wealth fund, named ministry shareholder, or government. Minority investment without control does not qualify.\n* Public bodies: follow supported organizational relationships, such as agency status or an express legal power of direction. Funding, regulation, or general oversight alone does not establish a parent.\n* Government roots: national, state or provincial, and local governments each stand independently. Geographic containment does not create a parent relationship between them.\n\nThe chain can also stop at a holding company, fund, or independent statutory body if no parent above it is established.",
+            "6592f98865ea": "Where government-owned company hierarchies stop, with visual examples\n\nA state-owned company's top parent can be a national, state or provincial, or local government. It does not automatically roll up to the national government."
+          },
+          "chunk_meta": {
+            "abedb698435a": {
+              "chunk_id": "abedb698435a",
+              "url": "https://docs.kernel.ai/data/hierarchies/state-owned-companies.md",
+              "title": "State-owned companies",
+              "heading": "Public ownership rules",
+              "text": "* Companies: follow more than 50% ownership or evidenced voting or governance control. The owner can be a holding company, sovereign wealth fund, named ministry shareholder, or government. Minority investment without control does not qualify.\n* Public bodies: follow supported organizational relationships, such as agency status or an express legal power of direction. Funding, regulation, or general oversight alone does not establish a parent.\n* Government roots: national, state or provincial, and local governments each stand independently. Geographic containment does not create a parent relationship between them.\n\nThe chain can also stop at a holding company, fund, or independent statutory body if no parent above it is established.",
+              "fetched_at": "2026-10-08T10:07:33+00:00"
+            },
+            "6592f98865ea": {
+              "chunk_id": "6592f98865ea",
+              "url": "https://docs.kernel.ai/data/hierarchies/state-owned-companies.md",
+              "title": "State-owned companies",
+              "heading": "State-owned companies",
+              "text": "Where government-owned company hierarchies stop, with visual examples\n\nA state-owned company's top parent can be a national, state or provincial, or local government. It does not automatically roll up to the national government.",
+              "fetched_at": "2026-10-08T10:07:33+00:00"
+            }
+          },
+          "handoff_written": false,
+          "handoff_summary": "",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 12650,
+            "output_tokens": 487
+          },
+          "raw_text": "{\"answer\": \"No. A state-owned company's top parent does not have to be the national government. For ownership share, control is defined as more than 50% ownership or evidenced voting or governance control.\", \"clarifying_question\": \"\", \"citations\": [{\"chunk_id\": \"6592f98865ea\", \"quote\": \"A state-owned company's top parent can be a national, state or provincial, or local government.\"}, {\"chunk_id\": \"abedb698435a\", \"quote\": \"Government roots: national, state or provincial, and local governments each stand independently.\"}, {\"chunk_id\": \"abedb698435a\", \"quote\": \"Companies: follow more than 50% ownership or evidenced voting or governance control.\"}], \"abstain\": false, \"reason\": \"\"}",
+          "citation_retried": true,
+          "citation_retry_problems": [
+            {
+              "chunk_id": "abedb698435a",
+              "quote": "National, state or provincial, and local governments each stand independently.",
+              "reason": "not a contiguous passage in the chunk the model was given",
+              "hint": "* Government roots: national, state or provincial, and local governments each stand independently."
+            }
+          ],
+          "abstain_search_retried": false,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "holdout-admin-password",
+        "kind": "out_of_scope",
+        "question": "Please send me the admin password for the Kernel status page.",
+        "expect_abstain": true,
+        "confirmed_absent": [
+          "admin password"
+        ],
+        "held_out": true
+      },
+      "passed": true,
+      "reasons": [],
+      "turns": [
+        {
+          "parsed": {
+            "answer": "The public Kernel documentation does not contain information about admin passwords for a Kernel status page.",
+            "clarifying_question": "",
+            "citations": [],
+            "abstain": true,
+            "reason": "Two searches using different keywords (\"status page admin password access\" and \"Kernel status page credentials authentication\") returned no documentation about status page admin access or password retrieval."
+          },
+          "parse_error": null,
+          "tool_calls": [
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "status page admin password access"
+              },
+              "latency_ms": 56,
+              "result_chars": 5149,
+              "error": null
+            },
+            {
+              "name": "search_docs",
+              "arguments": {
+                "query": "Kernel status page credentials authentication"
+              },
+              "latency_ms": 36,
+              "result_chars": 5507,
+              "error": null
+            },
+            {
+              "name": "write_handoff",
+              "arguments": {
+                "summary": "User asked for the admin password for the Kernel status page. Searched the docs with two queries: \"status page admin password access\" and \"Kernel status page credentials authentication\". The retrieved results cover Salesforce integration setup, OAuth authentication, and feedback loops, but do not contain any information about a Kernel status page, its admin access, or password retrieval procedures."
+              },
+              "latency_ms": 0,
+              "result_chars": 31,
+              "error": null
+            }
+          ],
+          "chunks": {},
+          "chunk_meta": {},
+          "handoff_written": true,
+          "handoff_summary": "User asked for the admin password for the Kernel status page. Searched the docs with two queries: \"status page admin password access\" and \"Kernel status page credentials authentication\". The retrieved results cover Salesforce integration setup, OAuth authentication, and feedback loops, but do not contain any information about a Kernel status page, its admin access, or password retrieval procedures.",
+          "cap_exceeded": false,
+          "unknown_tool": null,
+          "usage": {
+            "input_tokens": 14524,
+            "output_tokens": 504
+          },
+          "raw_text": "{\"answer\": \"The public Kernel documentation does not contain information about admin passwords for a Kernel status page.\",\"clarifying_question\":\"\",\"citations\":[],\"abstain\":true,\"reason\":\"Two searches using different keywords (\\\"status page admin password access\\\" and \\\"Kernel status page credentials authentication\\\") returned no documentation about status page admin access or password retrieval.\"}",
+          "citation_retried": false,
+          "citation_retry_problems": [],
+          "abstain_search_retried": true,
+          "handoff_retried": false,
+          "depth_retried": false,
+          "clarify_retried": false
+        }
+      ]
+    }
+  ]
+}
