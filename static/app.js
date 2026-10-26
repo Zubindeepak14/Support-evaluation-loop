@@ -842,11 +842,12 @@ function lookedThrough(lines) {
 
 function shown(data) {
   const text = data.clarifying_question && !data.answer ? data.clarifying_question : (data.answer || data.reason || "");
-  return String(text)
+  const cleaned = String(text)
     .replace(/\s*\(\s*chunk_id\s*:\s*[A-Za-z0-9]+\s*\)/gi, "")
     .replace(/[ \t]{2,}/g, " ")
     .replace(/ +([.,;:])/g, "$1")
     .trim();
+  return cleaned || "I looked through the docs and couldn't finish the reply. Ask that again as one question.";
 }
 
 function paragraphs(text) {

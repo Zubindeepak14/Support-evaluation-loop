@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from agent import parse_reply
+from agent import parse_reply, visible_reply
 from checks import grade
 from docs_live import canonical_doc_url, chunk_page, parse_index, quote_in_text, Page
 
@@ -258,6 +258,21 @@ class RulesTest(unittest.TestCase):
         concept = Chunk("concept", "https://docs.kernel.ai/concepts/entity-resolution.md", "Entity resolution", "Bias", text, "")
         top = bm25_top("identity mode ambiguous record", [setup, concept], 1)
         self.assertEqual(top[0].chunk_id, "concept")
+
+    def test_empty_reply_still_has_text(self):
+        parsed, error = visible_reply({}, "no JSON object in the final reply")
+        self.assertTrue(parsed["answer"])
+        self.assertFalse(parsed["abstain"])
+        self.assertEqual(error, "no JSON object in the final reply")
+        kept, err = visible_reply(
+            {"answer": "A subsidiary has its own KERN ID.", "clarifying_question": "", "reason": "", "abstain": False},
+            None,
+        )
+        self.assertEqual(kept["answer"], "A subsidiary has its own KERN ID.")
+        self.assertIsNone(err)
+        reason_only, err = visible_reply({"answer": "", "clarifying_question": "", "reason": "No price in the docs.", "abstain": True}, None)
+        self.assertEqual(reason_only["reason"], "No price in the docs.")
+        self.assertIsNone(err)
 
     def test_cases_file_shape(self):
         from docs_live import ROOT

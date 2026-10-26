@@ -99,6 +99,7 @@ def run_turn(docs, messages: list[dict], conversation_id: str, chunks: dict | No
     depth_retried = False
     clarify_retried = False
     json_only = False
+    cap_closed = False
 
     while True:
         started = _ms()
@@ -139,7 +140,7 @@ def run_turn(docs, messages: list[dict], conversation_id: str, chunks: dict | No
                 )
                 working.append({"role": "user", "content": format_retry_message()})
                 continue
-            if not error:
+            if not error and not cap_closed:
                 policy = policy_retry(
                     parsed,
                     tool_calls,
@@ -163,12 +164,13 @@ def run_turn(docs, messages: list[dict], conversation_id: str, chunks: dict | No
                     working.append({"role": "user", "content": message})
                     continue
                 problems = citation_problems(parsed, chunks)
-                if problems and not citation_retried:
+                if problems and not citation_retried and not cap_closed:
                     citation_retried = True
                     json_only = False
                     citation_retry_problems = problems
                     working.append({"role": "user", "content": citation_retry_message(problems)})
                     continue
+            parsed, error = visible_reply(parsed, error)
             return _turn(
                 parsed=parsed,
                 parse_error=error,
@@ -188,7 +190,9 @@ def run_turn(docs, messages: list[dict], conversation_id: str, chunks: dict | No
                 clarify_retried=clarify_retried,
             )
 
-        if len(tool_calls) + len(tool_uses) > cap:
+        room = cap - len(tool_calls)
+        blocked = []
+        if len(tool_uses) > room:
             log_event(
                 {
                     "conversation_id": conversation_id,
@@ -196,18 +200,28 @@ def run_turn(docs, messages: list[dict], conversation_id: str, chunks: dict | No
                     "tool_calls": len(tool_calls) + len(tool_uses),
                 }
             )
-            return _turn(
-                parsed={},
-                parse_error=None,
-                raw_text="",
-                tool_calls=tool_calls,
-                chunks=chunks,
-                chunk_meta=chunk_meta,
-                handoff_written=handoff_written,
-                handoff_summary=handoff_summary,
-                usage=usage,
-                cap_exceeded=True,
-            )
+            if cap_closed:
+                parsed, error = visible_reply({}, "lookup limit reached before a reply")
+                return _turn(
+                    parsed=parsed,
+                    parse_error=error,
+                    raw_text="",
+                    tool_calls=tool_calls,
+                    chunks=chunks,
+                    chunk_meta=chunk_meta,
+                    handoff_written=handoff_written,
+                    handoff_summary=handoff_summary,
+                    usage=usage,
+                    cap_exceeded=True,
+                )
+            cap_closed = True
+            if room <= 0:
+                json_only = True
+                working.append({"role": "assistant", "content": [{"type": "text", "text": "I have the passages I need."}]})
+                working.append({"role": "user", "content": answer_now_message()})
+                continue
+            blocked = tool_uses[room:]
+            tool_uses = tool_uses[:room]
 
         working.append({"role": "assistant", "content": blocks})
         results = []
@@ -228,9 +242,12 @@ def run_turn(docs, messages: list[dict], conversation_id: str, chunks: dict | No
                         "error": "not allowed",
                     }
                 )
+                if working and working[-1].get("role") == "assistant":
+                    working.pop()
+                parsed, error = visible_reply({}, None)
                 return _turn(
-                    parsed={},
-                    parse_error=None,
+                    parsed=parsed,
+                    parse_error=error,
                     raw_text="",
                     tool_calls=tool_calls,
                     chunks=chunks,
@@ -277,6 +294,24 @@ def run_turn(docs, messages: list[dict], conversation_id: str, chunks: dict | No
                 }
             )
             results.append({"type": "tool_result", "tool_use_id": call["id"], "content": encoded})
+        for call in blocked:
+            results.append(
+                {
+                    "type": "tool_result",
+                    "tool_use_id": call["id"],
+                    "is_error": True,
+                    "content": json.dumps(
+                        {
+                            "error": "Lookup limit reached. Answer from the passages you already have. Do not call more tools.",
+                            "chunks": [],
+                        },
+                        ensure_ascii=False,
+                    ),
+                }
+            )
+        if blocked:
+            results.append({"type": "text", "text": answer_now_message()})
+            json_only = True
         working.append({"role": "user", "content": results})
 
 
@@ -484,6 +519,39 @@ def _hide_chunk_ids(text: str) -> str:
     cleaned = re.sub(r"[ \t]{2,}", " ", cleaned)
     cleaned = re.sub(r" +([.,;:])", r"\1", cleaned)
     return cleaned.strip()
+
+
+UNFINISHED = "I looked through the docs and couldn't finish the reply. Ask that again as one question."
+
+
+def answer_now_message() -> str:
+    return (
+        "The lookup limit is reached. Do not call any more tools. "
+        "Reply with one JSON object from the passages you already have. "
+        "Answer every part those passages cover and cite each one. "
+        "If one part is not in the docs, say so in the answer and set abstain to false. "
+        "Set abstain to true only when none of the question is in the docs."
+    )
+
+
+def visible_reply(parsed: dict | None, error: str | None) -> tuple[dict, str | None]:
+    """A finished turn always has something the customer can read."""
+    parsed = dict(parsed or {})
+    answer = (parsed.get("answer") or "").strip()
+    question = (parsed.get("clarifying_question") or "").strip()
+    reason = (parsed.get("reason") or "").strip()
+    if answer or question or reason:
+        return parsed, error
+    return (
+        {
+            "answer": UNFINISHED,
+            "clarifying_question": "",
+            "citations": [],
+            "abstain": False,
+            "reason": "",
+        },
+        error,
+    )
 
 
 def parse_reply(text: str) -> tuple[dict, str | None]:
